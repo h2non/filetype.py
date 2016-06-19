@@ -1,4 +1,4 @@
-# filetype.py [![Build Status](https://travis-ci.org/h2non/filetype.py.svg?branch=master)](https://travis-ci.org/h2non/filetype.py)
+# filetype.py [![Build Status](https://travis-ci.org/h2non/filetype.py.svg?branch=master)](https://travis-ci.org/h2non/filetype.py) [![PyPI](https://img.shields.io/pypi/dm/filetype.svg?maxAge=2592000?style=flat-square)](https://pypi.python.org/pypi/filetype) [![PyPI](https://img.shields.io/pypi/v/filetype.svg?maxAge=2592000?style=flat-square)](https://pypi.python.org/pypi/filetype)
 
 Small and dependency free [Python](http://python.org) package to infer file type and MIME type checking the [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files) signature of a file or buffer.
 
