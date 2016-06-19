@@ -1,21 +1,16 @@
-all: check_dependencies unit functional doctest
+all: lint unit
 
-export PYTHONPATH := ${PWD}
+export PYTHONPATH:=${PWD}
 version=`python -c 'import filetype;print filetype.version'`
 filename=filetype-`python -c 'import filetype;print filetype.version'`.tar.gz
-
-check_dependencies:
-	@echo "Checking for dependencies to run tests ..."
-	@for dependency in `echo $$LETTUCE_DEPENDENCIES`; do \
-		python -c "import $$dependency" 2>/dev/null || (echo "You must install $$dependency in order to run filetype's tests" && exit 3) ; \
-		done
 
 lint:
 	@flake8 .
 
 test: clean lint
 	@echo "Running tests ..."
-	@py.test
+	@python -m unittest discover
+	# @py.test
 
 documentation:
 	@pdoc --html --overwrite --all-submodules --html-dir docs filetype

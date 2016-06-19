@@ -13,7 +13,7 @@ install:
   - "sudo rm -rf /dev/shm && sudo ln -s /run/shm /dev/shm"
 
 script: 
-  make test
+  python -m unittest discover
 
 after_success:
   coveralls
