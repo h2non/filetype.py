@@ -1,13 +1,14 @@
 # -*- coding: utf-8 -*-
 
+from filetype.types import font
 from filetype.types import image
 from filetype.types import video
 from filetype.types import audio
-from filetype.types import font
 from filetype.types import archive
+from filetype.types.base import Type  # noqa
 
 # Supported image types
-image_types = (
+image = (
     image.Jpeg(),
     image.Png(),
     image.Gif(),
@@ -21,7 +22,7 @@ image_types = (
 )
 
 # Supported video types
-video_types = (
+video = (
     video.Mp4(),
     video.M4v(),
     video.Mkv(),
@@ -32,7 +33,7 @@ video_types = (
 )
 
 # Supported audio types
-audio_types = (
+audio = (
     audio.Midi(),
     audio.Mp3(),
     audio.M4a(),
@@ -42,8 +43,16 @@ audio_types = (
     audio.Amr(),
 )
 
+# Supported font types
+font = (
+    font.Woff(),
+    font.Woff2(),
+    font.Ttf(),
+    font.Otf(),
+)
+
 # Supported archive container types
-archive_types = (
+archive = (
     archive.Epub(),
     archive.Zip(),
     archive.Tar(),
@@ -68,15 +77,6 @@ archive_types = (
     archive.Lz(),
 )
 
-# Supported archive container types
-font_types = (
-    font.Woff(),
-    font.Woff2(),
-    font.Ttf(),
-    font.Otf(),
-)
-
 # Expose supported type matchers
-types = list(image_types + audio_types +
-        font_types + video_types +
-        archive_types)
+types = list(image + audio +
+             font + video + archive)

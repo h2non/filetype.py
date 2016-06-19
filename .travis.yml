@@ -6,13 +6,11 @@ python:
   - "3.4"
   - "3.5"
 
-# command to install dependencies
 install:
-  - pip install -r requirements.txt
   - pip install coveralls
+  - pip install py.test
   # Deal with issue on Travis builders re: multiprocessing.Queue :(
   - "sudo rm -rf /dev/shm && sudo ln -s /run/shm /dev/shm"
-  # coverage run --source=moscowdjango,meetup manage.py test
 
 script: 
   make test

@@ -22,13 +22,13 @@ config = {
     'install_requires': ['nose'],
     'packages': ['filetype'],
     'scripts': [],
-    'entry_points': {
-        'console_scripts': [
-            'filetype = filetype.cmd:run',
-        ],
-    },
     'package_data': {
         'filetype': ['LICENSE', '*.md'],
+    },
+    'entry_points': {
+        # 'console_scripts': [
+        #   'filetype = filetype.cmd:run',
+        # ],
     },
     'classifiers': [
         'Development Status :: 5 - Production/Stable',

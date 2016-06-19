@@ -7,7 +7,42 @@ def get_signature_bytes(path):
     of data representing the magic number header signature.
 
     :param path str
-    :rtype bytes
+    :rtype bytearray
     """
     with open(path, 'rb') as f:
-        return f.read(256)
+        return bytearray(f.read(256))
+
+
+def signature(array):
+    """
+    Returns the first 256 bytes of the given bytearray
+    as part of the file header signature.
+
+    :param array bytearray
+    :rtype bytearray
+    """
+    length = len(array)
+    index = 256 if length > 256 else length
+    return array[:index]
+
+
+def get_bytes(obj):
+    """
+    Infers the input type and reads the first 256 bytes,
+    returning a sliced bytearray.
+
+    :param obj obj
+    :rtype bytearray
+    """
+    kind = type(obj)
+
+    if kind == bytearray:
+        return signature(obj)
+
+    if kind == str:
+        return get_signature_bytes(obj)
+
+    if kind is bytes:
+        return signature(bytearray(obj))
+
+    raise TypeError('Unsupported type as file input: %s' % kind)

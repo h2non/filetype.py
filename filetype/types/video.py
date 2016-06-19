@@ -19,8 +19,10 @@ class Mp4(Type):
     def match(self, buf):
         return (len(buf) > 27 and
                 (buf[0] == 0x0 and buf[1] == 0x0 and
-                buf[2] == 0x0 and ((buf[3] == 0x18 or
-                    buf[3] == 0x20) and buf[4] == 0x66 and
+                buf[2] == 0x0 and
+                ((buf[3] == 0x18 or
+                    buf[3] == 0x20) and
+                    buf[4] == 0x66 and
                     buf[5] == 0x74 and buf[6] == 0x79 and
                     buf[7] == 0x70) or
                 (buf[0] == 0x33 and buf[1] == 0x67 and
@@ -230,4 +232,3 @@ class Mpeg(Type):
                 buf[2] == 0x1 and
                 buf[3] >= 0xb0 and
                 buf[3] <= 0xbf)
-

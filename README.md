@@ -1,4 +1,4 @@
-# filetype.py
+# filetype.py [![Build Status](https://travis-ci.org/h2non/filetype.py.svg?branch=master)](https://travis-ci.org/h2non/filetype.py)
 
 Small and dependency free [Python](http://python.org) package to infer file type and MIME type checking the [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files) signature of a file or buffer.
 
@@ -6,16 +6,15 @@ This is a Python port from [filetype](https://github.com/h2non/) Go package.
 
 ## Features
 
+- Simple and friendly API
 - Supports a [wide range](#supported-types) of file types
-- Provides file extension and proper MIME type
+- Provides file extension and MIME type inference
 - File discovery by extension or MIME type 
-- File discovery by class (image, video, audio...)
-- Provides a bunch of helpers and file matching shortcuts
-- [Pluggable](#add-additional-file-type-matchers): add custom new types and matchers 
-- Simple and semantic API
-- [Blazing fast](#benchmarks), even processing large files
-- Only first 261 bytes representing the max file header is required, so you can just [pass a slice](#file-header)
-- Dependency free (just Go code, no C compilation needed)
+- File discovery by kind (image, video, audio...)
+- [Pluggable](#add-additional-file-type-matchers): add new custom type matchers 
+- [Fast](#benchmarks), even processing large files
+- Only first 261 bytes representing the max file header is required, so you can just [pass a list of bytes](#file-header)
+- Dependency free (just Python code, no C extensions, no libmagic bindings)
 - Cross-platform file recognition
 
 ## Installation
@@ -26,7 +25,7 @@ pip install filetype
 
 ## API
 
-See [read the docs](https://godoc.org/github.com/h2non/filetype) API reference.
+See [annotated API reference](https://h2non.github.io/filetype.py/).
 
 ## Examples
 
@@ -119,16 +118,22 @@ if __name__ == '__main__':
 
 ## Benchmarks
 
-Measured using [real files](https://github.com/h2non/filetype/tree/master/fixturess). 
+Measured using [real files](https://github.com/h2non/filetype.py/tree/master/tests/fixtures). 
 
 Environment: OSX x64 i7 2.7 Ghz
 
 ```bash
-BenchmarkMatchTar-8    1000000        1083 ns/op
-BenchmarkMatchZip-8    1000000        1162 ns/op
-BenchmarkMatchJpeg-8   1000000        1280 ns/op
-BenchmarkMatchGif-8    1000000        1315 ns/op
-BenchmarkMatchPng-8    1000000        1121 ns/op
+------------------------------------------------------------------------------------------ benchmark: 7 tests ------------------------------------------------------------------------------------------
+Name (time in ns)                       Min                     Max                   Mean                StdDev                 Median                   IQR            Outliers(*)  Rounds  Iterations
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+test_infer_image_from_bytes        357.6279 (1.0)       29,166.5395 (1.0)       1,642.3360 (1.0)        380.9934 (1.0)       1,509.9843 (1.0)        158.9457 (1.0)       9095;13752  102301           6
+test_infer_audio_from_bytes        953.6743 (2.67)      96,082.6874 (3.29)     16,534.5880 (10.07)    3,002.1143 (7.88)     15,974.0448 (10.58)      953.6743 (6.00)       4514;6051   41528           1
+test_infer_video_from_bytes     13,828.2776 (38.67)    272,989.2731 (9.36)     16,151.3144 (9.83)     3,361.2320 (8.82)     15,020.3705 (9.95)       953.6743 (6.00)       2522;2887   22193           1
+test_infer_image_from_disk      15,974.0448 (44.67)    108,957.2906 (3.74)     18,621.0844 (11.34)    3,895.4441 (10.22)    17,166.1377 (11.37)    1,192.0929 (7.50)       1528;1804   10206           1
+test_infer_video_from_disk      23,841.8579 (66.67)    229,120.2545 (7.86)     28,691.3476 (17.47)    6,242.9901 (16.39)    25,987.6251 (17.21)    4,053.1158 (25.50)      1987;1247   15651           1
+test_infer_zip_from_disk        26,941.2994 (75.33)    230,073.9288 (7.89)     32,123.3861 (19.56)    7,524.4988 (19.75)    29,087.0667 (19.26)    4,768.3716 (30.00)      1349;1292   16132           1
+test_infer_tar_from_disk        33,855.4382 (94.67)    164,031.9824 (5.62)     36,884.4401 (22.46)    4,489.4443 (11.78)    36,001.2054 (23.84)      953.6743 (6.00)       1036;1828   14666           1
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ```
 
 ## License

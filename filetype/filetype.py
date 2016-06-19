@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from filetype.match import match
-from filetype.utils import get_signature_bytes
+from filetype.types import types
+from filetype import match
+
+# Expose supported matchers types
+types = types
 
 
 def guess_type(obj):
@@ -11,20 +14,16 @@ def guess_type(obj):
     Function is overloaded to accept multiple types in input
     and peform the needed type inference based on it.
 
-    :param obj str/list/bytes
-    :rtype Type
+    Args:
+        obj: path to file, bytes or bytearray.
+
+    Returns:
+        The matched type instance. Otherwise None.
+
+    Raises:
+        TypeError: if obj is not a supported type.
     """
-    if not obj:
-        return None
-
-    buf = None
-    if type(obj) is bytes:
-        buf = obj
-
-    if type(obj) == str:
-        buf = get_signature_bytes(obj)
-
-    return match(buf)
+    return match(obj) if obj else None
 
 
 def guess_mime(obj):
@@ -32,8 +31,14 @@ def guess_mime(obj):
     Infers the file type of the given input
     and returns its MIME type.
 
-    :param obj str/list/bytes
-    :rtype str
+    Args:
+        obj: path to file, bytes or bytearray.
+
+    Returns:
+        The matched MIME type as string. Otherwise None.
+
+    Raises:
+        TypeError: if obj is not a supported type.
     """
     kind = guess_type(obj)
     return kind.mime if kind else kind
@@ -44,24 +49,48 @@ def guess_extension(obj):
     Infers the file type of the given input
     and returns its RFC file extension.
 
-    :param obj str/list/bytes
-    :rtype str
+    Args:
+        obj: path to file, bytes or bytearray.
+
+    Returns:
+        The matched file extension as string. Otherwise None.
+
+    Raises:
+        TypeError: if obj is not a supported type.
     """
     kind = guess_type(obj)
     return kind.extension if kind else kind
 
 
-def is_extension_supported(ext):
+def get_type(mime=None, ext=None):
+    """
+    Returns the file type instance searching by
+    MIME type or file extension.
+
+    Args:
+        ext: file extension string. E.g: jpg, png, mp4, mp3
+        mime: MIME string. E.g: image/jpeg, video/mpeg
+
+    Returns:
+        The matched file type instance. Otherwise None.
+    """
+    for kind in types:
+        if kind.extension is ext or kind.mime is mime:
+            return kind
     return None
 
 
-def is_extension_equals(ext):
-    return None
+def add_type(instance):
+    """
+    Adds a new type matcher instance to the supported types.
 
+    Args:
+        instance: Type inherited instance.
 
-def is_mime_supported(mime):
-    return None
+    Returns:
+        None
+    """
+    if not isinstance(instance, types.Type):
+        raise TypeError('instance must inherit from filetype.types.Type')
 
-
-def is_mime_equals(mime):
-    return None
+    types.insert(0, instance)
