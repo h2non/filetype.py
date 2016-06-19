@@ -19,7 +19,7 @@ config = {
     'download_url': 'https://github.com/h2non/filetype.py/tarball/master',
     'author_email': 'tomas@aparicio.me',
     'version': '0.1.0',
-    'packages': ['filetype'],
+    'packages': ['filetype', 'filetype.types'],
     'scripts': [],
     'package_data': {
         'filetype': ['LICENSE', '*.md'],
@@ -47,7 +47,7 @@ config = {
         'Environment :: Web Environment',
         'Intended Audience :: Developers',
         'Intended Audience :: System Administrators',
-        'License :: OSI Approved :: Apache Software License',
+        'License :: OSI Approved :: MIT License',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
