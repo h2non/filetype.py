@@ -19,7 +19,6 @@ config = {
     'download_url': 'https://github.com/h2non/filetype.py/tarball/master',
     'author_email': 'tomas@aparicio.me',
     'version': '0.1.0',
-    'install_requires': ['nose'],
     'packages': ['filetype'],
     'scripts': [],
     'package_data': {
@@ -30,6 +29,18 @@ config = {
         #   'filetype = filetype.cmd:run',
         # ],
     },
+    'keywords': [
+        'file',
+        'libmagic',
+        'magic',
+        'infer',
+        'numbers',
+        'magicnumbers',
+        'discovery',
+        'mime',
+        'type',
+        'kind',
+    ],
     'classifiers': [
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
