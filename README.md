@@ -3,7 +3,7 @@
 Small and dependency free [Python](http://python.org) package to infer file type and MIME type checking the [magic numbers](https://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files) signature of a file or buffer.
 
 This is a Python port from [filetype](https://github.com/h2non/) Go package. 
-Works on Python `+3`.
+Works in Python `+3`.
 
 ## Features
 

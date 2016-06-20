@@ -10,21 +10,21 @@ FIXTURES = path.dirname(path.abspath(__file__)) + '/fixtures'
 
 class TestFileType(unittest.TestCase):
     def test_guess_file_path(self):
-        kind = filetype.guess_type(FIXTURES + '/sample.jpg')
+        kind = filetype.guess(FIXTURES + '/sample.jpg')
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'image/jpeg')
         self.assertEqual(kind.extension, 'jpg')
 
     def test_guess_buffer(self):
         buf = bytearray([0xFF, 0xD8, 0xFF, 0x00, 0x08])
-        kind = filetype.guess_type(buf)
+        kind = filetype.guess(buf)
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'image/jpeg')
         self.assertEqual(kind.extension, 'jpg')
 
     def test_guess_buffer_invalid(self):
         buf = bytearray([0xFF, 0x00, 0x00, 0x00, 0x00])
-        kind = filetype.guess_type(buf)
+        kind = filetype.guess(buf)
         self.assertTrue(kind is None)
 
 

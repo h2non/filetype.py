@@ -1,33 +1,34 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup, find_packages
+# To use a consistent encoding
+from codecs import open
+from os import path
 
 description = '''
 Infer file type and MIME type of any file/buffer.
 No libmagic dependency.
 '''
 
+# Get the long description from the README file
+here = path.abspath(path.dirname(__file__))
+with open(path.join(here, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
+
 config = {
     'name': 'filetype',
     'description': description,
+    'long_description': long_description,
     'author': 'Tomas Aparicio',
+    'author_email': 'tomas@aparicio.me',
     'url': 'https://github.com/h2non/filetype.py',
     'download_url': 'https://github.com/h2non/filetype.py/tarball/master',
-    'author_email': 'tomas@aparicio.me',
     'version': '0.1.0',
-    'packages': ['filetype', 'filetype.types'],
-    'scripts': [],
+    'license': 'MIT',
+    'packages': find_packages(exclude=['dist', 'build', 'docs', 'tests']),
     'package_data': {
         'filetype': ['LICENSE', '*.md'],
-    },
-    'entry_points': {
-        # 'console_scripts': [
-        #   'filetype = filetype.cmd:run',
-        # ],
     },
     'keywords': [
         'file',

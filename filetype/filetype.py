@@ -7,7 +7,7 @@ from filetype import match
 types = types
 
 
-def guess_type(obj):
+def guess(obj):
     """
     Infers the type of the given input.
 
