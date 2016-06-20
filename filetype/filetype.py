@@ -40,7 +40,7 @@ def guess_mime(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    kind = guess_type(obj)
+    kind = guess(obj)
     return kind.mime if kind else kind
 
 
@@ -58,7 +58,7 @@ def guess_extension(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    kind = guess_type(obj)
+    kind = guess(obj)
     return kind.extension if kind else kind
 
 
