@@ -12,7 +12,8 @@ install:
   - "sudo rm -rf /dev/shm && sudo ln -s /run/shm /dev/shm"
 
 script: 
-  python -m unittest discover
+  - make lint
+  - python -m unittest discover
 
 after_success:
   coveralls

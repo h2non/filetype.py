@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from filetype.types import types
 from filetype import match
+from filetype.types import types
 
 # Expose supported matchers types
 types = types

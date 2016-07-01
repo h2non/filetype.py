@@ -10,7 +10,7 @@ def is_extension_supported(ext):
     one of the supported by the file matchers.
 
     Args:
-        ext: file extension string. E.g: jpg, png, mp4, mp3
+        ext (str): file extension string. E.g: jpg, png, mp4, mp3
 
     Returns:
         True if the file extension is supported.
@@ -28,7 +28,7 @@ def is_mime_supported(mime):
     one of the supported by the file matchers.
 
     Args:
-        mime: MIME string. E.g: image/jpeg, video/mpeg
+        mime (str): MIME string. E.g: image/jpeg, video/mpeg
 
     Returns:
         True if the MIME type is supported.
