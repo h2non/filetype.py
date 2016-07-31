@@ -14,7 +14,7 @@ install:
 
 script: 
   - make lint
-  - python -m unittest discover
+  - make test
 
 after_success:
   coveralls
