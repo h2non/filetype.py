@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from filetype import types
-from filetype.utils import get_bytes
+from .utils import get_bytes
+from .types import (
+    types,
+    image as image_matchers,
+    video as video_matchers,
+    font as font_matchers,
+    archive as archive_matchers,
+    audio as audio_matchers
+)
 
 
-def match(obj, matchers=types.types):
+def match(obj, matchers=types):
     """
     Matches the given input againts the available
     file type matchers.
@@ -41,7 +48,7 @@ def image(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match(obj, types.image)
+    return match(obj, image_matchers)
 
 
 def font(obj):
@@ -58,7 +65,7 @@ def font(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match(obj, types.font)
+    return match(obj, font_matchers)
 
 
 def video(obj):
@@ -75,7 +82,7 @@ def video(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match(obj, types.video)
+    return match(obj, video_matchers)
 
 
 def audio(obj):
@@ -92,7 +99,7 @@ def audio(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match(obj, types.audio)
+    return match(obj, audio_matchers)
 
 
 def archive(obj):
@@ -109,4 +116,4 @@ def archive(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match(obj, types.archive)
+    return match(obj, archive_matchers)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from filetype.types.base import Type
+from .base import Type
 
 
 class Midi(Type):

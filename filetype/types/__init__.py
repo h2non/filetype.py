@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from filetype.types import font
-from filetype.types import image
-from filetype.types import video
-from filetype.types import audio
-from filetype.types import archive
-from filetype.types.base import Type  # noqa
+from . import font
+from . import image
+from . import video
+from . import audio
+from . import archive
+from .base import Type  # noqa
 
 # Supported image types
 image = (

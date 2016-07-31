@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from filetype.types import types
-from filetype import match
+from .types import types
+from .match import match
 
 
 def is_extension_supported(ext):
