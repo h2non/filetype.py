@@ -10,7 +10,6 @@ lint:
 test: clean lint
 	@echo "Running tests ..."
 	@python -m unittest discover
-	# @py.test
 
 documentation:
 	@pdoc --html --overwrite --all-submodules --html-dir docs filetype
@@ -28,9 +27,11 @@ clean:
 	@for pattern in `cat .gitignore`; do find . -name "$$pattern" -delete; done
 	@echo "OK!"
 
-release: clean docs deploy-documentation publish
+compress:
 	@printf "Exporting to $(filename)... "
 	@tar czf $(filename) filetype setup.py README.md LICENSE
+
+release: clean docs deploy-documentation compress publish
 	@echo "DONE!"
 
 publish:
