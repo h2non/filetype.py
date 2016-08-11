@@ -49,10 +49,10 @@ def get_bytes(obj):
     """
     kind = type(obj)
 
-    if kind == bytearray:
+    if kind is bytearray:
         return signature(obj)
 
-    if kind == str:
+    if kind is str:
         return get_signature_bytes(obj)
 
     if kind is bytes:
