@@ -11,16 +11,10 @@ Infer file type and MIME type of any file/buffer.
 No libmagic dependency.
 '''
 
-# Get the long description from the README file
-here = path.abspath(path.dirname(__file__))
-with open(path.join(here, 'README.md'), encoding='utf-8') as f:
-    long_description = f.read()
-
 
 config = {
     'name': 'filetype',
     'description': description,
-    'long_description': long_description,
     'author': 'Tomas Aparicio',
     'author_email': 'tomas@aparicio.me',
     'url': 'https://github.com/h2non/filetype.py',
