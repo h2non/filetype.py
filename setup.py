@@ -3,8 +3,6 @@
 
 from setuptools import setup, find_packages
 # To use a consistent encoding
-from codecs import open
-from os import path
 
 description = '''
 Infer file type and MIME type of any file/buffer.
