@@ -19,7 +19,7 @@ config = {
     'author_email': 'tomas@aparicio.me',
     'url': 'https://github.com/h2non/filetype.py',
     'download_url': 'https://github.com/h2non/filetype.py/tarball/master',
-    'version': '0.1.2',
+    'version': '0.1.3',
     'license': 'MIT',
     'packages': find_packages(exclude=['dist', 'build', 'docs', 'tests']),
     'package_data': {
