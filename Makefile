@@ -1,7 +1,7 @@
 all: lint unit
 
 export PYTHONPATH:=${PWD}
-version=`python -c 'import filetype;print filetype.version'`
+version=`python -c 'import filetype; print(filetype.version)'`
 filename=filetype-`python -c 'import filetype;print filetype.version'`.tar.gz
 
 lint:
@@ -27,12 +27,18 @@ clean:
 	@for pattern in `cat .gitignore`; do find . -name "$$pattern" -delete; done
 	@echo "OK!"
 
+tag:
+	@echo "Creating tag v$(version)..."
+	@echo $(version)
+	@git tag -a v$(version) -m "Version v$(version)"
+	@git push origin v$(version)
+
 compress:
 	@printf "Exporting to $(filename)... "
 	@tar czf $(filename) filetype setup.py README.md LICENSE
 
-release: clean docs deploy-documentation compress publish
-	@echo "DONE!"
-
 publish:
 	@python setup.py sdist register upload
+
+release: clean docs deploy-documentation tag compress publish
+	@echo "DONE!"
