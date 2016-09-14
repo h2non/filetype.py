@@ -36,7 +36,7 @@ See [annotated API reference](https://h2non.github.io/filetype.py/).
 import filetype
 
 def main():
-  kind = filetype.guess_type('tests/fixtures/sample.jpg')
+  kind = filetype.guess('tests/fixtures/sample.jpg')
   if kind is None:
     print('Cannot guess file type!')
     return
