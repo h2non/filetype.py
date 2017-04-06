@@ -48,7 +48,7 @@ class Gif(Type):
     """
     Implements the GIF image type matcher.
     """
-    MIME = 'image/png'
+    MIME = 'image/gif'
     EXTENSION = 'gif'
 
     def __init__(self):
