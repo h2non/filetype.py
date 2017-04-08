@@ -38,7 +38,11 @@ compress:
 	@tar czf $(filename) filetype setup.py README.md LICENSE
 
 publish:
-	@python setup.py sdist register upload
+	@echo "==> Releasing package $(version)..."
+	@python setup.py register
+	@python setup.py sdist upload
+	@python setup.py bdist_wheel --universal upload
+	@rm -fr build dist .egg filetype.egg-info
 
 release: clean docs deploy-documentation tag compress publish
 	@echo "DONE!"
