@@ -5,4 +5,4 @@ from .helpers import *  # noqa
 from .filetype import *  # noqa
 
 # Current package semver version
-__version__ = version = '0.1.3'
+__version__ = version = '0.1.4'
