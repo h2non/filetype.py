@@ -5,7 +5,7 @@ from setuptools import setup, find_packages
 # To use a consistent encoding
 
 description = ('Infer file type and MIME type of any file/buffer. '
-	       'No libmagic dependency.')
+               'No libmagic dependency.')
 
 
 config = {
