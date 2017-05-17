@@ -149,7 +149,7 @@ class Bmp(Type):
 
 class Jxr(Type):
     """
-    Implements the BMP image type matcher.
+    Implements the JXR image type matcher.
     """
     MIME = 'image/vnd.ms-photo'
     EXTENSION = 'jxr'
@@ -169,7 +169,7 @@ class Jxr(Type):
 
 class Psd(Type):
     """
-    Implements the BMP image type matcher.
+    Implements the PSD image type matcher.
     """
     MIME = 'image/vnd.adobe.photoshop'
     EXTENSION = 'psd'
@@ -190,10 +190,10 @@ class Psd(Type):
 
 class Ico(Type):
     """
-    Implements the BMP image type matcher.
+    Implements the ICO image type matcher.
     """
-    MIME = 'image/vnd.adobe.photoshop'
-    EXTENSION = 'psd'
+    MIME = 'image/x-icon'
+    EXTENSION = 'ico'
 
     def __init__(self):
         super(Ico, self).__init__(
