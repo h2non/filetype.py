@@ -2,7 +2,7 @@ all: lint unit
 
 export PYTHONPATH:=${PWD}
 version=`python -c 'import filetype; print(filetype.version)'`
-filename=filetype-`python -c 'import filetype;print filetype.version'`.tar.gz
+filename=filetype-`python -c 'import filetype;print(filetype.version)'`.tar.gz
 
 lint:
 	@flake8 .
