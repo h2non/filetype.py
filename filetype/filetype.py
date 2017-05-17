@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from .match import match
-from .types import types
+from .types import types, Type
 
 # Expose supported matchers types
 types = types
@@ -90,7 +90,7 @@ def add_type(instance):
     Returns:
         None
     """
-    if not isinstance(instance, types.Type):
+    if not isinstance(instance, Type):
         raise TypeError('instance must inherit from filetype.types.Type')
 
     types.insert(0, instance)
