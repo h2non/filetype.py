@@ -1,4 +1,14 @@
 
+v0.1.6 / 2017-06-25
+===================
+
+  * Merge pull request #12 from vuolter/patch-1
+  * Update .travis.yml
+  * Update .travis.yml
+  * Update setup.py
+  * feat(version): bump to v0.1.5
+  * fix(Makefile): fix command
+
 v0.1.5 / 2017-05-17
 ===================
 
