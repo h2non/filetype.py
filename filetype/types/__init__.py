@@ -8,7 +8,7 @@ from . import archive
 from .base import Type  # noqa
 
 # Supported image types
-image = (
+IMAGE = (
     image.Jpeg(),
     image.Png(),
     image.Gif(),
@@ -22,7 +22,7 @@ image = (
 )
 
 # Supported video types
-video = (
+VIDEO = (
     video.Mp4(),
     video.M4v(),
     video.Mkv(),
@@ -33,7 +33,7 @@ video = (
 )
 
 # Supported audio types
-audio = (
+AUDIO = (
     audio.Midi(),
     audio.Mp3(),
     audio.M4a(),
@@ -44,7 +44,7 @@ audio = (
 )
 
 # Supported font types
-font = (
+FONT = (
     font.Woff(),
     font.Woff2(),
     font.Ttf(),
@@ -52,7 +52,7 @@ font = (
 )
 
 # Supported archive container types
-archive = (
+ARCHIVE = (
     archive.Epub(),
     archive.Zip(),
     archive.Tar(),
@@ -78,5 +78,4 @@ archive = (
 )
 
 # Expose supported type matchers
-types = list(image + audio +
-             font + video + archive)
+TYPES = list(IMAGE + AUDIO + FONT + VIDEO + ARCHIVE)

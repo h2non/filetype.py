@@ -2,16 +2,16 @@
 
 from .utils import get_bytes
 from .types import (
-    types,
-    image as image_matchers,
-    video as video_matchers,
-    font as font_matchers,
-    archive as archive_matchers,
-    audio as audio_matchers
+    TYPES,
+    IMAGE as image_matchers,
+    VIDEO as video_matchers,
+    FONT as font_matchers,
+    ARCHIVE as archive_matchers,
+    AUDIO as audio_matchers
 )
 
 
-def match(obj, matchers=types):
+def match(obj, matchers=TYPES):
     """
     Matches the given input againts the available
     file type matchers.

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .types import types
+from .types import TYPES
 from .match import match
 
 
@@ -16,7 +16,7 @@ def is_extension_supported(ext):
         True if the file extension is supported.
         Otherwise False.
     """
-    for kind in types:
+    for kind in TYPES:
         if kind.extension is ext:
             return True
     return False
@@ -34,7 +34,7 @@ def is_mime_supported(mime):
         True if the MIME type is supported.
         Otherwise False.
     """
-    for kind in types:
+    for kind in TYPES:
         if kind.mime is mime:
             return True
     return False
