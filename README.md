@@ -116,7 +116,7 @@ Supported types
 - **Z** - `application/x-compress`
 - **lz** - `application/x-lzip`
 
-### Font
+#### Font
 
 - **woff** - `application/font-woff`
 - **woff2** - `application/font-woff`
