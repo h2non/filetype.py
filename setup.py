@@ -5,7 +5,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='filetype',
-    version='0.1.5',
+    version='0.1.6',
     description='Infer file type and MIME type of any file/buffer. '
                 'No libmagic dependency.',
     long_description=open('README.rst').read(),
