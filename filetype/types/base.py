@@ -28,4 +28,4 @@ class Type(object):
         return self.__mime is mime
 
     def match(self, buf):
-        raise NotImplementedError()
+        raise NotImplementedError

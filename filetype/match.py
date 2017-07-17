@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
+
+from .types import ARCHIVE as archive_matchers
+from .types import AUDIO as audio_matchers
+from .types import FONT as font_matchers
+from .types import IMAGE as image_matchers
+from .types import VIDEO as video_matchers
+from .types import TYPES
 from .utils import get_bytes
-from .types import (
-    types,
-    image as image_matchers,
-    video as video_matchers,
-    font as font_matchers,
-    archive as archive_matchers,
-    audio as audio_matchers
-)
 
 
-def match(obj, matchers=types):
+def match(obj, matchers=TYPES):
     """
     Matches the given input againts the available
     file type matchers.

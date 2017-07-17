@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from __future__ import absolute_import
+
 import filetype
 
 
@@ -5,7 +10,7 @@ def main():
     f = open('tests/fixtures/sample.jpg', 'rb')
     data = f.read()
 
-    kind = filetype.guess_type(data)
+    kind = filetype.guess(data)
     if kind is None:
         print('Cannot guess file type!')
         return

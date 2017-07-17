@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
-from os import path
+from __future__ import absolute_import
+
+import os
 import unittest
+
 import filetype
 
 # Absolute path to fixtures directory
-FIXTURES = path.dirname(path.abspath(__file__)) + '/fixtures'
+FIXTURES = os.path.dirname(os.path.abspath(__file__)) + '/fixtures'
 
 
 class TestFileType(unittest.TestCase):

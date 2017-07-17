@@ -12,8 +12,8 @@ def get_signature_bytes(path):
     Returns:
         First 256 bytes of the file content as bytearray type.
     """
-    with open(path, 'rb') as f:
-        return bytearray(f.read(256))
+    with open(path, 'rb') as fp:
+        return bytearray(fp.read(256))
 
 
 def signature(array):
