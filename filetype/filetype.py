@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
+
 from .match import match
-from .types import types, Type
+from .types import TYPES, Type
 
 # Expose supported matchers types
-types = types
+types = TYPES
 
 
 def guess(obj):

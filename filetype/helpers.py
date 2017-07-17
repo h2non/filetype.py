@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
+
+from . import match
 from .types import TYPES
-from .match import match
 
 
 def is_extension_supported(ext):

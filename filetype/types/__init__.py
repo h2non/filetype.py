@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
+
+from . import archive
+from . import audio
 from . import font
 from . import image
 from . import video
-from . import audio
-from . import archive
 from .base import Type  # noqa
 
 # Supported image types

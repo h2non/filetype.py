@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 
+from __future__ import absolute_import
+
+from .types import ARCHIVE as archive_matchers
+from .types import AUDIO as audio_matchers
+from .types import FONT as font_matchers
+from .types import IMAGE as image_matchers
+from .types import VIDEO as video_matchers
+from .types import TYPES
 from .utils import get_bytes
-from .types import (
-    TYPES,
-    IMAGE as image_matchers,
-    VIDEO as video_matchers,
-    FONT as font_matchers,
-    ARCHIVE as archive_matchers,
-    AUDIO as audio_matchers
-)
 
 
 def match(obj, matchers=TYPES):
