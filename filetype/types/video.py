@@ -197,7 +197,7 @@ class Flv(Type):
     """
     Implements the FLV video type matcher.
     """
-    MIME = 'video/x-ms-wmv'
+    MIME = 'video/x-flv'
     EXTENSION = 'flv'
 
     def __init__(self):
