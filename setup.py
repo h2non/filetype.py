@@ -5,9 +5,9 @@ from setuptools import find_packages, setup
 
 setup(
     name='filetype',
-    version='0.1.6',
+    version='1.0.0',
     description='Infer file type and MIME type of any file/buffer. '
-                'No libmagic dependency.',
+                'No external dependencies.',
     long_description=open('README.rst').read(),
     keywords='file libmagic magic infer numbers magicnumbers discovery mime '
              'type kind',
