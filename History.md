@@ -1,4 +1,18 @@
 
+v1.0.0 / 2017-07-26
+===================
+
+  * feat(docs): add static documentation
+  * feat(version): bump to v1.0.0
+  * Merge pull request #15 from geofmureithi/patch-1
+  * Correct Flv minetype
+  * Merge pull request #14 from vuolter/patch-2
+  * Restore tox intro
+  * Fix setup.py version
+  * Code cosmetics (2)
+  * Fix style typo in README.md
+  * Code cosmetics
+
 v0.1.6 / 2017-06-25
 ===================
 
