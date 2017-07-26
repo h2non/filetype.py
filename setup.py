@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import codecs
 from setuptools import find_packages, setup
 
 setup(
@@ -8,7 +9,8 @@ setup(
     version='1.0.0',
     description='Infer file type and MIME type of any file/buffer. '
                 'No external dependencies.',
-    long_description=open('README.rst').read(),
+    long_description=codecs.open('README.rst', 'r',
+                                 encoding='utf-8', errors='ignore').read(),
     keywords='file libmagic magic infer numbers magicnumbers discovery mime '
              'type kind',
     url='https://github.com/h2non/filetype.py',
