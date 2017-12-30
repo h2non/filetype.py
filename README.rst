@@ -13,7 +13,7 @@ Features
 -  Supports a `wide range`_ of file types
 -  Provides file extension and MIME type inference
 -  File discovery by extension or MIME type
--  File discovery by kind (image, video, audio…)
+-  File discovery by kind (image, video, audioâ€¦)
 -  `Pluggable`_: add new custom type matchers
 -  `Fast`_, even processing large files
 -  Only first 261 bytes representing the max file header is required, so
@@ -40,7 +40,7 @@ Examples
 Simple file type checking
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
-::
+.. code-block:: python
 
     import filetype
 
