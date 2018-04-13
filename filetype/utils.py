@@ -56,6 +56,6 @@ def get_bytes(obj):
         return get_signature_bytes(obj)
 
     if kind is bytes:
-        return signature(bytearray(obj))
+        return signature(obj)
 
     raise TypeError('Unsupported type as file input: %s' % kind)
