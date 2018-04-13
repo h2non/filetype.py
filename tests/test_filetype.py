@@ -30,6 +30,13 @@ class TestFileType(unittest.TestCase):
         kind = filetype.guess(buf)
         self.assertTrue(kind is None)
 
+    def test_guess_memoryview(self):
+        buf = memoryview(bytearray([0xFF, 0xD8, 0xFF, 0x00, 0x08]))
+        kind = filetype.guess(buf)
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'image/jpeg')
+        self.assertEqual(kind.extension, 'jpg')
+
 
 class TestFileTypeExtension(unittest.TestCase):
     def test_guess_extension_file_path(self):
@@ -48,6 +55,12 @@ class TestFileTypeExtension(unittest.TestCase):
         ext = filetype.guess_extension(buf)
         self.assertTrue(ext is None)
 
+    def test_guess_extension_memoryview(self):
+        buf = memoryview(bytearray([0xFF, 0xD8, 0xFF, 0x00, 0x08]))
+        ext = filetype.guess_extension(buf)
+        self.assertTrue(ext is not None)
+        self.assertEqual(ext, 'jpg')
+
 
 class TestFileTypeMIME(unittest.TestCase):
     def test_guess_mime_file_path(self):
@@ -65,3 +78,9 @@ class TestFileTypeMIME(unittest.TestCase):
         buf = bytearray([0xFF, 0x00, 0x00, 0x00, 0x00])
         mime = filetype.guess_mime(buf)
         self.assertTrue(mime is None)
+
+    def test_guess_mime_memoryview(self):
+        buf = memoryview(bytearray([0xFF, 0xD8, 0xFF, 0x00, 0x08]))
+        mime = filetype.guess_mime(buf)
+        self.assertTrue(mime is not None)
+        self.assertEqual(mime, 'image/jpeg')

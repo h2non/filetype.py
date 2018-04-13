@@ -58,4 +58,7 @@ def get_bytes(obj):
     if kind is bytes:
         return signature(bytearray(obj))
 
+    if kind is memoryview:
+        return signature(obj).tolist()
+
     raise TypeError('Unsupported type as file input: %s' % kind)
