@@ -1,4 +1,16 @@
 
+v1.0.1 / 2018-04-14
+===================
+
+  * Merge pull request #22 from gaul/memoryview
+  * Merge pull request #23 from gaul/avoid-bytearray-copy
+  * Avoid bytearray copy when guessing bytes input
+  * Allow memoryview input to filetype.guess
+  * Update README.rst
+  * Delete README.md
+  * Merge pull request #19 from williamjmorenor/patch-1
+  * Create MANIFEST.in
+
 v1.0.0 / 2017-07-26
 ===================
 
