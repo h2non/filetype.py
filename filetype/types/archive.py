@@ -524,7 +524,7 @@ class Elf(Type):
     EXTENSION = 'elf'
 
     def __init__(self):
-        super(Lz, self).__init__(
+        super(Elf, self).__init__(
             mime=Elf.MIME,
             extension=Elf.EXTENSION
         )
