@@ -52,7 +52,7 @@ def get_bytes(obj):
     if kind is bytearray:
         return signature(obj)
 
-    if kind is str:
+    if kind is str or kind is unicode:
         return get_signature_bytes(obj)
 
     if kind is bytes:
