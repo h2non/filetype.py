@@ -32,6 +32,8 @@ VIDEO = (
     video.Avi(),
     video.Wmv(),
     video.Mpeg(),
+    video.Webm(),
+    video.Flv(),
 )
 
 # Supported audio types
