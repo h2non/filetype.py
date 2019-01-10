@@ -3,6 +3,7 @@
 from __future__ import absolute_import
 
 from .base import Type
+from .isobmff import IsoBmff
 
 
 class Jpeg(Type):
@@ -209,3 +210,28 @@ class Ico(Type):
                 buf[1] == 0x00 and
                 buf[2] == 0x01 and
                 buf[3] == 0x00)
+
+
+class Heic(IsoBmff):
+    """
+    Implements the HEIC image type matcher.
+    """
+    MIME = 'image/heic'
+    EXTENSION = 'heic'
+
+    def __init__(self):
+        super(Heic, self).__init__(
+            mime=Heic.MIME,
+            extension=Heic.EXTENSION
+        )
+
+    def match(self, buf):
+        if not self._is_isobmff(buf):
+            return False
+
+        major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
+        if major_brand == 'heic':
+            return True
+        if major_brand in ['mif1', 'msf1'] and 'heic' in compatible_brands:
+            return True
+        return False
