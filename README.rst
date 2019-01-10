@@ -72,6 +72,7 @@ Image
 -  **jxr** - ``image/vnd.ms-photo``
 -  **psd** - ``image/vnd.adobe.photoshop``
 -  **ico** - ``image/x-icon``
+-  **heic** - ``image/heic``
 
 Video
 ^^^^^
