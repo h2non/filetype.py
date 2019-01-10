@@ -17,7 +17,7 @@ class TestFileType(unittest.TestCase):
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'image/jpeg')
         self.assertEqual(kind.extension, 'jpg')
-    
+
     def test_guess_gif(self):
         kind = filetype.guess(FIXTURES + '/sample.gif')
         self.assertTrue(kind is not None)
@@ -42,15 +42,14 @@ class TestFileType(unittest.TestCase):
         self.assertEqual(kind.mime, 'image/png')
         self.assertEqual(kind.extension, 'png')
 
-    def test_guess_png(self):
+    def test_guess_tif(self):
         kind = filetype.guess(FIXTURES + '/sample.tif')
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'image/tiff')
         self.assertEqual(kind.extension, 'tif')
-    
+
     def test_guess_mov(self):
         kind = filetype.guess(FIXTURES + '/sample.mov')
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'video/quicktime')
         self.assertEqual(kind.extension, 'mov')
-
