@@ -9,7 +9,7 @@ class IsoBmff(Type):
     """
     Implements the ISO-BMFF base type.
     """
-    def __init__(self, *, mime, extension):
+    def __init__(self, mime, extension):
         super(IsoBmff, self).__init__(
             mime=mime,
             extension=extension
