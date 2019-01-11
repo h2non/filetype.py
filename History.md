@@ -1,4 +1,20 @@
 
+v1.0.1 / 2019-01-11
+===================
+
+  * Merge pull request #31 from david-poirier-csn/master
+  * removed py3.3 from travis
+  * flake8 killing me
+  * fix py2.7 error
+  * fix py2.7 error
+  * fix flake8 complaints
+  * added support for HEIC files
+  * added support for HEIC files
+  * Merge pull request #28 from amitlissack/expose_webm
+  * expose flv and webm matchers
+  * Merge pull request #25 from CloudFerro/wip-fix-byte-reading
+  * Fixed number of readed bytes in utils.py
+
 v1.0.1 / 2018-04-14
 ===================
 
