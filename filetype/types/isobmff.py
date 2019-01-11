@@ -31,4 +31,3 @@ class IsoBmff(Type):
             compatible_brands.append(buf[i:i+4].decode())
 
         return major_brand, minor_version, compatible_brands
-
