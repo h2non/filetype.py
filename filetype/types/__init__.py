@@ -21,6 +21,7 @@ IMAGE = (
     image.Jxr(),
     image.Psd(),
     image.Ico(),
+    image.Heic(),
 )
 
 # Supported video types
@@ -82,4 +83,4 @@ ARCHIVE = (
 )
 
 # Expose supported type matchers
-TYPES = list(IMAGE + AUDIO + FONT + VIDEO + ARCHIVE)
+TYPES = list(VIDEO + IMAGE + AUDIO + FONT + ARCHIVE)

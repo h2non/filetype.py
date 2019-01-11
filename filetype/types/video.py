@@ -3,9 +3,10 @@
 from __future__ import absolute_import
 
 from .base import Type
+from .isobmff import IsoBmff
 
 
-class Mp4(Type):
+class Mp4(IsoBmff):
     """
     Implements the MP4 video type matcher.
     """
@@ -19,28 +20,11 @@ class Mp4(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 27 and
-                (buf[0] == 0x0 and buf[1] == 0x0 and
-                buf[2] == 0x0 and
-                ((buf[3] == 0x18 or
-                    buf[3] == 0x20) and
-                    buf[4] == 0x66 and
-                    buf[5] == 0x74 and buf[6] == 0x79 and
-                    buf[7] == 0x70) or
-                (buf[0] == 0x33 and buf[1] == 0x67 and
-                    buf[2] == 0x70 and buf[3] == 0x35) or
-                (buf[0] == 0x0 and buf[1] == 0x0 and
-                    buf[2] == 0x0 and buf[3] == 0x1C and
-                    buf[4] == 0x66 and buf[5] == 0x74 and
-                    buf[6] == 0x79 and buf[7] == 0x70 and
-                    buf[8] == 0x6D and buf[9] == 0x70 and
-                    buf[10] == 0x34 and buf[11] == 0x32 and
-                    buf[16] == 0x6D and buf[17] == 0x70 and
-                    buf[18] == 0x34 and buf[19] == 0x31 and
-                    buf[20] == 0x6D and buf[21] == 0x70 and
-                    buf[22] == 0x34 and buf[23] == 0x32 and
-                    buf[24] == 0x69 and buf[25] == 0x73 and
-                    buf[26] == 0x6F and buf[27] == 0x6D)))
+        if not self._is_isobmff(buf):
+            return False
+
+        major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
+        return major_brand in ['mp41', 'mp42']
 
 
 class M4v(Type):
@@ -117,7 +101,7 @@ class Webm(Type):
                 buf[3] == 0xA3)
 
 
-class Mov(Type):
+class Mov(IsoBmff):
     """
     Implements the MOV video type matcher.
     """
@@ -131,15 +115,11 @@ class Mov(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 7 and
-                buf[0] == 0x0 and
-                buf[1] == 0x0 and
-                buf[2] == 0x0 and
-                buf[3] == 0x14 and
-                buf[4] == 0x66 and
-                buf[5] == 0x74 and
-                buf[6] == 0x79 and
-                buf[7] == 0x70)
+        if not self._is_isobmff(buf):
+            return False
+
+        major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
+        return major_brand == 'qt  '
 
 
 class Avi(Type):
