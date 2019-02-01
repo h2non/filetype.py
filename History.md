@@ -1,4 +1,12 @@
 
+v1.0.3 / 2019-02-01
+===================
+
+  * Merge pull request #32 from petergaultney/support-reading-bytes-from-readables
+  * Merge pull request #33 from dotlambda/patch-1
+  * Include tests in PyPI tarball
+  * Support reading bytes directly from duck-typed readables
+
 v1.0.1 / 2019-01-11
 ===================
 
