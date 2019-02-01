@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+_NUM_SIGNATURE_BYTES = 262
+
 
 def get_signature_bytes(path):
     """
@@ -13,7 +15,7 @@ def get_signature_bytes(path):
         First 262 bytes of the file content as bytearray type.
     """
     with open(path, 'rb') as fp:
-        return bytearray(fp.read(262))
+        return bytearray(fp.read(_NUM_SIGNATURE_BYTES))
 
 
 def signature(array):
@@ -28,7 +30,7 @@ def signature(array):
         First 262 bytes of the file content as bytearray type.
     """
     length = len(array)
-    index = 262 if length > 262 else length
+    index = _NUM_SIGNATURE_BYTES if length > _NUM_SIGNATURE_BYTES else length
 
     return array[:index]
 
@@ -39,7 +41,7 @@ def get_bytes(obj):
     returning a sliced bytearray.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path to readable, file, bytes or bytearray.
 
     Returns:
         First 262 bytes of the file content as bytearray type.
@@ -47,6 +49,12 @@ def get_bytes(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
+    try:
+        obj = obj.read(_NUM_SIGNATURE_BYTES)
+    except AttributeError:
+        # duck-typing as readable failed - we'll try the other options
+        pass
+
     kind = type(obj)
 
     if kind is bytearray:
