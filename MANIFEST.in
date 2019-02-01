@@ -1,4 +1,4 @@
 include README.rst
 include LICENSE
 include History.md
-include tests/
+graft tests/
