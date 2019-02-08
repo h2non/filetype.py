@@ -235,3 +235,23 @@ class Heic(IsoBmff):
         if major_brand in ['mif1', 'msf1'] and 'heic' in compatible_brands:
             return True
         return False
+
+
+class Dcm(Type):
+
+    MIME = 'application/dicom'
+    EXTENSION = 'dcm'
+    OFFSET = 128
+
+    def __init__(self):
+        super(Dcm, self).__init__(
+            mime=Dcm.MIME,
+            extension=Dcm.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > Dcm.OFFSET + 4 and
+                buf[Dcm.OFFSET + 0] == 0x44 and
+                buf[Dcm.OFFSET + 1] == 0x49 and
+                buf[Dcm.OFFSET + 2] == 0x43 and
+                buf[Dcm.OFFSET + 3] == 0x4D, )
