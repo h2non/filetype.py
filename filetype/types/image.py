@@ -254,4 +254,4 @@ class Dcm(Type):
                 buf[Dcm.OFFSET + 0] == 0x44 and
                 buf[Dcm.OFFSET + 1] == 0x49 and
                 buf[Dcm.OFFSET + 2] == 0x43 and
-                buf[Dcm.OFFSET + 3] == 0x4D, )
+                buf[Dcm.OFFSET + 3] == 0x4D)
