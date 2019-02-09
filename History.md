@@ -1,4 +1,12 @@
 
+v1.0.4 / 2019-02-09
+===================
+
+  * Merge pull request #34 from ltrojana3d/add_dicom_type
+  * min bugfix
+  * add Dcm class to IMAGE
+  * adding image.Dcm class
+
 v1.0.3 / 2019-02-01
 ===================
 
