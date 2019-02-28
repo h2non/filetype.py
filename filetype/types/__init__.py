@@ -12,6 +12,7 @@ from .base import Type  # noqa
 # Supported image types
 IMAGE = (
     image.Jpeg(),
+    image.Jpx(),
     image.Png(),
     image.Gif(),
     image.Webp(),
@@ -50,12 +51,7 @@ AUDIO = (
 )
 
 # Supported font types
-FONT = (
-    font.Woff(),
-    font.Woff2(),
-    font.Ttf(),
-    font.Otf(),
-)
+FONT = (font.Woff(), font.Woff2(), font.Ttf(), font.Otf())
 
 # Supported archive container types
 ARCHIVE = (
