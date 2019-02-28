@@ -63,6 +63,7 @@ Image
 ^^^^^
 
 -  **jpg** - ``image/jpeg``
+-  **jpx** - ``image/jpx``
 -  **png** - ``image/png``
 -  **gif** - ``image/gif``
 -  **webp** - ``image/webp``
