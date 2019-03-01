@@ -18,6 +18,12 @@ class TestFileType(unittest.TestCase):
         self.assertEqual(kind.mime, 'image/jpeg')
         self.assertEqual(kind.extension, 'jpg')
 
+    def test_guess_jpx(self):
+        kind = filetype.guess(FIXTURES + '/sample.jpx')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'image/jpx')
+        self.assertEqual(kind.extension, 'jpx')
+
     def test_guess_gif(self):
         kind = filetype.guess(FIXTURES + '/sample.gif')
         self.assertTrue(kind is not None)

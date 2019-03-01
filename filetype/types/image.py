@@ -26,6 +26,28 @@ class Jpeg(Type):
                 buf[2] == 0xFF)
 
 
+class Jpx(Type):
+    """
+    Implements the JPEG2000 image type matcher.
+    """
+
+    MIME = "image/jpx"
+    EXTENSION = "jpx"
+
+    def __init__(self):
+        super(Jpx, self).__init__(mime=Jpx.MIME, extension=Jpx.EXTENSION)
+
+    def match(self, buf):
+        return (
+            len(buf) > 50
+            and buf[0] == 0x00
+            and buf[1] == 0x00
+            and buf[2] == 0x00
+            and buf[3] == 0x0C
+            and buf[16:24] == b"ftypjp2 "
+        )
+
+
 class Png(Type):
     """
     Implements the PNG image type matcher.
