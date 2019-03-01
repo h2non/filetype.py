@@ -1,4 +1,15 @@
 
+v1.0.5 / 2019-03-01
+===================
+
+  * Merge pull request #36 from JorjMcKie/master
+  * Update README.rst
+  * add jpx example to fixtures
+  * Update image.py
+  * support JPEG 2000
+  * Merge pull request #35 from papis/master
+  * Delete docs since are not linked to anything
+
 v1.0.4 / 2019-02-09
 ===================
 
