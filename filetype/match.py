@@ -119,3 +119,37 @@ def archive(obj):
         TypeError: if obj is not a supported type.
     """
     return match(obj, archive_matchers)
+
+
+def application(obj):
+    """
+    Matches the given input againts the available
+    application type matchers.
+
+    Args:
+        obj: path to file, bytes or bytearray.
+
+    Returns:
+        Type instance if matches. Otherwise None.
+
+    Raises:
+        TypeError: if obj is not a supported type.
+    """
+    return match(obj, application_matchers)
+    
+
+def document(obj):
+    """
+    Matches the given input againts the available
+    document type matchers.
+
+    Args:
+        obj: path to file, bytes or bytearray.
+
+    Returns:
+        Type instance if matches. Otherwise None.
+
+    Raises:
+        TypeError: if obj is not a supported type.
+    """
+    return match(obj, document_matchers)
