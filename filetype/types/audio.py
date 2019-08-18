@@ -164,3 +164,24 @@ class Amr(Type):
                 buf[3] == 0x4D and
                 buf[4] == 0x52 and
                 buf[5] == 0x0A)
+
+
+class Aac(Type):
+    """
+    Implements the AAC audio type matcher.
+    """
+    MIME = 'audio/aac'
+    EXTENSION = 'aac'
+
+    def __init__(self):
+        super(Aac, self).__init__(
+            mime=Aac.MIME,
+            extension=Aac.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 1 and
+                ((buf[0] == 0xFF and
+                    buf[1] == 0xF1) or
+                (buf[0] == 0xFF and
+                    buf[1] == 0xF9)))

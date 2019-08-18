@@ -513,3 +513,91 @@ class Lz(Type):
                 buf[1] == 0x5A and
                 buf[2] == 0x49 and
                 buf[3] == 0x50)
+
+
+class Rpm(Type):
+    """
+    Implements the RPM archive type matcher.
+    """
+    MIME = 'application/x-rpm'
+    EXTENSION = 'rpm'
+
+    def __init__(self):
+        super(Rpm, self).__init__(
+            mime=Rpm.MIME,
+            extension=Rpm.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 96 and
+                buf[0] == 0xED and
+                buf[1] == 0xAB and
+                buf[2] == 0xEE and
+                buf[3] == 0xDB)
+
+
+
+class Elf(Type):
+    """
+    Implements the Elf archive type matcher.
+    """
+    MIME = 'application/x-executable'
+    EXTENSION = 'elf'
+
+    def __init__(self):
+        super(Elf, self).__init__(
+            mime=Elf.MIME,
+            extension=Elf.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 52 and
+                buf[0] == 0x7F and
+                buf[1] == 0x45 and
+                buf[2] == 0x4C and
+                buf[3] == 0x46)
+
+
+
+class Dcm(Type):
+    """
+    Implements the Dcm archive type matcher.
+    """
+    MIME = 'application/dicom'
+    EXTENSION = 'dcm'
+
+    def __init__(self):
+        super(Dcm, self).__init__(
+            mime=Dcm.MIME,
+            extension=Dcm.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 131 and
+                buf[128] == 0x44 and
+                buf[129] == 0x49 and
+                buf[130] == 0x43 and
+                buf[131] == 0x4D)
+
+
+
+class Iso(Type):
+    """
+    Implements the ISO archive type matcher.
+    """
+    MIME = 'application/x-iso9660-image'
+    EXTENSION = 'iso'
+
+    def __init__(self):
+        super(Iso, self).__init__(
+            mime=Iso.MIME,
+            extension=Iso.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 32773 and
+                buf[32769] == 0x43 and
+                buf[32770] == 0x44 and
+                buf[32771] == 0x30 and
+                buf[32772] == 0x30 and
+                buf[32773] == 0x31)

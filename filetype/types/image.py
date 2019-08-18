@@ -259,21 +259,22 @@ class Heic(IsoBmff):
         return False
 
 
-class Dcm(Type):
-
-    MIME = 'application/dicom'
-    EXTENSION = 'dcm'
-    OFFSET = 128
+class Dwg(Type):
+    """
+    Implements the DWG image type matcher.
+    """
+    MIME = 'image/vnd.dwg'
+    EXTENSION = 'dwg'
 
     def __init__(self):
-        super(Dcm, self).__init__(
-            mime=Dcm.MIME,
-            extension=Dcm.EXTENSION
+        super(Dwg, self).__init__(
+            mime=Dwg.MIME,
+            extension=Dwg.EXTENSION,
         )
 
     def match(self, buf):
-        return (len(buf) > Dcm.OFFSET + 4 and
-                buf[Dcm.OFFSET + 0] == 0x44 and
-                buf[Dcm.OFFSET + 1] == 0x49 and
-                buf[Dcm.OFFSET + 2] == 0x43 and
-                buf[Dcm.OFFSET + 3] == 0x4D)
+        return (len(buf) > 3 and
+                buf[0] == 0x41 and
+                buf[1] == 0x43 and
+                buf[2] == 0x31 and
+                buf[3] == 0x30)
