@@ -536,7 +536,6 @@ class Rpm(Type):
                 buf[3] == 0xDB)
 
 
-
 class Elf(Type):
     """
     Implements the Elf archive type matcher.
@@ -558,7 +557,6 @@ class Elf(Type):
                 buf[3] == 0x46)
 
 
-
 class Dcm(Type):
     """
     Implements the Dcm archive type matcher.
@@ -578,7 +576,6 @@ class Dcm(Type):
                 buf[129] == 0x49 and
                 buf[130] == 0x43 and
                 buf[131] == 0x4D)
-
 
 
 class Iso(Type):

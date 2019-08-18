@@ -2,8 +2,10 @@
 
 from __future__ import absolute_import
 
+from . import application
 from . import archive
 from . import audio
+from . import document
 from . import font
 from . import image
 from . import video
@@ -28,15 +30,16 @@ IMAGE = (
 
 # Supported video types
 VIDEO = (
-    video.Mp4(),
     video.M4v(),
     video.Mkv(),
+    video.Webm(),
     video.Mov(),
     video.Avi(),
     video.Wmv(),
     video.Mpeg(),
-    video.Webm(),
     video.Flv(),
+    video.Mp4(),
+    video.Match3gp(),
 )
 
 # Supported audio types
@@ -48,6 +51,7 @@ AUDIO = (
     audio.Flac(),
     audio.Wav(),
     audio.Amr(),
+    audio.Aac(),
 )
 
 # Supported font types
@@ -77,7 +81,24 @@ ARCHIVE = (
     archive.Ar(),
     archive.Z(),
     archive.Lz(),
+    archive.Rpm(),
+    archive.Elf(),
+    archive.Dcm(),
+    archive.Iso(),
 )
 
+# Supported application types
+APPLICATION = (
+    application.Wasm(),
+)
+
+# Supported application types
+DOCUMENT = (
+    document.Doc(),
+    document.Xls(),
+    document.Ppt(),
+)
+
+
 # Expose supported type matchers
-TYPES = list(VIDEO + IMAGE + AUDIO + FONT + ARCHIVE)
+TYPES = list(VIDEO + IMAGE + AUDIO + FONT + ARCHIVE + APPLICATION + DOCUMENT)
