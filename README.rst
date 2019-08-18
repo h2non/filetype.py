@@ -74,6 +74,7 @@ Image
 -  **psd** - ``image/vnd.adobe.photoshop``
 -  **ico** - ``image/x-icon``
 -  **heic** - ``image/heic``
+-  **dwg** - ``image/vnd.dwg``
 
 Video
 ^^^^^
@@ -87,6 +88,7 @@ Video
 -  **wmv** - ``video/x-ms-wmv``
 -  **mpg** - ``video/mpeg``
 -  **flv** - ``video/x-flv``
+-  **3gp** - ``video/3gpp``
 
 Audio
 ^^^^^
@@ -98,6 +100,13 @@ Audio
 -  **flac** - ``audio/x-flac``
 -  **wav** - ``audio/x-wav``
 -  **amr** - ``audio/amr``
+-  **aac** - ``audio/aac``
+
+Application
+^^^^^^^^^^^
+
+-  **wasm** - ``application/wasm``
+
 
 Archive
 ^^^^^^^
@@ -126,6 +135,11 @@ Archive
 -  **Z** - ``application/x-compress``
 -  **lz** - ``application/x-lzip``
 
+-  **rpm** - ``application/x-rpm``
+-  **elf** - ``application/x-executable``
+-  **dcm** - ``application/dicom``
+-  **iso** - ``application/x-iso9660-image``
+
 Font
 ^^^^
 
@@ -133,6 +147,13 @@ Font
 -  **woff2** - ``application/font-woff``
 -  **ttf** - ``application/font-sfnt``
 -  **otf** - ``application/font-sfnt``
+
+Document
+^^^^^^^^
+-  **doc** - ``application/msword``
+-  **xls** - ``application/vnd.ms-excel``
+-  **ppt** - ``application/vnd.ms-powerpoint``
+
 
 .. _Python: http://python.org
 .. _magic numbers: https://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files
