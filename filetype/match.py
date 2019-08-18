@@ -2,8 +2,10 @@
 
 from __future__ import absolute_import
 
+from .types import APPLICATION as application_matchers
 from .types import ARCHIVE as archive_matchers
 from .types import AUDIO as audio_matchers
+from .types import DOCUMENT as document_matchers
 from .types import FONT as font_matchers
 from .types import IMAGE as image_matchers
 from .types import VIDEO as video_matchers
