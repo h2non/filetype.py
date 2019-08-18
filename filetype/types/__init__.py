@@ -23,7 +23,7 @@ IMAGE = (
     image.Psd(),
     image.Ico(),
     image.Heic(),
-    image.Dcm(),
+    image.Dwg(),
 )
 
 # Supported video types
