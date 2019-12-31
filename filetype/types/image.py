@@ -277,3 +277,18 @@ class Dcm(Type):
                 buf[Dcm.OFFSET + 1] == 0x49 and
                 buf[Dcm.OFFSET + 2] == 0x43 and
                 buf[Dcm.OFFSET + 3] == 0x4D)
+
+class Xcf(Type):
+
+    MIME = 'image/x-xcf'
+    EXTENSION = 'xcf'
+    MAGIC = b'gimp xcf v'
+
+    def __init__(self):
+        super(Xcf, self).__init__(
+            mime=Xcf.MIME,
+            extension=Xcf.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf.startswith(Xcf.MAGIC)
