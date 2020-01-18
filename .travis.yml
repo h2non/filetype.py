@@ -1,17 +1,17 @@
 language: python
 
+dist: xenial
+
 python:
   - 2.7
-  - 3.4
   - 3.5
   - 3.6
+  - 3.7
+  - 3.8
 
 install:
   - pip install coveralls
-  - pip install pytest
-  - pip install flake8
-  # Deal with issue on Travis builders re: multiprocessing.Queue :(
-  - "sudo rm -rf /dev/shm && sudo ln -s /run/shm /dev/shm"
+  - pip install -r requirements-dev.txt
 
 script:
   - make lint
