@@ -77,7 +77,7 @@ def get_type(mime=None, ext=None):
         The matched file type instance. Otherwise None.
     """
     for kind in types:
-        if kind.extension is ext or kind.mime is mime:
+        if kind.extension == ext or kind.mime == mime:
             return kind
     return None
 
