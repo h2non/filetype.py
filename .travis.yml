@@ -13,8 +13,6 @@ install:
   - pip install coveralls
   - pip install pytest
   - pip install flake8
-  # Deal with issue on Travis builders re: multiprocessing.Queue :(
-  - "sudo rm -rf /dev/shm && sudo ln -s /run/shm /dev/shm"
 
 script:
   - make lint
