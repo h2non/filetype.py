@@ -11,8 +11,7 @@ python:
 
 install:
   - pip install coveralls
-  - pip install pytest
-  - pip install flake8
+  - pip install -r dev-requirements.txt
 
 script:
   - make lint
