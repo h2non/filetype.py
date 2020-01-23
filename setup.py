@@ -18,6 +18,7 @@ setup(
     author='Tomas Aparicio',
     author_email='tomas@aparicio.me',
     license='MIT',
+    license_files=['LICENSE'],
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
