@@ -6,27 +6,6 @@ from .base import Type
 from .isobmff import IsoBmff
 
 
-class Mp4(IsoBmff):
-    """
-    Implements the MP4 video type matcher.
-    """
-    MIME = 'video/mp4'
-    EXTENSION = 'mp4'
-
-    def __init__(self):
-        super(Mp4, self).__init__(
-            mime=Mp4.MIME,
-            extension=Mp4.EXTENSION
-        )
-
-    def match(self, buf):
-        if not self._is_isobmff(buf):
-            return False
-
-        major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
-        return major_brand in ['mp41', 'mp42']
-
-
 class M4v(Type):
     """
     Implements the M4V video type matcher.
@@ -64,6 +43,8 @@ class Mkv(Type):
         )
 
     def match(self, buf):
+        # todo: GO source checks first 4 bytes, then searches next 4096 for 'matroska',
+        # and finally checks if bytes 5 & 6 below are located prior to 'matroska'.
         return ((len(buf) > 15 and
                 buf[0] == 0x1A and buf[1] == 0x45 and
                 buf[2] == 0xDF and buf[3] == 0xA3 and
@@ -173,6 +154,28 @@ class Wmv(Type):
                 buf[9] == 0xD9)
 
 
+class Mpeg(Type):
+    """
+    Implements the MPEG video type matcher.
+    """
+    MIME = 'video/mpeg'
+    EXTENSION = 'mpg'
+
+    def __init__(self):
+        super(Mpeg, self).__init__(
+            mime=Mpeg.MIME,
+            extension=Mpeg.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 3 and
+                buf[0] == 0x0 and
+                buf[1] == 0x0 and
+                buf[2] == 0x1 and
+                buf[3] >= 0xb0 and
+                buf[3] <= 0xbf)
+
+
 class Flv(Type):
     """
     Implements the FLV video type matcher.
@@ -194,23 +197,46 @@ class Flv(Type):
                 buf[3] == 0x01)
 
 
-class Mpeg(Type):
+class Mp4(IsoBmff):
     """
-    Implements the MPEG video type matcher.
+    Implements the MP4 video type matcher.
     """
-    MIME = 'video/mpeg'
-    EXTENSION = 'mpg'
+    MIME = 'video/mp4'
+    EXTENSION = 'mp4'
 
     def __init__(self):
-        super(Mpeg, self).__init__(
-            mime=Mpeg.MIME,
-            extension=Mpeg.EXTENSION
+        super(Mp4, self).__init__(
+            mime=Mp4.MIME,
+            extension=Mp4.EXTENSION
         )
 
     def match(self, buf):
-        return (len(buf) > 3 and
-                buf[0] == 0x0 and
-                buf[1] == 0x0 and
-                buf[2] == 0x1 and
-                buf[3] >= 0xb0 and
-                buf[3] <= 0xbf)
+        if not self._is_isobmff(buf):
+            return False
+
+        major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
+        return major_brand in ['mp41', 'mp42']
+
+
+class Match3gp(Type):
+    """
+    Implements the 3GB video type matcher.
+    """
+    MIME = 'video/3gpp'
+    EXTENSION = '3gp'
+
+    def __init__(self):
+        super(Match3gp, self).__init__(
+            mime=Match3gp.MIME,
+            extension=Match3gp.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 10 and
+                buf[4] == 0x66 and
+                buf[5] == 0x74 and
+                buf[6] == 0x79 and
+                buf[7] == 0x70 and
+                buf[8] == 0x33 and
+                buf[9] == 0x67 and
+                buf[10] == 0x70)

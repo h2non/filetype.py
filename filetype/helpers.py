@@ -120,3 +120,35 @@ def is_font(obj):
         TypeError: if obj is not a supported type.
     """
     return match.font(obj) is not None
+
+
+def is_application(obj):
+    """
+    Checks if a given input is a supported type application.
+
+    Args:
+        obj: path to file, bytes or bytearray.
+
+    Returns:
+        True if obj is a valid font. Otherwise False.
+
+    Raises:
+        TypeError: if obj is not a supported type.
+    """
+    return match.application(obj) is not None
+
+
+def is_document(obj):
+    """
+    Checks if a given input is a supported type document.
+
+    Args:
+        obj: path to file, bytes or bytearray.
+
+    Returns:
+        True if obj is a valid font. Otherwise False.
+
+    Raises:
+        TypeError: if obj is not a supported type.
+    """
+    return match.document(obj) is not None
