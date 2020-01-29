@@ -24,7 +24,7 @@ class Mp4(IsoBmff):
             return False
 
         major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
-        return major_brand in ['mp41', 'mp42']
+        return major_brand in ['mp41', 'mp42', 'isom']
 
 
 class M4v(Type):
@@ -94,11 +94,22 @@ class Webm(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 3 and
+        return ((len(buf) > 3 and
                 buf[0] == 0x1A and
                 buf[1] == 0x45 and
                 buf[2] == 0xDF and
-                buf[3] == 0xA3)
+                buf[3] == 0xA3) or
+                (len(buf) > 13 and
+                    buf[0] == 0x52 and
+                    buf[1] == 0x49 and
+                    buf[2] == 0x46 and
+                    buf[3] == 0x46 and
+                    buf[8] == 0x57 and
+                    buf[9] == 0x45 and
+                    buf[10] == 0x42 and
+                    buf[11] == 0x50 and
+                    buf[12] == 0x56 and
+                    buf[13] == 0x50))
 
 
 class Mov(IsoBmff):
