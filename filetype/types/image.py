@@ -103,11 +103,17 @@ class Webp(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 11 and
+        return (len(buf) > 13 and
+                buf[0] == 0x52 and
+                buf[1] == 0x49 and
+                buf[2] == 0x46 and
+                buf[3] == 0x46 and
                 buf[8] == 0x57 and
                 buf[9] == 0x45 and
                 buf[10] == 0x42 and
-                buf[11] == 0x50)
+                buf[11] == 0x50 and
+                buf[12] == 0x56 and
+                buf[13] == 0x50)
 
 
 class Cr2(Type):
