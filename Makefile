@@ -39,10 +39,9 @@ compress:
 
 publish:
 	@echo "==> Releasing package $(version)..."
-	@python setup.py register
-	@python setup.py sdist upload
-	@python setup.py bdist_wheel --universal upload
-	@rm -fr build dist .egg filetype.egg-info
+	@python setup.py sdist bdist_wheel
+	@twine upload dist/*
+	@rm -fr build dist .egg pook.egg-info
 
 release: clean docs deploy-documentation tag compress publish
 	@echo "DONE!"
