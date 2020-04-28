@@ -3,7 +3,7 @@
 from __future__ import absolute_import
 from .types import TYPES
 from .match import (
-    image_match, font_match, 
+    image_match, font_match,
     video_match, audio_match, archive_match
 )
 
