@@ -34,7 +34,7 @@ def match(obj, matchers=TYPES):
     return None
 
 
-def image(obj):
+def image_match(obj):
     """
     Matches the given input againts the available
     image type matchers.
@@ -51,7 +51,7 @@ def image(obj):
     return match(obj, image_matchers)
 
 
-def font(obj):
+def font_match(obj):
     """
     Matches the given input againts the available
     font type matchers.
@@ -68,7 +68,7 @@ def font(obj):
     return match(obj, font_matchers)
 
 
-def video(obj):
+def video_match(obj):
     """
     Matches the given input againts the available
     video type matchers.
@@ -85,7 +85,7 @@ def video(obj):
     return match(obj, video_matchers)
 
 
-def audio(obj):
+def audio_match(obj):
     """
     Matches the given input againts the available
     autio type matchers.
@@ -102,7 +102,7 @@ def audio(obj):
     return match(obj, audio_matchers)
 
 
-def archive(obj):
+def archive_match(obj):
     """
     Matches the given input againts the available
     archive type matchers.
