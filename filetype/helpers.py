@@ -2,7 +2,7 @@
 
 from __future__ import absolute_import
 
-from .match import *
+from .match import image_match, font_match, video_match, audio_match, archive_match
 from .types import TYPES
 
 
