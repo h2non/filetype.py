@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from __future__ import absolute_import
-
-from . import match
 from .types import TYPES
+from .match import (
+    image_match, font_match,
+    video_match, audio_match, archive_match
+)
 
 
 def is_extension_supported(ext):
@@ -55,7 +57,7 @@ def is_image(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match.image(obj) is not None
+    return image_match(obj) is not None
 
 
 def is_archive(obj):
@@ -71,7 +73,7 @@ def is_archive(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match.archive(obj) is not None
+    return archive_match(obj) is not None
 
 
 def is_audio(obj):
@@ -87,7 +89,7 @@ def is_audio(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match.audio(obj) is not None
+    return audio_match(obj) is not None
 
 
 def is_video(obj):
@@ -103,7 +105,7 @@ def is_video(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match.video(obj) is not None
+    return video_match(obj) is not None
 
 
 def is_font(obj):
@@ -119,4 +121,4 @@ def is_font(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    return match.font(obj) is not None
+    return font_match(obj) is not None
