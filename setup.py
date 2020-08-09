@@ -36,6 +36,7 @@ setup(
         'Topic :: System :: Filesystems',
         'Topic :: Utilities'],
     platforms=['any'],
-    packages=find_packages(exclude=['dist', 'build', 'docs', 'tests']),
+    packages=find_packages(exclude=['dist', 'build', 'docs', 'tests',
+                                    'examples']),
     package_data={'filetype': ['LICENSE', '*.md']},
     zip_safe=True)
