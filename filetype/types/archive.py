@@ -513,3 +513,24 @@ class Lz(Type):
                 buf[1] == 0x5A and
                 buf[2] == 0x49 and
                 buf[3] == 0x50)
+
+
+class Lz4(Type):
+    """
+    Implements the Lz4 archive type matcher.
+    """
+    MIME = 'application/x-lz4'
+    EXTENSION = 'lz4'
+
+    def __init__(self):
+        super(Lz4, self).__init__(
+            mime=Lz4.MIME,
+            extension=Lz4.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 3 and
+                buf[0] == 0x04 and
+                buf[1] == 0x22 and
+                buf[2] == 0x4D and
+                buf[3] == 0x18)
