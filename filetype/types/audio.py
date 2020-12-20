@@ -42,10 +42,14 @@ class Mp3(Type):
     def match(self, buf):
         return (len(buf) > 2 and
                 ((buf[0] == 0x49 and
-                    buf[1] == 0x44 and
-                    buf[2] == 0x33) or
-                (buf[0] == 0xFF and
-                    buf[1] == 0xfb)))
+                  buf[1] == 0x44 and
+                  buf[2] == 0x33) or
+                 (buf[0] == 0xFF and
+                  buf[1] == 0xF2) or
+                 (buf[0] == 0xFF and
+                  buf[1] == 0xF3) or
+                 (buf[0] == 0xFF and
+                  buf[1] == 0xFB)))
 
 
 class M4a(Type):
