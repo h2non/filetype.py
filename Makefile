@@ -1,4 +1,4 @@
-all: lint unit
+all: lint test
 
 export PYTHONPATH:=${PWD}
 version=`python -c 'import filetype; print(filetype.version)'`
@@ -7,9 +7,9 @@ filename=filetype-`python -c 'import filetype;print(filetype.version)'`.tar.gz
 lint:
 	@flake8 .
 
-test: clean lint
+test: lint
 	@echo "Running tests ..."
-	@python -m unittest discover
+	@python -m pytest tests
 
 documentation:
 	@pdoc --html --overwrite --all-submodules --html-dir docs filetype

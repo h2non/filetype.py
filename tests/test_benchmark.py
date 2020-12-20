@@ -6,36 +6,27 @@ import os
 
 import filetype
 
-# Absolute path to fixtures directory
-FIXTURES = os.path.dirname(os.path.abspath(__file__)) + '/fixtures'
+import pytest
+
+from . import FIXTURES
 
 
-def test_infer_image_from_disk(benchmark):
-    benchmark(filetype.guess, FIXTURES + '/sample.jpg')
+@pytest.mark.parametrize('filename',
+                         [
+                             "sample.jpg",
+                             "sample.mp4",
+                             "sample.zip",
+                             "sample.tar",
+                         ])
+def test_infer_from_disk(benchmark, filename):
+    benchmark(filetype.guess, os.path.join(FIXTURES, filename))
 
 
-def test_infer_video_from_disk(benchmark):
-    benchmark(filetype.guess, FIXTURES + '/sample.mp4')
-
-
-def test_infer_zip_from_disk(benchmark):
-    benchmark(filetype.guess, FIXTURES + '/sample.zip')
-
-
-def test_infer_tar_from_disk(benchmark):
-    benchmark(filetype.guess, FIXTURES + '/sample.tar')
-
-
-def test_infer_image_from_bytes(benchmark):
-    benchmark(filetype.guess,
-              bytearray([0xFF, 0xD8, 0xFF, 0x00, 0x08]))
-
-
-def test_infer_video_from_bytes(benchmark):
-    benchmark(filetype.guess,
-              bytearray([0x1A, 0x45, 0xDF, 0xA3, 0x08]))
-
-
-def test_infer_audio_from_bytes(benchmark):
-    benchmark(filetype.guess,
-              bytearray([0x4D, 0x54, 0x68, 0xA3, 0x64]))
+@pytest.mark.parametrize('bytes_',
+                         [
+                             [0xFF, 0xD8, 0xFF, 0x00, 0x08],
+                             [0x1A, 0x45, 0xDF, 0xA3, 0x08],
+                             [0x4D, 0x54, 0x68, 0xA3, 0x64],
+                         ])
+def test_infer_from_bytes(benchmark, bytes_):
+    benchmark(filetype.guess, bytearray(bytes_))
