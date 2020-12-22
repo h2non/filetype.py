@@ -13,7 +13,9 @@ jobs:
     - python: 3.7
       env: TOXENV=py37
     - python: 3.8
-      env: TOXENV=py38
+      env: TOXENV=py3
+    - python: 3.9
+      env: TOXENV=py39
     - env: TOXENV=lint
 
 install:
