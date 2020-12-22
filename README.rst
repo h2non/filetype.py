@@ -124,6 +124,7 @@ Archive
 -  **deb** - ``application/x-deb``
 -  **ar** - ``application/x-unix-archive``
 -  **Z** - ``application/x-compress``
+-  **lzo** - ``application/x-lzop``
 -  **lz** - ``application/x-lzip``
 
 Font
