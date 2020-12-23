@@ -21,7 +21,7 @@ def is_extension_supported(ext):
         Otherwise False.
     """
     for kind in TYPES:
-        if kind.extension is ext:
+        if kind.extension == ext:
             return True
     return False
 
@@ -39,7 +39,7 @@ def is_mime_supported(mime):
         Otherwise False.
     """
     for kind in TYPES:
-        if kind.mime is mime:
+        if kind.mime == mime:
             return True
     return False
 
