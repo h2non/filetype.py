@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from io import BufferedIOBase
+
 # Python 2.7 workaround
 try:
     import pathlib
@@ -57,7 +59,14 @@ def get_bytes(obj):
         TypeError: if obj is not a supported type.
     """
     try:
-        obj = obj.read(_NUM_SIGNATURE_BYTES)
+        if isinstance(obj, BufferedIOBase):
+            start_position = obj.tell()
+            obj.seek(0)
+            buffered_obj = obj
+            obj = obj.read(_NUM_SIGNATURE_BYTES)
+            buffered_obj.seek(start_position)
+        else:
+            obj = obj.read(_NUM_SIGNATURE_BYTES)
     except AttributeError:
         # duck-typing as readable failed - we'll try the other options
         pass
