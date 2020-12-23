@@ -2,12 +2,9 @@
 
 from __future__ import absolute_import
 
-import os
-
 import filetype
 
-# Absolute path to fixtures directory
-FIXTURES = os.path.dirname(os.path.abspath(__file__)) + '/fixtures'
+from . import FIXTURES
 
 
 def test_infer_image_from_disk(benchmark):
