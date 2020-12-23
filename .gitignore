@@ -5,7 +5,6 @@
 *.7z
 *.jar
 *.rar
-*.zip
 *.gz
 *.tgz
 *.bzip
@@ -16,7 +15,6 @@
 
 # Packing-only formats
 *.iso
-*.tar
 
 # Package management formats
 *.dmg
