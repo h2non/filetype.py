@@ -79,6 +79,7 @@ Image
 Video
 ^^^^^
 
+-  **3gp** - ``video/3gpp``
 -  **mp4** - ``video/mp4``
 -  **m4v** - ``video/x-m4v``
 -  **mkv** - ``video/x-matroska``

@@ -29,6 +29,7 @@ IMAGE = (
 
 # Supported video types
 VIDEO = (
+    video.M3gp(),
     video.Mp4(),
     video.M4v(),
     video.Mkv(),
