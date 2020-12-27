@@ -1,2 +1,3 @@
+jinja2
 pytest
 flake8
