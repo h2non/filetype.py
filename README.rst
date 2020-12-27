@@ -102,6 +102,7 @@ Audio
 Archive
 ^^^^^^^
 
+-  **br** - ``application/x-brotli``
 -  **epub** - ``application/epub+zip``
 -  **zip** - ``application/zip``
 -  **tar** - ``application/x-tar``

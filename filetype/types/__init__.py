@@ -55,6 +55,7 @@ FONT = (font.Woff(), font.Woff2(), font.Ttf(), font.Otf())
 
 # Supported archive container types
 ARCHIVE = (
+    archive.Br(),
     archive.Epub(),
     archive.Zip(),
     archive.Tar(),

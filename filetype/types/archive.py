@@ -513,3 +513,19 @@ class Lz(Type):
                 buf[1] == 0x5A and
                 buf[2] == 0x49 and
                 buf[3] == 0x50)
+
+
+class Br(Type):
+    """Implements the Br image type matcher."""
+
+    MIME = 'application/x-brotli'
+    EXTENSION = 'br'
+
+    def __init__(self):
+        super(Br, self).__init__(
+            mime=Br.MIME,
+            extension=Br.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:4] == bytearray([0xce, 0xb2, 0xcf, 0x81])
