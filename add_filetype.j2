@@ -11,5 +11,5 @@ class {{classname}}(Type):
         )
 
     def match(self, buf):
-        return buf[:{{signature|length}}] == bytearray([{% for i in signature %}{{'0x%2x' % i}}{% if loop.index < signature|length %}, {% endif%}{% endfor %}])
+        return buf[:{{signature|length}}] == bytearray([{% for i in signature %}{{'0x%02x' % i}}{% if loop.index < signature|length %}, {% endif%}{% endfor %}])
 
