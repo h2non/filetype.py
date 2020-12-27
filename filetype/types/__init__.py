@@ -4,6 +4,7 @@ from __future__ import absolute_import
 
 from . import archive
 from . import audio
+from . import application
 from . import font
 from . import image
 from . import video
@@ -84,5 +85,11 @@ ARCHIVE = (
     archive.Lz(),
 )
 
+# Supported archive container types
+APPLICATION = (
+    application.Wasm(),
+)
+
+
 # Expose supported type matchers
-TYPES = list(VIDEO + IMAGE + AUDIO + FONT + ARCHIVE)
+TYPES = list(VIDEO + IMAGE + AUDIO + FONT + ARCHIVE + APPLICATION)

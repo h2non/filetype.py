@@ -139,6 +139,11 @@ Font
 -  **ttf** - ``application/font-sfnt``
 -  **otf** - ``application/font-sfnt``
 
+Application
+^^^^
+
+-  **wasm** - ``application/wasm``
+
 .. _Python: http://python.org
 .. _magic numbers: https://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files
 .. _filetype: https://github.com/h2non/filetype
