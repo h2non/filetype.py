@@ -136,14 +136,15 @@ class Avi(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 10 and
+        return (len(buf) > 11 and
                 buf[0] == 0x52 and
                 buf[1] == 0x49 and
                 buf[2] == 0x46 and
                 buf[3] == 0x46 and
                 buf[8] == 0x41 and
                 buf[9] == 0x56 and
-                buf[10] == 0x49)
+                buf[10] == 0x49 and
+                buf[11] == 0x20)
 
 
 class Wmv(Type):
