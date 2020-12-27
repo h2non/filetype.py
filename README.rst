@@ -92,6 +92,7 @@ Video
 Audio
 ^^^^^
 
+-  **aac** - ``audio/aac``
 -  **mid** - ``audio/midi``
 -  **mp3** - ``audio/mpeg``
 -  **m4a** - ``audio/m4a``

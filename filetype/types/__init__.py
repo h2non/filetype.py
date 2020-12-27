@@ -42,6 +42,7 @@ VIDEO = (
 
 # Supported audio types
 AUDIO = (
+    audio.Aac(),
     audio.Midi(),
     audio.Mp3(),
     audio.M4a(),
