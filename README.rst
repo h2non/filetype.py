@@ -62,6 +62,7 @@ Supported types
 Image
 ^^^^^
 
+-  **dwg** - ``image/vnd.dwg``
 -  **jpg** - ``image/jpeg``
 -  **jpx** - ``image/jpx``
 -  **png** - ``image/png``

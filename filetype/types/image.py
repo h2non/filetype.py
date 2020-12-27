@@ -283,3 +283,19 @@ class Dcm(Type):
                 buf[Dcm.OFFSET + 1] == 0x49 and
                 buf[Dcm.OFFSET + 2] == 0x43 and
                 buf[Dcm.OFFSET + 3] == 0x4D)
+
+
+class Dwg(Type):
+    """Implements the Dwg image type matcher."""
+
+    MIME = 'image/vnd.dwg'
+    EXTENSION = 'dwg'
+
+    def __init__(self):
+        super(Dwg, self).__init__(
+            mime=Dwg.MIME,
+            extension=Dwg.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:4] == bytearray([0x41, 0x43, 0x31, 0x30])
