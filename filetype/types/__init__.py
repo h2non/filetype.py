@@ -13,6 +13,7 @@ from .base import Type  # noqa
 # Supported image types
 IMAGE = (
     image.Dwg(),
+    image.Xcf(),
     image.Jpeg(),
     image.Jpx(),
     image.Png(),

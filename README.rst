@@ -63,6 +63,7 @@ Image
 ^^^^^
 
 -  **dwg** - ``image/vnd.dwg``
+-  **xcf** - ``image/x-xcf``
 -  **jpg** - ``image/jpeg``
 -  **jpx** - ``image/jpx``
 -  **png** - ``image/png``
