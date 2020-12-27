@@ -105,6 +105,8 @@ Audio
 Archive
 ^^^^^^^
 
+-  **rpm** - ``application/x-rpm``
+-  **dcm** - ``application/dicom``
 -  **epub** - ``application/epub+zip``
 -  **zip** - ``application/zip``
 -  **tar** - ``application/x-tar``
