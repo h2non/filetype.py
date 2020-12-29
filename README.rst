@@ -62,6 +62,8 @@ Supported types
 Image
 ^^^^^
 
+-  **dwg** - ``image/vnd.dwg``
+-  **xcf** - ``image/x-xcf``
 -  **jpg** - ``image/jpeg``
 -  **jpx** - ``image/jpx``
 -  **png** - ``image/png``
@@ -78,6 +80,7 @@ Image
 Video
 ^^^^^
 
+-  **3gp** - ``video/3gpp``
 -  **mp4** - ``video/mp4``
 -  **m4v** - ``video/x-m4v``
 -  **mkv** - ``video/x-matroska``
@@ -91,6 +94,7 @@ Video
 Audio
 ^^^^^
 
+-  **aac** - ``audio/aac``
 -  **mid** - ``audio/midi``
 -  **mp3** - ``audio/mpeg``
 -  **m4a** - ``audio/m4a``
@@ -102,6 +106,8 @@ Audio
 Archive
 ^^^^^^^
 
+-  **rpm** - ``application/x-rpm``
+-  **dcm** - ``application/dicom``
 -  **epub** - ``application/epub+zip``
 -  **zip** - ``application/zip``
 -  **tar** - ``application/x-tar``
@@ -133,6 +139,11 @@ Font
 -  **woff2** - ``application/font-woff``
 -  **ttf** - ``application/font-sfnt``
 -  **otf** - ``application/font-sfnt``
+
+Application
+^^^^
+
+-  **wasm** - ``application/wasm``
 
 .. _Python: http://python.org
 .. _magic numbers: https://en.wikipedia.org/wiki/Magic_number_(programming)#Magic_numbers_in_files

@@ -4,6 +4,7 @@ from __future__ import absolute_import
 
 from .types import ARCHIVE as archive_matchers
 from .types import AUDIO as audio_matchers
+from .types import APPLICATION as application_matchers
 from .types import FONT as font_matchers
 from .types import IMAGE as image_matchers
 from .types import VIDEO as video_matchers
@@ -117,3 +118,20 @@ def archive_match(obj):
         TypeError: if obj is not a supported type.
     """
     return match(obj, archive_matchers)
+
+
+def application_match(obj):
+    """
+    Matches the given input againts the available
+    application type matchers.
+
+    Args:
+        obj: path to file, bytes or bytearray.
+
+    Returns:
+        Type instance if matches. Otherwise None.
+
+    Raises:
+        TypeError: if obj is not a supported type.
+    """
+    return match(obj, application_matchers)
