@@ -529,3 +529,36 @@ class Br(Type):
 
     def match(self, buf):
         return buf[:4] == bytearray([0xce, 0xb2, 0xcf, 0x81])
+
+
+class Dcm(Type):
+    """Implements the Dcm image type matcher."""
+
+    MIME = 'application/dicom'
+    EXTENSION = 'dcm'
+
+    def __init__(self):
+        super(Dcm, self).__init__(
+            mime=Dcm.MIME,
+            extension=Dcm.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[128:131] == bytearray([0x44, 0x49, 0x43, 0x4d])
+
+
+class Rpm(Type):
+    """Implements the Rpm image type matcher."""
+
+    MIME = 'application/x-rpm'
+    EXTENSION = 'rpm'
+
+    def __init__(self):
+        super(Rpm, self).__init__(
+            mime=Rpm.MIME,
+            extension=Rpm.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:4] == bytearray([0xed, 0xab, 0xee, 0xdb])
+

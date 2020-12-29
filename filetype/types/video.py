@@ -214,3 +214,19 @@ class Mpeg(Type):
                 buf[2] == 0x1 and
                 buf[3] >= 0xb0 and
                 buf[3] <= 0xbf)
+
+
+class M3gp(Type):
+    """Implements the 3gp image type matcher."""
+
+    MIME = 'video/3gpp'
+    EXTENSION = '3gp'
+
+    def __init__(self):
+        super(M3gp, self).__init__(
+            mime=M3gp.MIME,
+            extension=M3gp.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:7] == bytearray([0x66, 0x74, 0x79, 0x70, 0x33, 0x67, 0x70])
