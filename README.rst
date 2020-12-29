@@ -106,6 +106,7 @@ Audio
 Archive
 ^^^^^^^
 
+-  **br** - ``application/x-brotli``
 -  **rpm** - ``application/x-rpm``
 -  **dcm** - ``application/dicom``
 -  **epub** - ``application/epub+zip``
