@@ -132,6 +132,7 @@ Archive
 -  **ar** - ``application/x-unix-archive``
 -  **Z** - ``application/x-compress``
 -  **lz** - ``application/x-lzip``
+-  **lz4** - ``application/x-lz4``
 
 Font
 ^^^^
