@@ -42,10 +42,14 @@ class Mp3(Type):
     def match(self, buf):
         return (len(buf) > 2 and
                 ((buf[0] == 0x49 and
-                    buf[1] == 0x44 and
-                    buf[2] == 0x33) or
-                (buf[0] == 0xFF and
-                    buf[1] == 0xfb)))
+                  buf[1] == 0x44 and
+                  buf[2] == 0x33) or
+                 (buf[0] == 0xFF and
+                  buf[1] == 0xF2) or
+                 (buf[0] == 0xFF and
+                  buf[1] == 0xF3) or
+                 (buf[0] == 0xFF and
+                  buf[1] == 0xFB)))
 
 
 class M4a(Type):
@@ -164,3 +168,20 @@ class Amr(Type):
                 buf[3] == 0x4D and
                 buf[4] == 0x52 and
                 buf[5] == 0x0A)
+
+
+class Aac(Type):
+    """Implements the Aac image type matcher."""
+
+    MIME = 'audio/aac'
+    EXTENSION = 'aac'
+
+    def __init__(self):
+        super(Aac, self).__init__(
+            mime=Aac.MIME,
+            extension=Aac.EXTENSION
+        )
+
+    def match(self, buf):
+        return (buf[:2] == bytearray([0xff, 0xf1]) or
+                buf[:2] == bytearray([0xff, 0xf9]))

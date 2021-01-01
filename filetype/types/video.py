@@ -136,14 +136,15 @@ class Avi(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 10 and
+        return (len(buf) > 11 and
                 buf[0] == 0x52 and
                 buf[1] == 0x49 and
                 buf[2] == 0x46 and
                 buf[3] == 0x46 and
                 buf[8] == 0x41 and
                 buf[9] == 0x56 and
-                buf[10] == 0x49)
+                buf[10] == 0x49 and
+                buf[11] == 0x20)
 
 
 class Wmv(Type):
@@ -214,3 +215,19 @@ class Mpeg(Type):
                 buf[2] == 0x1 and
                 buf[3] >= 0xb0 and
                 buf[3] <= 0xbf)
+
+
+class M3gp(Type):
+    """Implements the 3gp image type matcher."""
+
+    MIME = 'video/3gpp'
+    EXTENSION = '3gp'
+
+    def __init__(self):
+        super(M3gp, self).__init__(
+            mime=M3gp.MIME,
+            extension=M3gp.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:7] == bytearray([0x66, 0x74, 0x79, 0x70, 0x33, 0x67, 0x70])
