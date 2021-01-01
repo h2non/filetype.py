@@ -84,6 +84,7 @@ ARCHIVE = (
     archive.Deb(),
     archive.Ar(),
     archive.Z(),
+    archive.Lzop(),
     archive.Lz(),
     archive.Lz4(),
 )

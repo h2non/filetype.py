@@ -494,6 +494,31 @@ class Z(Type):
                     buf[1] == 0x9D)))
 
 
+class Lzop(Type):
+    """
+    Implements the Lzop archive type matcher.
+    """
+    MIME = 'application/x-lzop'
+    EXTENSION = 'lzo'
+
+    def __init__(self):
+        super(Lzop, self).__init__(
+            mime=Lzop.MIME,
+            extension=Lzop.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 7 and
+                buf[0] == 0x89 and
+                buf[1] == 0x4C and
+                buf[2] == 0x5A and
+                buf[3] == 0x4F and
+                buf[4] == 0x00 and
+                buf[5] == 0x0D and
+                buf[6] == 0x0A and
+                buf[7] == 0x1A)
+
+
 class Lz(Type):
     """
     Implements the Lz archive type matcher.
