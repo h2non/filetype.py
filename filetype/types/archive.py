@@ -560,7 +560,7 @@ class Lz4(Type):
                 buf[2] == 0x4D and
                 buf[3] == 0x18)
 
-      
+
 class Br(Type):
     """Implements the Br image type matcher."""
 
