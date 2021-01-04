@@ -168,3 +168,20 @@ class Amr(Type):
                 buf[3] == 0x4D and
                 buf[4] == 0x52 and
                 buf[5] == 0x0A)
+
+
+class Aac(Type):
+    """Implements the Aac image type matcher."""
+
+    MIME = 'audio/aac'
+    EXTENSION = 'aac'
+
+    def __init__(self):
+        super(Aac, self).__init__(
+            mime=Aac.MIME,
+            extension=Aac.EXTENSION
+        )
+
+    def match(self, buf):
+        return (buf[:2] == bytearray([0xff, 0xf1]) or
+                buf[:2] == bytearray([0xff, 0xf9]))

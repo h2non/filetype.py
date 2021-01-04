@@ -4,6 +4,7 @@ from __future__ import absolute_import
 
 from . import archive
 from . import audio
+from . import application
 from . import font
 from . import image
 from . import video
@@ -11,13 +12,15 @@ from .base import Type  # noqa
 
 # Supported image types
 IMAGE = (
+    image.Dwg(),
+    image.Xcf(),
     image.Jpeg(),
     image.Jpx(),
     image.Png(),
     image.Gif(),
     image.Webp(),
-    image.Cr2(),
     image.Tiff(),
+    image.Cr2(),
     image.Bmp(),
     image.Jxr(),
     image.Psd(),
@@ -28,6 +31,7 @@ IMAGE = (
 
 # Supported video types
 VIDEO = (
+    video.M3gp(),
     video.Mp4(),
     video.M4v(),
     video.Mkv(),
@@ -41,6 +45,7 @@ VIDEO = (
 
 # Supported audio types
 AUDIO = (
+    audio.Aac(),
     audio.Midi(),
     audio.Mp3(),
     audio.M4a(),
@@ -55,6 +60,9 @@ FONT = (font.Woff(), font.Woff2(), font.Ttf(), font.Otf())
 
 # Supported archive container types
 ARCHIVE = (
+    archive.Br(),
+    archive.Rpm(),
+    archive.Dcm(),
     archive.Epub(),
     archive.Zip(),
     archive.Tar(),
@@ -76,8 +84,17 @@ ARCHIVE = (
     archive.Deb(),
     archive.Ar(),
     archive.Z(),
+    archive.Lzop(),
     archive.Lz(),
+    archive.Elf(),
+    archive.Lz4(),
 )
 
+# Supported archive container types
+APPLICATION = (
+    application.Wasm(),
+)
+
+
 # Expose supported type matchers
-TYPES = list(VIDEO + IMAGE + AUDIO + FONT + ARCHIVE)
+TYPES = list(VIDEO + IMAGE + AUDIO + FONT + ARCHIVE + APPLICATION)

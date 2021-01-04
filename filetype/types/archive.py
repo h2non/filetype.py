@@ -494,6 +494,31 @@ class Z(Type):
                     buf[1] == 0x9D)))
 
 
+class Lzop(Type):
+    """
+    Implements the Lzop archive type matcher.
+    """
+    MIME = 'application/x-lzop'
+    EXTENSION = 'lzo'
+
+    def __init__(self):
+        super(Lzop, self).__init__(
+            mime=Lzop.MIME,
+            extension=Lzop.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 7 and
+                buf[0] == 0x89 and
+                buf[1] == 0x4C and
+                buf[2] == 0x5A and
+                buf[3] == 0x4F and
+                buf[4] == 0x00 and
+                buf[5] == 0x0D and
+                buf[6] == 0x0A and
+                buf[7] == 0x1A)
+
+
 class Lz(Type):
     """
     Implements the Lz archive type matcher.
@@ -513,3 +538,93 @@ class Lz(Type):
                 buf[1] == 0x5A and
                 buf[2] == 0x49 and
                 buf[3] == 0x50)
+
+
+class Elf(Type):
+    """
+    Implements the Elf archive type matcher
+    """
+    MIME = 'application/x-executable'
+    EXTENSION = 'elf'
+
+    def __init__(self):
+        super(Elf, self).__init__(
+            mime=Elf.MIME,
+            extension=Elf.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 52 and
+                buf[0] == 0x7F and
+                buf[1] == 0x45 and
+                buf[2] == 0x4C and
+                buf[3] == 0x46)
+
+
+class Lz4(Type):
+    """
+    Implements the Lz4 archive type matcher.
+    """
+    MIME = 'application/x-lz4'
+    EXTENSION = 'lz4'
+
+    def __init__(self):
+        super(Lz4, self).__init__(
+            mime=Lz4.MIME,
+            extension=Lz4.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 3 and
+                buf[0] == 0x04 and
+                buf[1] == 0x22 and
+                buf[2] == 0x4D and
+                buf[3] == 0x18)
+
+
+class Br(Type):
+    """Implements the Br image type matcher."""
+
+    MIME = 'application/x-brotli'
+    EXTENSION = 'br'
+
+    def __init__(self):
+        super(Br, self).__init__(
+            mime=Br.MIME,
+            extension=Br.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:4] == bytearray([0xce, 0xb2, 0xcf, 0x81])
+
+
+class Dcm(Type):
+    """Implements the Dcm image type matcher."""
+
+    MIME = 'application/dicom'
+    EXTENSION = 'dcm'
+
+    def __init__(self):
+        super(Dcm, self).__init__(
+            mime=Dcm.MIME,
+            extension=Dcm.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[128:131] == bytearray([0x44, 0x49, 0x43, 0x4d])
+
+
+class Rpm(Type):
+    """Implements the Rpm image type matcher."""
+
+    MIME = 'application/x-rpm'
+    EXTENSION = 'rpm'
+
+    def __init__(self):
+        super(Rpm, self).__init__(
+            mime=Rpm.MIME,
+            extension=Rpm.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:4] == bytearray([0xed, 0xab, 0xee, 0xdb])
