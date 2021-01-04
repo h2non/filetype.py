@@ -156,7 +156,8 @@ class Tiff(Type):
                 ((buf[0] == 0x49 and buf[1] == 0x49 and
                     buf[2] == 0x2A and buf[3] == 0x0) or
                 (buf[0] == 0x4D and buf[1] == 0x4D and
-                    buf[2] == 0x0 and buf[3] == 0x2A)))
+                    buf[2] == 0x0 and buf[3] == 0x2A))
+                and not(buf[8] == 0x43 and buf[9] == 0x52))
 
 
 class Bmp(Type):
@@ -283,3 +284,36 @@ class Dcm(Type):
                 buf[Dcm.OFFSET + 1] == 0x49 and
                 buf[Dcm.OFFSET + 2] == 0x43 and
                 buf[Dcm.OFFSET + 3] == 0x4D)
+
+
+class Dwg(Type):
+    """Implements the Dwg image type matcher."""
+
+    MIME = 'image/vnd.dwg'
+    EXTENSION = 'dwg'
+
+    def __init__(self):
+        super(Dwg, self).__init__(
+            mime=Dwg.MIME,
+            extension=Dwg.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:4] == bytearray([0x41, 0x43, 0x31, 0x30])
+
+
+class Xcf(Type):
+    """Implements the Xcf image type matcher."""
+
+    MIME = 'image/x-xcf'
+    EXTENSION = 'xcf'
+
+    def __init__(self):
+        super(Xcf, self).__init__(
+            mime=Xcf.MIME,
+            extension=Xcf.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:10] == bytearray([0x67, 0x69, 0x6d, 0x70, 0x20,
+                                      0x78, 0x63, 0x66, 0x20, 0x76])

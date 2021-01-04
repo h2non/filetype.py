@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 
+# Python 2.7 workaround
+try:
+    import pathlib
+except ImportError:
+    pass
+
+
 _NUM_SIGNATURE_BYTES = 262
 
 
@@ -68,5 +75,8 @@ def get_bytes(obj):
 
     if kind is memoryview:
         return signature(obj).tolist()
+
+    if isinstance(obj, pathlib.PurePath):
+        return get_signature_bytes(obj)
 
     raise TypeError('Unsupported type as file input: %s' % kind)
