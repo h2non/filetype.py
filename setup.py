@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='filetype',
-    version='1.0.7',
+    version='1.0.8',
     description='Infer file type and MIME type of any file/buffer. '
                 'No external dependencies.',
     long_description=codecs.open('README.rst', 'r',
@@ -39,4 +39,7 @@ setup(
     packages=find_packages(exclude=['dist', 'build', 'docs', 'tests',
                                     'examples']),
     package_data={'filetype': ['LICENSE', '*.md']},
-    zip_safe=True)
+    zip_safe=True,
+    entry_points = {
+		'console_scripts': [ 'filetype=filetype.__main__:main' ],
+	})
