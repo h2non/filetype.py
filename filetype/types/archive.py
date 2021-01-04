@@ -540,6 +540,27 @@ class Lz(Type):
                 buf[3] == 0x50)
 
 
+class Elf(Type):
+    """
+    Implements the Elf archive type matcher
+    """
+    MIME = 'application/x-executable'
+    EXTENSION = 'elf'
+
+    def __init__(self):
+        super(Elf, self).__init__(
+            mime=Elf.MIME,
+            extension=Elf.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 52 and
+                buf[0] == 0x7F and
+                buf[1] == 0x45 and
+                buf[2] == 0x4C and
+                buf[3] == 0x46)
+
+
 class Lz4(Type):
     """
     Implements the Lz4 archive type matcher.
