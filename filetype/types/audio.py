@@ -171,7 +171,7 @@ class Amr(Type):
 
 
 class Aac(Type):
-    """Implements the Aac image type matcher."""
+    """Implements the Aac audio type matcher."""
 
     MIME = 'audio/aac'
     EXTENSION = 'aac'
