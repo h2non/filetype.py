@@ -24,6 +24,9 @@ class Mp4(IsoBmff):
             return False
 
         major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
+        for brand in compatible_brands:
+            if brand in ['mp41', 'mp42', 'isom']:
+                return True
         return major_brand in ['mp41', 'mp42', 'isom']
 
 
