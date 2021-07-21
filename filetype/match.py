@@ -14,7 +14,7 @@ from .utils import get_bytes
 
 def match(obj, matchers=TYPES):
     """
-    Matches the given input againts the available
+    Matches the given input against the available
     file type matchers.
 
     Args:
@@ -37,7 +37,7 @@ def match(obj, matchers=TYPES):
 
 def image_match(obj):
     """
-    Matches the given input againts the available
+    Matches the given input against the available
     image type matchers.
 
     Args:
@@ -54,7 +54,7 @@ def image_match(obj):
 
 def font_match(obj):
     """
-    Matches the given input againts the available
+    Matches the given input against the available
     font type matchers.
 
     Args:
@@ -71,7 +71,7 @@ def font_match(obj):
 
 def video_match(obj):
     """
-    Matches the given input againts the available
+    Matches the given input against the available
     video type matchers.
 
     Args:
@@ -88,7 +88,7 @@ def video_match(obj):
 
 def audio_match(obj):
     """
-    Matches the given input againts the available
+    Matches the given input against the available
     autio type matchers.
 
     Args:
@@ -105,7 +105,7 @@ def audio_match(obj):
 
 def archive_match(obj):
     """
-    Matches the given input againts the available
+    Matches the given input against the available
     archive type matchers.
 
     Args:
@@ -122,7 +122,7 @@ def archive_match(obj):
 
 def application_match(obj):
     """
-    Matches the given input againts the available
+    Matches the given input against the available
     application type matchers.
 
     Args:
