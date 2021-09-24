@@ -144,7 +144,7 @@ Font
 -  **otf** - ``application/font-sfnt``
 
 Application
-^^^^
+^^^^^^^^^^^ 
 
 -  **wasm** - ``application/wasm``
 
