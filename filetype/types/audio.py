@@ -185,3 +185,28 @@ class Aac(Type):
     def match(self, buf):
         return (buf[:2] == bytearray([0xff, 0xf1]) or
                 buf[:2] == bytearray([0xff, 0xf9]))
+
+
+class Aiff(Type):
+    """
+    Implements the AIFF audio type matcher.
+    """
+    MIME = 'audio/x-aiff'
+    EXTENSION = 'aiff'
+
+    def __init__(self):
+        super(Aiff, self).__init__(
+            mime=Aiff.MIME,
+            extension=Aiff.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 11 and
+                buf[0] == 0x46 and
+                buf[1] == 0x4F and
+                buf[2] == 0x52 and
+                buf[3] == 0x4D and
+                buf[8] == 0x41 and
+                buf[9] == 0x49 and
+                buf[10] == 0x46 and
+                buf[11] == 0x46)
