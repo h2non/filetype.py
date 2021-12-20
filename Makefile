@@ -40,7 +40,7 @@ compress:
 publish:
 	@echo "==> Releasing package $(version)..."
 	@python setup.py sdist bdist_wheel
-	@twine upload dist/*
+	@twine upload dist/* --repository-url https://upload.pypi.org/legacy/
 	@rm -fr build dist .egg pook.egg-info
 
 release: clean docs deploy-documentation tag compress publish
