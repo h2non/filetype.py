@@ -1,4 +1,14 @@
 
+v1.0.9 / 2021-12-20
+===================
+
+  * Update __init__.py
+  * Merge pull request #111 from asfaltboy/patch-1
+  * Add python 3.9 to version classifiers
+  * Merge pull request #108 from hannesbraun/aiff-support
+  * Add AIFF support
+  * fix(Readme): rst syntax
+
 v1.0.5 / 2019-03-01
 ===================
 
