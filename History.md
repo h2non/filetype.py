@@ -1,4 +1,10 @@
 
+v1.0.10 / 2022-02-03
+====================
+
+  * Merge pull request #113 from nottaw/master
+  * Use `==` for string comparisons
+
 v1.0.9 / 2021-12-20
 ===================
 
