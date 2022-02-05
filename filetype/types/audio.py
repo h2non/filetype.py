@@ -56,7 +56,7 @@ class M4a(Type):
     """
     Implements the M4A audio type matcher.
     """
-    MIME = 'audio/m4a'
+    MIME = 'audio/mp4'
     EXTENSION = 'm4a'
 
     def __init__(self):
