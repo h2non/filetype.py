@@ -19,11 +19,9 @@ class Type(object):
     def extension(self):
         return self.__extension
 
-    @property
     def is_extension(self, extension):
         return self.__extension is extension
 
-    @property
     def is_mime(self, mime):
         return self.__mime is mime
 
