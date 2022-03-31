@@ -19,15 +19,11 @@ class Woff(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 7 and
+        return (len(buf) > 3 and
                 buf[0] == 0x77 and
                 buf[1] == 0x4F and
                 buf[2] == 0x46 and
-                buf[3] == 0x46 and
-                buf[4] == 0x00 and
-                buf[5] == 0x01 and
-                buf[6] == 0x00 and
-                buf[7] == 0x00)
+                buf[3] == 0x46)
 
 
 class Woff2(Type):
@@ -44,15 +40,11 @@ class Woff2(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 7 and
+        return (len(buf) > 3 and
                 buf[0] == 0x77 and
                 buf[1] == 0x4F and
                 buf[2] == 0x46 and
-                buf[3] == 0x32 and
-                buf[4] == 0x00 and
-                buf[5] == 0x01 and
-                buf[6] == 0x00 and
-                buf[7] == 0x00)
+                buf[3] == 0x32)
 
 
 class Ttf(Type):
