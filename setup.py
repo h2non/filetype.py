@@ -6,7 +6,7 @@ from setuptools import find_packages, setup
 
 setup(
     name='filetype',
-    version='1.0.10',
+    version='1.0.11',
     description='Infer file type and MIME type of any file/buffer. '
                 'No external dependencies.',
     long_description=codecs.open('README.rst', 'r',
