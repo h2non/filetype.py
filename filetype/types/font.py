@@ -24,10 +24,18 @@ class Woff(Type):
                 buf[1] == 0x4F and
                 buf[2] == 0x46 and
                 buf[3] == 0x46 and
-                buf[4] == 0x00 and
-                buf[5] == 0x01 and
-                buf[6] == 0x00 and
-                buf[7] == 0x00)
+                ((buf[4] == 0x00 and
+                  buf[5] == 0x01 and
+                  buf[6] == 0x00 and
+                  buf[7] == 0x00) or
+                 (buf[4] == 0x4F and
+                  buf[5] == 0x54 and
+                  buf[6] == 0x54 and
+                  buf[7] == 0x4F) or
+                 (buf[4] == 0x74 and
+                  buf[5] == 0x72 and
+                  buf[6] == 0x75 and
+                  buf[7] == 0x65)))
 
 
 class Woff2(Type):
@@ -49,10 +57,18 @@ class Woff2(Type):
                 buf[1] == 0x4F and
                 buf[2] == 0x46 and
                 buf[3] == 0x32 and
-                buf[4] == 0x00 and
-                buf[5] == 0x01 and
-                buf[6] == 0x00 and
-                buf[7] == 0x00)
+                ((buf[4] == 0x00 and
+                  buf[5] == 0x01 and
+                  buf[6] == 0x00 and
+                  buf[7] == 0x00) or
+                 (buf[4] == 0x4F and
+                  buf[5] == 0x54 and
+                  buf[6] == 0x54 and
+                  buf[7] == 0x4F) or
+                 (buf[4] == 0x74 and
+                  buf[5] == 0x72 and
+                  buf[6] == 0x75 and
+                  buf[7] == 0x65)))
 
 
 class Ttf(Type):
