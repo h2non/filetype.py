@@ -1,4 +1,13 @@
 
+v1.0.12 / 2022-04-19
+====================
+
+  * Merge branch 'master' of https://github.com/h2non/filetype.py
+  * feat: version bump
+  * Merge pull request #118 from smasty/woff-flavors-support
+  * fix(font): minimum length check (woff)
+  * Add support for more WOFF/WOFF2 flavors
+
 v1.0.10 / 2022-02-03
 ====================
 
