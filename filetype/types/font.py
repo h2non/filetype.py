@@ -19,7 +19,7 @@ class Woff(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 3 and
+        return (len(buf) > 7 and
                 buf[0] == 0x77 and
                 buf[1] == 0x4F and
                 buf[2] == 0x46 and
