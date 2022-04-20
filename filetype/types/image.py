@@ -81,7 +81,7 @@ class Apng(Type):
                 elif (chunk_type == "acTL"):
                     return 1
 
-                #move to the next chank by skipping data and crc (4 bytes)
+                #move to the next chunk by skipping data and crc (4 bytes)
                 i += data_length + 4
             return 0
         else:
