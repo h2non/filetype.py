@@ -67,6 +67,7 @@ Image
 -  **jpg** - ``image/jpeg``
 -  **jpx** - ``image/jpx``
 -  **png** - ``image/png``
+-  **apng** - ``image/apng``
 -  **gif** - ``image/gif``
 -  **webp** - ``image/webp``
 -  **cr2** - ``image/x-canon-cr2``
