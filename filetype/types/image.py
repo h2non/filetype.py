@@ -62,7 +62,7 @@ class Apng(Type):
         )
 
     def match(self, buf):
-        if(len(buf) > 8 and
+        if (len(buf) > 8 and
            buf[:8] == bytearray([0x89, 0x50, 0x4e, 0x47,
                                  0x0d, 0x0a, 0x1a, 0x0a])):
             #cursor in buf, skip already readed 8 bytes
