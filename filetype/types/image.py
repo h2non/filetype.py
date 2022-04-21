@@ -77,15 +77,14 @@ class Apng(Type):
                 #acTL chunk in APNG should appears first than IDAT
                 #IEND is end of PNG
                 if (chunk_type == "IDAT" or chunk_type == "IEND"):
-                    return 0
+                    return False
                 elif (chunk_type == "acTL"):
-                    return 1
+                    return True
 
                 #move to the next chunk by skipping data and crc (4 bytes)
                 i += data_length + 4
-            return 0
-        else:
-            return 0
+        
+        return False
 
 
 class Png(Type):
