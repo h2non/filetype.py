@@ -1,4 +1,17 @@
 
+v1.0.13 / 2022-04-21
+====================
+
+  * chore(version): bump patch
+  * chore(version): bump patch
+  * refactor(apng)
+  * refactor(apng)
+  * Merge pull request #120 from CatKasha/apng
+  * fix typo
+  * add APNG support (part 3)
+  *  add APNG support (part 2)
+  * add APNG support (part 1)
+
 v1.0.12 / 2022-04-19
 ====================
 
