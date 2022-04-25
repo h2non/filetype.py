@@ -184,6 +184,13 @@ class Pdf(Type):
         )
 
     def match(self, buf):
+        # Detect BOM and skip first 3 bytes
+        if (len(buf) > 3 and
+            buf[0] == 0xEF and
+            buf[1] == 0xBB and
+            buf[2] == 0xBF):
+            buf = buf[3:]
+
         return (len(buf) > 3 and
                 buf[0] == 0x25 and
                 buf[1] == 0x50 and
