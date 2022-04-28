@@ -57,7 +57,10 @@ def get_bytes(obj):
         TypeError: if obj is not a supported type.
     """
     try:
-        obj = obj.read(_NUM_SIGNATURE_BYTES)
+        start_pos = obj.tell()
+        read_bytes = obj.read(_NUM_SIGNATURE_BYTES)
+        obj.seek(start_pos)
+        obj = read_bytes
     except AttributeError:
         # duck-typing as readable failed - we'll try the other options
         pass
