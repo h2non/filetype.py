@@ -1,4 +1,4 @@
-all: lint unit
+all: lint test
 
 export PYTHONPATH:=${PWD}
 version=`python -c 'import filetype; print(filetype.version)'`
@@ -9,7 +9,10 @@ lint:
 
 test: clean lint
 	@echo "Running tests ..."
-	@python -m unittest discover
+	@python -m pytest -v tests
+
+coverage:
+	@python -m pytest --cov-branch --cov-report html --cov=filetype tests/
 
 documentation:
 	@pdoc --html --overwrite --all-submodules --html-dir docs filetype
