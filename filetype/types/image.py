@@ -83,7 +83,7 @@ class Apng(Type):
 
                 #move to the next chunk by skipping data and crc (4 bytes)
                 i += data_length + 4
-        
+
         return False
 
 
@@ -191,7 +191,7 @@ class Tiff(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 3 and
+        return (len(buf) > 9 and
                 ((buf[0] == 0x49 and buf[1] == 0x49 and
                     buf[2] == 0x2A and buf[3] == 0x0) or
                 (buf[0] == 0x4D and buf[1] == 0x4D and
