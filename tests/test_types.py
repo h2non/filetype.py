@@ -59,3 +59,9 @@ class TestFileType(unittest.TestCase):
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'video/quicktime')
         self.assertEqual(kind.extension, 'mov')
+
+    def test_guess_zstd(self):
+        kind = filetype.guess(FIXTURES + '/sample.zst')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/zstd')
+        self.assertEqual(kind.extension, 'zst')

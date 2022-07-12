@@ -628,3 +628,25 @@ class Rpm(Type):
 
     def match(self, buf):
         return buf[:4] == bytearray([0xed, 0xab, 0xee, 0xdb])
+
+
+class Zstd(Type):
+    """
+    Implements the Zstd archive type matcher.
+    https://github.com/facebook/zstd/blob/dev/doc/zstd_compression_format.md
+    """
+    MIME = 'application/zstd'
+    EXTENSION = 'zst'
+
+    def __init__(self):
+        super(Zstd, self).__init__(
+            mime=Zstd.MIME,
+            extension=Zstd.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 3 and
+                buf[0] in (0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28) and
+                buf[1] == 0xb5 and
+                buf[2] == 0x2f and
+                buf[3] == 0xfd)
