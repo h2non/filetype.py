@@ -90,6 +90,7 @@ ARCHIVE = (
     archive.Lz(),
     archive.Elf(),
     archive.Lz4(),
+    archive.Zstd(),
 )
 
 # Supported archive container types
