@@ -90,6 +90,7 @@ class Webm(Type):
         contains_doctype_element = buf.find(b'\x42\x82\x84webm') > -1
         return contains_ebml_element and contains_doctype_element
 
+
 class Mov(IsoBmff):
     """
     Implements the MOV video type matcher.

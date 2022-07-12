@@ -65,7 +65,7 @@ class Apng(Type):
         if (len(buf) > 8 and
            buf[:8] == bytearray([0x89, 0x50, 0x4e, 0x47,
                                  0x0d, 0x0a, 0x1a, 0x0a])):
-            #cursor in buf, skip already readed 8 bytes
+            # cursor in buf, skip already readed 8 bytes
             i = 8
             while len(buf) > i:
                 data_length = int.from_bytes(buf[i:i+4], byteorder="big")
@@ -74,16 +74,16 @@ class Apng(Type):
                 chunk_type = buf[i:i+4].decode("ascii")
                 i += 4
 
-                #acTL chunk in APNG should appears first than IDAT
-                #IEND is end of PNG
+                # acTL chunk in APNG should appears first than IDAT
+                # IEND is end of PNG
                 if (chunk_type == "IDAT" or chunk_type == "IEND"):
                     return False
                 elif (chunk_type == "acTL"):
                     return True
 
-                #move to the next chunk by skipping data and crc (4 bytes)
+                # move to the next chunk by skipping data and crc (4 bytes)
                 i += data_length + 4
-        
+
         return False
 
 
