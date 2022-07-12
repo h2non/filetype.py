@@ -48,7 +48,7 @@ def get_bytes(obj):
     returning a sliced bytearray.
 
     Args:
-        obj: path to readable, file, bytes or bytearray.
+        obj: path to readable, file, bytes, bytearray or memoryview.
 
     Returns:
         First 262 bytes of the file content as bytearray type.
@@ -74,7 +74,7 @@ def get_bytes(obj):
         return signature(obj)
 
     if kind is memoryview:
-        return signature(obj).tolist()
+        return bytearray(signature(obj).tolist())
 
     if isinstance(obj, pathlib.PurePath):
         return get_signature_bytes(obj)
