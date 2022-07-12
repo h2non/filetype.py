@@ -136,6 +136,7 @@ Archive
 -  **lzo** - ``application/x-lzop``
 -  **lz** - ``application/x-lzip``
 -  **lz4** - ``application/x-lz4``
+-  **zstd** - ``application/zstd``
 
 Font
 ^^^^
