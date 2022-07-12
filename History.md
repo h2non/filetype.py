@@ -1,4 +1,19 @@
 
+v1.1.0 / 2022-07-12
+===================
+
+  * feat(version): bump minor
+  * Merge pull request #127 from ferstar/master
+  * Merge pull request #123 from levrik/patch-1
+  * Merge pull request #126 from babenek/master
+  * docs: add zstd type
+  * fix: remove unnecessary duck-typing try
+  * feat: add zst(d) type
+  * chore: fix lint errors
+  * test: fix memoryview test cases
+  * BugFix for uncaught exceptions
+  * Support PDF with BOM
+
 v1.0.13 / 2022-04-21
 ====================
 
