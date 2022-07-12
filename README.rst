@@ -122,7 +122,6 @@ Archive
 -  **pdf** - ``application/pdf``
 -  **exe** - ``application/x-msdownload``
 -  **swf** - ``application/x-shockwave-flash``
-
 -  **rtf** - ``application/rtf``
 -  **eot** - ``application/octet-stream``
 -  **ps** - ``application/postscript``
@@ -136,7 +135,7 @@ Archive
 -  **lzo** - ``application/x-lzop``
 -  **lz** - ``application/x-lzip``
 -  **lz4** - ``application/x-lz4``
--  **zstd** - ``application/zstd``
+-  **zstd** - ``application/zstd``
 
 Font
 ^^^^
