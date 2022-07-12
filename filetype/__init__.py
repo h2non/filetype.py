@@ -7,4 +7,4 @@ from .helpers import *  # noqa
 from .match import *  # noqa
 
 # Current package semver version
-__version__ = version = '1.0.13'
+__version__ = version = '1.1.0'
