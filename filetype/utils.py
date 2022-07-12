@@ -56,27 +56,19 @@ def get_bytes(obj):
     Raises:
         TypeError: if obj is not a supported type.
     """
-    try:
-        obj = obj.read(_NUM_SIGNATURE_BYTES)
-    except AttributeError:
-        # duck-typing as readable failed - we'll try the other options
-        pass
-
-    kind = type(obj)
-
-    if kind is bytearray:
+    if isinstance(obj, bytearray):
         return signature(obj)
 
-    if kind is str:
+    if isinstance(obj, str):
         return get_signature_bytes(obj)
 
-    if kind is bytes:
+    if isinstance(obj, bytes):
         return signature(obj)
 
-    if kind is memoryview:
+    if isinstance(obj, memoryview):
         return bytearray(signature(obj).tolist())
 
     if isinstance(obj, pathlib.PurePath):
         return get_signature_bytes(obj)
 
-    raise TypeError('Unsupported type as file input: %s' % kind)
+    raise TypeError('Unsupported type as file input: %s' % type(obj))
