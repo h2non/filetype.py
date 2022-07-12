@@ -188,7 +188,7 @@ class Pdf(Type):
         if (len(buf) > 3 and
             buf[0] == 0xEF and
             buf[1] == 0xBB and
-            buf[2] == 0xBF):
+            buf[2] == 0xBF):  # noqa E129
             buf = buf[3:]
 
         return (len(buf) > 3 and
