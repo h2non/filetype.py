@@ -644,6 +644,8 @@ class Zstd(Type):
     """
     MIME = 'application/zstd'
     EXTENSION = 'zst'
+    MAGIC_SKIPPABLE_START = 0x184D2A50
+    MAGIC_SKIPPABLE_MASK = 0xFFFFFFF0
 
     def __init__(self):
         super(Zstd, self).__init__(
@@ -651,9 +653,32 @@ class Zstd(Type):
             extension=Zstd.EXTENSION
         )
 
+    @staticmethod
+    def _to_little_endian_int(buf):
+        return int(bytearray(reversed(buf)).hex(), 16)
+
     def match(self, buf):
-        return (len(buf) > 3 and
-                buf[0] in (0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28) and
-                buf[1] == 0xb5 and
-                buf[2] == 0x2f and
-                buf[3] == 0xfd)
+        # Zstandard compressed data is made of one or more frames.
+        # There are two frame formats defined by Zstandard:
+        # Zstandard frames and Skippable frames.
+        # See more details from
+        # https://tools.ietf.org/id/draft-kucherawy-dispatch-zstd-00.html#rfc.section.2
+        is_zstd = (
+            len(buf) > 3 and
+            buf[0] in (0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28) and
+            buf[1] == 0xb5 and
+            buf[2] == 0x2f and
+            buf[3] == 0xfd)
+        if is_zstd:
+            return True
+        # skippable frames
+        if len(buf) < 8:
+            return False
+        magic = self._to_little_endian_int(buf[:4]) & Zstd.MAGIC_SKIPPABLE_MASK
+        if magic == Zstd.MAGIC_SKIPPABLE_START:
+            user_data_len = self._to_little_endian_int(buf[4:8])
+            if len(buf) < 8 + user_data_len:
+                return False
+            next_frame = buf[8 + user_data_len:]
+            return self.match(next_frame)
+        return False
