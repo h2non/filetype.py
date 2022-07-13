@@ -2,6 +2,8 @@
 
 from __future__ import absolute_import
 
+import struct
+
 from .base import Type
 
 
@@ -655,7 +657,8 @@ class Zstd(Type):
 
     @staticmethod
     def _to_little_endian_int(buf):
-        return int(bytearray(reversed(buf)).hex(), 16)
+        # return int.from_bytes(buf, byteorder='little')
+        return struct.unpack('<L', buf)[0]
 
     def match(self, buf):
         # Zstandard compressed data is made of one or more frames.
