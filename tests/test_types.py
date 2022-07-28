@@ -65,3 +65,57 @@ class TestFileType(unittest.TestCase):
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'application/zstd')
         self.assertEqual(kind.extension, 'zst')
+
+    def test_guess_doc(self):
+        kind = filetype.guess(FIXTURES + '/sample.doc')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/msword')
+        self.assertEqual(kind.extension, 'doc')
+
+    def test_guess_docx(self):
+        kind = filetype.guess(FIXTURES + '/sample.docx')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+        self.assertEqual(kind.extension, 'docx')
+
+    def test_guess_odt(self):
+        kind = filetype.guess(FIXTURES + '/sample.odt')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/vnd.oasis.opendocument.text')
+        self.assertEqual(kind.extension, 'odt')    
+        
+    def test_guess_xls(self):
+        kind = filetype.guess(FIXTURES + '/sample.xls')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/vnd.ms-excel')
+        self.assertEqual(kind.extension, 'xls')
+
+    def test_guess_xlsx(self):
+        kind = filetype.guess(FIXTURES + '/sample.xlsx')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet')
+        self.assertEqual(kind.extension, 'xlsx')
+
+    def test_guess_ods(self):
+        kind = filetype.guess(FIXTURES + '/sample.ods')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/vnd.oasis.opendocument.spreadsheet')
+        self.assertEqual(kind.extension, 'ods') 
+
+    def test_guess_ppt(self):
+        kind = filetype.guess(FIXTURES + '/sample.ppt')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/vnd.ms-powerpoint')
+        self.assertEqual(kind.extension, 'ppt')
+
+    def test_guess_pptx(self):
+        kind = filetype.guess(FIXTURES + '/sample.pptx')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/vnd.openxmlformats-officedocument.presentationml.presentation')
+        self.assertEqual(kind.extension, 'pptx')
+
+    def test_guess_odp(self):
+        kind = filetype.guess(FIXTURES + '/sample.odp')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/vnd.oasis.opendocument.presentation')
+        self.assertEqual(kind.extension, 'odp') 
