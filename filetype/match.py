@@ -153,3 +153,4 @@ def document_match(obj):
         TypeError: if obj is not a supported type.
     """
     return match(obj, document_matchers)
+    

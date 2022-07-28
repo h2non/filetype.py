@@ -23,7 +23,7 @@ class ZippedDocumentBase(Type):
         if start_offset + sl > len(buf):
             return False
 
-        return buf[start_offset : start_offset + sl] == subslice
+        return buf[start_offset:start_offset + sl] == subslice
 
     def search_signature(self, buf, start, rangeNum):
         signature = b"PK\x03\x04"
