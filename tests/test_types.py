@@ -68,7 +68,7 @@ class TestFileType(unittest.TestCase):
 
     def test_guess_doc(self):
         kind = filetype.guess(FIXTURES + '/sample.doc')
-        self.assertTrue(kind is not None)
+        self.assertIsNotNone(kind)
         self.assertEqual(kind.mime, 'application/msword')
         self.assertEqual(kind.extension, 'doc')
 

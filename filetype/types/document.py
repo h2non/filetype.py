@@ -160,7 +160,7 @@ class Xls(Type):
 
     def match(self, buf):
         return (
-            len(buf) > 7
+            len(buf) > 518
             and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
             and (
                 (
@@ -218,7 +218,7 @@ class Ppt(Type):
 
     def match(self, buf):
         return (
-            len(buf) > 8
+            len(buf) > 516
             and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
             and (
                 (len(buf) > 516 and buf[512:516] == b"\xA0\x46\x1D\xF0")
