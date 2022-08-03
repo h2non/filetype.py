@@ -1,0 +1,14 @@
+[run]
+branch = True
+
+omit =
+    examples/*
+    tests/*
+
+source = filetype
+
+[report]
+exclude_lines =
+    # Don't complain if non-runnable code isn't run:
+    if __name__ == ['"]+__main__['"]+:
+    if ['"]+__main__['"]+ == __name__:
