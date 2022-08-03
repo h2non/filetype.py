@@ -109,22 +109,17 @@ class Doc(Type):
         super(Doc, self).__init__(mime=Doc.MIME, extension=Doc.EXTENSION)
 
     def match(self, buf):
-        header_match = (
-            len(buf) > 8 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
-        )
-        subheader_match = (
-            header_match
-            and len(buf) > 515
-            and (
-                buf[512:515] == b"\xEC\xA5\xC1\x00"
-                or (
-                    len(buf) > 2142
-                    and b"\x00\x0A\x00\x00\x00MSWordDoc\x00\x10\x00\x00\x00Word.Document.8\x00\xF49\xB2q"
-                    in buf[2075:2142]
-                )
-            )
-        )
-        return header_match and subheader_match
+        if len(buf) > 515 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
+            if buf[512:515] == b"\xEC\xA5\xC1\x00":
+                return True
+            if (
+                len(buf) > 2142
+                and b"\x00\x0A\x00\x00\x00MSWordDoc\x00\x10\x00\x00\x00Word.Document.8\x00\xF49\xB2q"
+                in buf[2075:2142]
+            ):
+                return True
+
+        return False
 
 
 class Docx(OfficeOpenXml):
@@ -163,26 +158,21 @@ class Xls(Type):
         super(Xls, self).__init__(mime=Xls.MIME, extension=Xls.EXTENSION)
 
     def match(self, buf):
-        header_match = (
-            len(buf) > 8 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
-        )
-        subheader_match = (
-            header_match
-            and len(buf) > 520
-            and (
-                (
-                    buf[512:516] == b"\xFD\xFF\xFF\xFF"
-                    and (buf[518] == 0x00 or buf[518] == 0x02)
-                )
-                or (buf[512:520] == b"\x09\x08\x10\x00\x00\x06\x05\x00")
-                or (
-                    len(buf) > 2095
-                    and b"\xE2\x00\x00\x00\x5C\x00\x70\x00\x04\x00\x00Calc"
-                    in buf[1568:2095]
-                )
-            )
-        )
-        return header_match and subheader_match
+        if len(buf) > 520 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
+            if buf[512:516] == b"\xFD\xFF\xFF\xFF" and (
+                buf[518] == 0x00 or buf[518] == 0x02
+            ):
+                return True
+            if buf[512:520] == b"\x09\x08\x10\x00\x00\x06\x05\x00":
+                return True
+            if (
+                len(buf) > 2095
+                and b"\xE2\x00\x00\x00\x5C\x00\x70\x00\x04\x00\x00Calc"
+                in buf[1568:2095]
+            ):
+                return True
+
+        return False
 
 
 class Xlsx(OfficeOpenXml):
@@ -221,25 +211,23 @@ class Ppt(Type):
         super(Ppt, self).__init__(mime=Ppt.MIME, extension=Ppt.EXTENSION)
 
     def match(self, buf):
-        header_match = (
-            len(buf) > 8 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1"
-        )
-        subheader_match = (
-            header_match
-            and len(buf) > 524
-            and (
-                buf[512:516] == b"\xA0\x46\x1D\xF0"
-                or buf[512:516] == b"\x00\x6E\x1E\xF0"
-                or buf[512:516] == b"\x0F\x00\xE8\x03"
-                or (buf[512:516] == b"\xFD\xFF\xFF\xFF" and buf[522:524] == b"\x00\x00")
-                or (
-                    len(buf) > 2096
-                    and buf[2072:2096]
-                    == b"\x00\xB9\x29\xE8\x11\x00\x00\x00MS PowerPoint 97"
-                )
-            )
-        )
-        return header_match and subheader_match
+        if len(buf) > 524 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
+            if buf[512:516] == b"\xA0\x46\x1D\xF0":
+                return True
+            if buf[512:516] == b"\x00\x6E\x1E\xF0":
+                return True
+            if buf[512:516] == b"\x0F\x00\xE8\x03":
+                return True
+            if buf[512:516] == b"\xFD\xFF\xFF\xFF" and buf[522:524] == b"\x00\x00":
+                return True
+            if (
+                len(buf) > 2096
+                and buf[2072:2096]
+                == b"\x00\xB9\x29\xE8\x11\x00\x00\x00MS PowerPoint 97"
+            ):
+                return True
+
+        return False
 
 
 class Pptx(OfficeOpenXml):
