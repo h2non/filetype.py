@@ -71,7 +71,7 @@ class Apng(Type):
                 data_length = int.from_bytes(buf[i:i+4], byteorder="big")
                 i += 4
 
-                chunk_type = buf[i:i+4].decode("ascii")
+                chunk_type = buf[i:i+4].decode("ascii", errors='ignore')
                 i += 4
 
                 # acTL chunk in APNG should appears first than IDAT

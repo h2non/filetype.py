@@ -28,6 +28,6 @@ class IsoBmff(Type):
         minor_version = int(codecs.encode(buf[12:16], 'hex'), 16)
         compatible_brands = []
         for i in range(16, ftyp_len, 4):
-            compatible_brands.append(buf[i:i+4].decode())
+            compatible_brands.append(buf[i:i+4].decode(errors='ignore'))
 
         return major_brand, minor_version, compatible_brands
