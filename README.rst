@@ -137,6 +137,19 @@ Archive
 -  **lz4** - ``application/x-lz4``
 -  **zstd** - ``application/zstd``
 
+Document
+^^^^
+
+-  **doc** - ``application/msword``
+-  **docx** - ``application/vnd.openxmlformats-officedocument.wordprocessingml.document``
+-  **odt** - ``application/vnd.oasis.opendocument.text``
+-  **xls** - ``application/vnd.ms-excel``
+-  **xlsx** - ``application/vnd.openxmlformats-officedocument.spreadsheetml.sheet``
+-  **ods** - ``application/vnd.oasis.opendocument.spreadsheet``
+-  **ppt** - ``application/vnd.ms-powerpoint``
+-  **pptx** - ``application/vnd.openxmlformats-officedocument.presentationml.presentation``
+-  **odp** - ``application/vnd.oasis.opendocument.presentation``
+
 Font
 ^^^^
 
