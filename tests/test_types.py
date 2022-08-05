@@ -13,10 +13,12 @@ FIXTURES = os.path.dirname(os.path.abspath(__file__)) + '/fixtures'
 
 class TestFileType(unittest.TestCase):
     def test_guess_jpeg(self):
-        kind = filetype.guess(FIXTURES + '/sample.jpg')
-        self.assertTrue(kind is not None)
-        self.assertEqual(kind.mime, 'image/jpeg')
-        self.assertEqual(kind.extension, 'jpg')
+        img_path = FIXTURES + '/sample.jpg'
+        for obj in (img_path, open(img_path, 'rb')):
+            kind = filetype.guess(obj)
+            self.assertTrue(kind is not None)
+            self.assertEqual(kind.mime, 'image/jpeg')
+            self.assertEqual(kind.extension, 'jpg')
 
     def test_guess_jpx(self):
         kind = filetype.guess(FIXTURES + '/sample.jpx')
@@ -83,8 +85,8 @@ class TestFileType(unittest.TestCase):
         kind = filetype.guess(FIXTURES + '/sample.odt')
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'application/vnd.oasis.opendocument.text')
-        self.assertEqual(kind.extension, 'odt')    
-        
+        self.assertEqual(kind.extension, 'odt')
+
     def test_guess_xls(self):
         kind = filetype.guess(FIXTURES + '/sample.xls')
         self.assertTrue(kind is not None)
@@ -101,7 +103,7 @@ class TestFileType(unittest.TestCase):
         kind = filetype.guess(FIXTURES + '/sample.ods')
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'application/vnd.oasis.opendocument.spreadsheet')
-        self.assertEqual(kind.extension, 'ods') 
+        self.assertEqual(kind.extension, 'ods')
 
     def test_guess_ppt(self):
         kind = filetype.guess(FIXTURES + '/sample.ppt')
@@ -119,4 +121,4 @@ class TestFileType(unittest.TestCase):
         kind = filetype.guess(FIXTURES + '/sample.odp')
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'application/vnd.oasis.opendocument.presentation')
-        self.assertEqual(kind.extension, 'odp') 
+        self.assertEqual(kind.extension, 'odp')
