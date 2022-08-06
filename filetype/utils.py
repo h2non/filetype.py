@@ -48,7 +48,7 @@ def get_bytes(obj):
     returning a sliced bytearray.
 
     Args:
-        obj: path to readable, file, bytes, bytearray or memoryview.
+        obj: path to readable, file-like object(with read() method), bytes, bytearray or memoryview
 
     Returns:
         First 8192 bytes of the file content as bytearray type.
@@ -70,5 +70,8 @@ def get_bytes(obj):
 
     if isinstance(obj, pathlib.PurePath):
         return get_signature_bytes(obj)
+
+    if hasattr(obj, 'read'):
+        return get_bytes(obj.read(_NUM_SIGNATURE_BYTES))
 
     raise TypeError('Unsupported type as file input: %s' % type(obj))
