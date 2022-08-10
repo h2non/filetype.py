@@ -14,8 +14,14 @@ FIXTURES = os.path.dirname(os.path.abspath(__file__)) + '/fixtures'
 class TestFileType(unittest.TestCase):
     def test_guess_jpeg(self):
         img_path = FIXTURES + '/sample.jpg'
-        for obj in (img_path, open(img_path, 'rb')):
-            kind = filetype.guess(obj)
+        with open(img_path, 'rb') as fp:
+            for obj in (img_path, fp):
+                kind = filetype.guess(obj)
+                self.assertTrue(kind is not None)
+                self.assertEqual(kind.mime, 'image/jpeg')
+                self.assertEqual(kind.extension, 'jpg')
+            # reset reader position test
+            kind = filetype.guess(fp)
             self.assertTrue(kind is not None)
             self.assertEqual(kind.mime, 'image/jpeg')
             self.assertEqual(kind.extension, 'jpg')
