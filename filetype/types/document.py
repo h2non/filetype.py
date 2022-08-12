@@ -110,7 +110,7 @@ class Doc(Type):
 
     def match(self, buf):
         if len(buf) > 515 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
-            if buf[512:515] == b"\xEC\xA5\xC1\x00":
+            if buf[512:516] == b"\xEC\xA5\xC1\x00":
                 return True
             if (
                 len(buf) > 2142

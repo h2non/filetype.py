@@ -76,10 +76,11 @@ class TestFileType(unittest.TestCase):
             self.assertEqual(kind.extension, 'zst')
 
     def test_guess_doc(self):
-        kind = filetype.guess(FIXTURES + '/sample.doc')
-        self.assertIsNotNone(kind)
-        self.assertEqual(kind.mime, 'application/msword')
-        self.assertEqual(kind.extension, 'doc')
+        for name in 'sample.doc', 'sample_1.doc':
+            kind = filetype.guess(os.path.join(FIXTURES, name))
+            self.assertIsNotNone(kind)
+            self.assertEqual(kind.mime, 'application/msword')
+            self.assertEqual(kind.extension, 'doc')
 
     def test_guess_docx(self):
         kind = filetype.guess(FIXTURES + '/sample.docx')
