@@ -83,10 +83,11 @@ class TestFileType(unittest.TestCase):
             self.assertEqual(kind.extension, 'doc')
 
     def test_guess_docx(self):
-        kind = filetype.guess(FIXTURES + '/sample.docx')
-        self.assertTrue(kind is not None)
-        self.assertEqual(kind.mime, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
-        self.assertEqual(kind.extension, 'docx')
+        for name in 'sample.docx', 'sample_1.docx':
+            kind = filetype.guess(os.path.join(FIXTURES, name))
+            self.assertTrue(kind is not None)
+            self.assertEqual(kind.mime, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+            self.assertEqual(kind.extension, 'docx')
 
     def test_guess_odt(self):
         kind = filetype.guess(FIXTURES + '/sample.odt')
