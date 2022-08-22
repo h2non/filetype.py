@@ -67,8 +67,10 @@ class OfficeOpenXml(ZippedDocumentBase):
             return
 
         # Loop through next 3 files and check if they match
+        # NOTE: OpenOffice/Libreoffice orders ZIP entry differently, so check the 4th file
+        # https://github.com/h2non/filetype/blob/d730d98ad5c990883148485b6fd5adbdd378364a/matchers/document.go#L134
         idx = 0
-        for i in range(3):
+        for i in range(4):
             # Search for next file header
             idx = self.search_signature(buf, idx + 4, 6000)
             if idx == -1:
@@ -110,7 +112,7 @@ class Doc(Type):
 
     def match(self, buf):
         if len(buf) > 515 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
-            if buf[512:515] == b"\xEC\xA5\xC1\x00":
+            if buf[512:516] == b"\xEC\xA5\xC1\x00":
                 return True
             if (
                 len(buf) > 2142

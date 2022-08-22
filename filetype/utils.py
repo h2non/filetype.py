@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from io import BufferedIOBase
 # Python 2.7 workaround
 try:
     import pathlib
@@ -48,7 +49,8 @@ def get_bytes(obj):
     returning a sliced bytearray.
 
     Args:
-        obj: path to readable, file-like object(with read() method), bytes, bytearray or memoryview
+        obj: path to readable, file-like object(with read() method), bytes,
+        bytearray or memoryview
 
     Returns:
         First 8192 bytes of the file content as bytearray type.
@@ -70,6 +72,13 @@ def get_bytes(obj):
 
     if isinstance(obj, pathlib.PurePath):
         return get_signature_bytes(obj)
+
+    if isinstance(obj, BufferedIOBase):
+        start_pos = obj.tell()
+        obj.seek(0)
+        magic_bytes = obj.read(_NUM_SIGNATURE_BYTES)
+        obj.seek(start_pos)  # restore reader position
+        return get_bytes(magic_bytes)
 
     if hasattr(obj, 'read'):
         return get_bytes(obj.read(_NUM_SIGNATURE_BYTES))
