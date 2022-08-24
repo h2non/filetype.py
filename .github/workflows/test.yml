@@ -45,19 +45,10 @@ jobs:
       run: filetype --help
 
     - name: Install test framework dependencies
-      run: python -m pip install pytest pytest-random-order pytest-cov pytest-html
+      run: python -m pip install tox
 
-    - name: UnitTest with pytest and coverage
-      run: |
-        pytest \
-            --random-order \
-            --random-order-bucket=global \
-            --ignore=examples \
-            --ignore=tests/test_benchmark.py \
-            --cov=filetype \
-            --cov-report html:coverage/ \
-            tests \
-            ;
+    - name: Run tox pipeline
+      run: tox
 
     - name: HTML coverage reports
       if: always()
