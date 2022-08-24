@@ -196,7 +196,7 @@ class Tiff(Type):
                     buf[2] == 0x2A and buf[3] == 0x0) or
                 (buf[0] == 0x4D and buf[1] == 0x4D and
                     buf[2] == 0x0 and buf[3] == 0x2A))
-                and not(buf[8] == 0x43 and buf[9] == 0x52))
+                and not (buf[8] == 0x43 and buf[9] == 0x52))
 
 
 class Bmp(Type):
