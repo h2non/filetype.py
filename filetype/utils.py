@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from io import BufferedIOBase
 # Python 2.7 workaround
 try:
     import pathlib
