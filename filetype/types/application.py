@@ -20,3 +20,16 @@ class Wasm(Type):
     def match(self, buf):
         return buf[:8] == bytearray([0x00, 0x61, 0x73, 0x6d,
                                      0x01, 0x00, 0x00, 0x00])
+        
+class Json(Type):
+    """Implements the Json image type matcher."""
+    
+    MIME = 'application/json'
+    EXTENSION = 'json'
+    
+    def __init__(self):
+        super(Json, self).__init__(
+            mime=Json.MIME,
+            extension=Json.EXTENSION
+        )
+        
