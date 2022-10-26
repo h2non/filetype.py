@@ -77,6 +77,7 @@ Image
 -  **psd** - ``image/vnd.adobe.photoshop``
 -  **ico** - ``image/x-icon``
 -  **heic** - ``image/heic``
+-  **avif** - ``image/avif``
 
 Video
 ^^^^^
