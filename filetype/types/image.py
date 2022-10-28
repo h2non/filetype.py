@@ -356,3 +356,28 @@ class Xcf(Type):
     def match(self, buf):
         return buf[:10] == bytearray([0x67, 0x69, 0x6d, 0x70, 0x20,
                                       0x78, 0x63, 0x66, 0x20, 0x76])
+
+
+class Avif(IsoBmff):
+    """
+    Implements the AVIF image type matcher.
+    """
+    MIME = 'image/avif'
+    EXTENSION = 'avif'
+
+    def __init__(self):
+        super(Avif, self).__init__(
+            mime=Avif.MIME,
+            extension=Avif.EXTENSION
+        )
+
+    def match(self, buf):
+        if not self._is_isobmff(buf):
+            return False
+
+        major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
+        if major_brand == 'avif':
+            return True
+        if major_brand in ['mif1', 'msf1'] and 'avif' in compatible_brands:
+            return True
+        return False
