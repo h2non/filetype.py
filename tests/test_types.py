@@ -50,6 +50,13 @@ class TestFileType(unittest.TestCase):
         self.assertEqual(kind.mime, 'image/avif')
         self.assertEqual(kind.extension, 'avif')
 
+    def test_guess_m4a(self):
+        kind = filetype.guess(FIXTURES + '/sample.m4a')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'audio/mp4')
+        self.assertEqual(kind.extension, 'm4a')
+
+
     def test_guess_mp4(self):
         kind = filetype.guess(FIXTURES + '/sample.mp4')
         self.assertTrue(kind is not None)
