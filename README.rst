@@ -139,7 +139,7 @@ Archive
 -  **zstd** - ``application/zstd``
 
 Document
-^^^^
+^^^^^^^^
 
 -  **doc** - ``application/msword``
 -  **docx** - ``application/vnd.openxmlformats-officedocument.wordprocessingml.document``
