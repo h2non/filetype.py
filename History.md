@@ -1,4 +1,53 @@
 
+v1.2.0 / 2022-11-02
+===================
+
+  * chore(version): bump minor
+  * Merge pull request #147 from sayanarijit/fix-146
+  * Add tests for m4a
+  * Try matching audio before video
+  * Merge pull request #145 from RSabet/master
+  * update README to include avif
+  * added image filetype avif
+  * Update __init__.py
+  * Merge pull request #141 from ferstar/master
+  * test: remove unused imported(F401)
+  * refactor: duck-typing reading magic string and try to restore the reader position if possible
+  * test: fix E275 missing whitespace after keyword
+  * test: Use tox pipeline instead of pytest
+  * test: ignore E501 error for flake8 check
+  * fix: CLI params parser
+  * Merge pull request #137 from ferstar/master
+  * fix: guess ".docx" func and add another doc file test case
+  * fix: guess ".doc" func and add another doc file test case
+  * test: skip benchmark test in tox config
+  * fix: restore reader position after retrieving signature bytes
+  * Merge pull request #136 from ferstar/master
+  * test: no need to skip zstd test case
+  * Merge pull request #135 from ferstar/master
+  * fix: regression for file-like obj file type detection
+  * Merge pull request #134 from babenek/actions
+  * Merge pull request #129 from ferstar/master
+  * Merge branch 'master' into master
+  * Merge pull request #133 from magbyr/master
+  * Merge pull request #131 from babenek/master
+  * CI workflow in github actions
+  * Changed to if statements in matching method
+  * Changed return method because of coverage calculation problems
+  * Extra line at EOF
+  * Extra line at EOF
+  * Extra line at EOF
+  * Apply suggestions from code review
+  * README changes
+  * Linter changes
+  * Added document filetypes for doc, docx, odt, xls, xlsx, ods, ppt, pptx and odp. Added tests and sample documents for document filetypes
+  * Fix undocumented exception
+  * style: Simplify binary to integer method
+  * feat: add zstd skippable frames support
+  * test: fix the tox config and missing test sample files
+  * test: fix the zst test sample file
+  * fix(readme): rst syntax wtf
+
 v1.1.0 / 2022-07-12
 ===================
 
