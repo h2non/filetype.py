@@ -5,6 +5,7 @@ from __future__ import absolute_import
 from . import archive
 from . import audio
 from . import application
+from . import document
 from . import font
 from . import image
 from . import video
@@ -28,6 +29,7 @@ IMAGE = (
     image.Ico(),
     image.Heic(),
     image.Dcm(),
+    image.Avif(),
 )
 
 # Supported video types
@@ -90,6 +92,7 @@ ARCHIVE = (
     archive.Lz(),
     archive.Elf(),
     archive.Lz4(),
+    archive.Zstd(),
 )
 
 # Supported archive container types
@@ -97,6 +100,19 @@ APPLICATION = (
     application.Wasm(),
 )
 
+# Supported document types
+DOCUMENT = (
+    document.Doc(),
+    document.Docx(),
+    document.Odt(),
+    document.Xls(),
+    document.Xlsx(),
+    document.Ods(),
+    document.Ppt(),
+    document.Pptx(),
+    document.Odp(),
+)
+
 
 # Expose supported type matchers
-TYPES = list(VIDEO + IMAGE + AUDIO + FONT + ARCHIVE + APPLICATION)
+TYPES = list(IMAGE + AUDIO + VIDEO + FONT + DOCUMENT + ARCHIVE + APPLICATION)

@@ -14,7 +14,7 @@ def guess(obj):
     Infers the type of the given input.
 
     Function is overloaded to accept multiple types in input
-    and peform the needed type inference based on it.
+    and perform the needed type inference based on it.
 
     Args:
         obj: path to file, bytes or bytearray.

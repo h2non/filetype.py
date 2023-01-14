@@ -24,10 +24,10 @@ class IsoBmff(Type):
 
     def _get_ftyp(self, buf):
         ftyp_len = int(codecs.encode(buf[0:4], 'hex'), 16)
-        major_brand = buf[8:12].decode()
+        major_brand = buf[8:12].decode(errors='ignore')
         minor_version = int(codecs.encode(buf[12:16], 'hex'), 16)
         compatible_brands = []
         for i in range(16, ftyp_len, 4):
-            compatible_brands.append(buf[i:i+4].decode())
+            compatible_brands.append(buf[i:i+4].decode(errors='ignore'))
 
         return major_brand, minor_version, compatible_brands

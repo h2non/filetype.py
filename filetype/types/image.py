@@ -65,25 +65,25 @@ class Apng(Type):
         if (len(buf) > 8 and
             buf[:8] == bytearray([0x89, 0x50, 0x4e, 0x47,
                                   0x0d, 0x0a, 0x1a, 0x0a])):
-            #cursor in buf, skip already readed 8 bytes
+            # cursor in buf, skip already readed 8 bytes
             i = 8
             while len(buf) > i:
                 data_length = int.from_bytes(buf[i:i+4], byteorder="big")
                 i += 4
 
-                chunk_type = buf[i:i+4].decode("ascii")
+                chunk_type = buf[i:i+4].decode("ascii", errors='ignore')
                 i += 4
 
-                #acTL chunk in APNG must appear before IDAT
-                #IEND is end of PNG
+                # acTL chunk in APNG must appear before IDAT
+                # IEND is end of PNG
                 if (chunk_type == "IDAT" or chunk_type == "IEND"):
                     return False
                 if (chunk_type == "acTL"):
                     return True
 
-                #move to the next chunk by skipping data and crc (4 bytes)
+                # move to the next chunk by skipping data and crc (4 bytes)
                 i += data_length + 4
-        
+
         return False
 
 
@@ -191,12 +191,12 @@ class Tiff(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 3 and
+        return (len(buf) > 9 and
                 ((buf[0] == 0x49 and buf[1] == 0x49 and
                     buf[2] == 0x2A and buf[3] == 0x0) or
                 (buf[0] == 0x4D and buf[1] == 0x4D and
                     buf[2] == 0x0 and buf[3] == 0x2A))
-                and not(buf[8] == 0x43 and buf[9] == 0x52))
+                and not (buf[8] == 0x43 and buf[9] == 0x52))
 
 
 class Bmp(Type):
@@ -356,3 +356,28 @@ class Xcf(Type):
     def match(self, buf):
         return buf[:10] == bytearray([0x67, 0x69, 0x6d, 0x70, 0x20,
                                       0x78, 0x63, 0x66, 0x20, 0x76])
+
+
+class Avif(IsoBmff):
+    """
+    Implements the AVIF image type matcher.
+    """
+    MIME = 'image/avif'
+    EXTENSION = 'avif'
+
+    def __init__(self):
+        super(Avif, self).__init__(
+            mime=Avif.MIME,
+            extension=Avif.EXTENSION
+        )
+
+    def match(self, buf):
+        if not self._is_isobmff(buf):
+            return False
+
+        major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
+        if major_brand == 'avif':
+            return True
+        if major_brand in ['mif1', 'msf1'] and 'avif' in compatible_brands:
+            return True
+        return False

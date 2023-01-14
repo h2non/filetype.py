@@ -3,7 +3,7 @@
 from __future__ import absolute_import
 from .types import TYPES
 from .match import (
-    image_match, font_match,
+    image_match, font_match, document_match,
     video_match, audio_match, archive_match
 )
 
@@ -122,3 +122,19 @@ def is_font(obj):
         TypeError: if obj is not a supported type.
     """
     return font_match(obj) is not None
+
+
+def is_document(obj):
+    """
+    Checks if a given input is a supported type document.
+
+    Args:
+        obj: path to file, bytes or bytearray.
+
+    Returns:
+        True if obj is a valid document. Otherwise False.
+
+    Raises:
+        TypeError: if obj is not a supported type.
+    """
+    return document_match(obj) is not None

@@ -2,6 +2,8 @@
 
 from __future__ import absolute_import
 
+import struct
+
 from .base import Type
 
 
@@ -184,6 +186,13 @@ class Pdf(Type):
         )
 
     def match(self, buf):
+        # Detect BOM and skip first 3 bytes
+        if (len(buf) > 3 and
+            buf[0] == 0xEF and
+            buf[1] == 0xBB and
+            buf[2] == 0xBF):  # noqa E129
+            buf = buf[3:]
+
         return (len(buf) > 3 and
                 buf[0] == 0x25 and
                 buf[1] == 0x50 and
@@ -628,3 +637,51 @@ class Rpm(Type):
 
     def match(self, buf):
         return buf[:4] == bytearray([0xed, 0xab, 0xee, 0xdb])
+
+
+class Zstd(Type):
+    """
+    Implements the Zstd archive type matcher.
+    https://github.com/facebook/zstd/blob/dev/doc/zstd_compression_format.md
+    """
+    MIME = 'application/zstd'
+    EXTENSION = 'zst'
+    MAGIC_SKIPPABLE_START = 0x184D2A50
+    MAGIC_SKIPPABLE_MASK = 0xFFFFFFF0
+
+    def __init__(self):
+        super(Zstd, self).__init__(
+            mime=Zstd.MIME,
+            extension=Zstd.EXTENSION
+        )
+
+    @staticmethod
+    def _to_little_endian_int(buf):
+        # return int.from_bytes(buf, byteorder='little')
+        return struct.unpack('<L', buf)[0]
+
+    def match(self, buf):
+        # Zstandard compressed data is made of one or more frames.
+        # There are two frame formats defined by Zstandard:
+        # Zstandard frames and Skippable frames.
+        # See more details from
+        # https://tools.ietf.org/id/draft-kucherawy-dispatch-zstd-00.html#rfc.section.2
+        is_zstd = (
+            len(buf) > 3 and
+            buf[0] in (0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28) and
+            buf[1] == 0xb5 and
+            buf[2] == 0x2f and
+            buf[3] == 0xfd)
+        if is_zstd:
+            return True
+        # skippable frames
+        if len(buf) < 8:
+            return False
+        magic = self._to_little_endian_int(buf[:4]) & Zstd.MAGIC_SKIPPABLE_MASK
+        if magic == Zstd.MAGIC_SKIPPABLE_START:
+            user_data_len = self._to_little_endian_int(buf[4:8])
+            if len(buf) < 8 + user_data_len:
+                return False
+            next_frame = buf[8 + user_data_len:]
+            return self.match(next_frame)
+        return False

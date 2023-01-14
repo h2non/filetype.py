@@ -84,3 +84,13 @@ class TestFileTypeMIME(unittest.TestCase):
         mime = filetype.guess_mime(buf)
         self.assertTrue(mime is not None)
         self.assertEqual(mime, 'image/jpeg')
+
+    def test_guess_video_invalid(self):
+        buf = bytearray([0x0, 0x0, 0x0, 0x0, 0x66, 0x74, 0x79, 0x70, 0xf2, 0xf2, 0xf2, 0xf2, 0xf6, 0xf2, 0xf2, 0x90])
+        mime = filetype.guess_mime(buf)
+        self.assertTrue(mime is None)
+
+    def test_guess_image_invalid(self):
+        buf = bytearray([0x49, 0x49, 0x2a, 0x0])
+        mime = filetype.guess_mime(buf)
+        self.assertTrue(mime is None)
