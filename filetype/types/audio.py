@@ -54,12 +54,7 @@ class Mp3(Type):
                     buf[1] == 0xFA or #MPEG 1 with error protection
                     buf[1] == 0xFB):  #MPEG 1 w/o error protection
                     return True
-                else:
-                    return False
-            else:
-                return False
-        else:
-             return False
+        return False
 
 
 class M4a(Type):
