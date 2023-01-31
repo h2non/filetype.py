@@ -40,16 +40,24 @@ class Mp3(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 2 and
-                ((buf[0] == 0x49 and
-                  buf[1] == 0x44 and
-                  buf[2] == 0x33) or
-                 (buf[0] == 0xFF and
-                  buf[1] == 0xF2) or
-                 (buf[0] == 0xFF and
-                  buf[1] == 0xF3) or
-                 (buf[0] == 0xFF and
-                  buf[1] == 0xFB)))
+        if (len(buf) > 2):
+            if (buf[0] == 0x49 and
+                buf[1] == 0x44 and
+                buf[2] == 0x33):
+                return True
+
+            if (buf[0] == 0xFF):
+                if (buf[1] == 0xE2 or #MPEG 2.5 with error protection
+                    buf[1] == 0xE3 or #MPEG 2.5 w/o error protection
+                    buf[1] == 0xF2 or #MPEG 2 with error protection
+                    buf[1] == 0xF3 or #MPEG 2 w/o error protection
+                    buf[1] == 0xFA or #MPEG 1 with error protection
+                    buf[1] == 0xFB):  #MPEG 1 w/o error protection
+                    return True
+            else:
+                return False
+        else:
+             return False
 
 
 class M4a(Type):
