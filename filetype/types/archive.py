@@ -3,6 +3,7 @@
 from __future__ import absolute_import
 
 import struct
+import tarfile
 
 from .base import Type
 
@@ -76,12 +77,15 @@ class Tar(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 261 and
+        if (len(buf) > 512 and
                 buf[257] == 0x75 and
                 buf[258] == 0x73 and
                 buf[259] == 0x74 and
                 buf[260] == 0x61 and
-                buf[261] == 0x72)
+                buf[261] == 0x72):
+            chksum = tarfile.nti(buf[148:156])  # type: ignore
+            unsigned_chksum, signed_chksum = tarfile.calc_chksums(buf)  # type: ignore
+            return bool(chksum == unsigned_chksum or chksum == signed_chksum)
 
 
 class Rar(Type):

@@ -143,3 +143,9 @@ class TestFileType(unittest.TestCase):
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'application/vnd.oasis.opendocument.presentation')
         self.assertEqual(kind.extension, 'odp')
+
+    def test_guess_tar(self):
+        kind = filetype.guess(FIXTURES + '/sample.tar')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/x-tar')
+        self.assertEqual(kind.extension, 'tar')
