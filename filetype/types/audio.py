@@ -47,12 +47,12 @@ class Mp3(Type):
                 return True
 
             if (buf[0] == 0xFF):
-                if (buf[1] == 0xE2 or #MPEG 2.5 with error protection
-                    buf[1] == 0xE3 or #MPEG 2.5 w/o error protection
-                    buf[1] == 0xF2 or #MPEG 2 with error protection
-                    buf[1] == 0xF3 or #MPEG 2 w/o error protection
-                    buf[1] == 0xFA or #MPEG 1 with error protection
-                    buf[1] == 0xFB):  #MPEG 1 w/o error protection
+                if (buf[1] == 0xE2 or  #MPEG 2.5 with error protection
+                    buf[1] == 0xE3 or  #MPEG 2.5 w/o error protection
+                    buf[1] == 0xF2 or  #MPEG 2 with error protection
+                    buf[1] == 0xF3 or  #MPEG 2 w/o error protection
+                    buf[1] == 0xFA or  #MPEG 1 with error protection
+                    buf[1] == 0xFB):   #MPEG 1 w/o error protection
                     return True
         return False
 
