@@ -3,7 +3,6 @@
 from __future__ import absolute_import
 
 import struct
-import tarfile
 
 from .base import Type
 
@@ -91,6 +90,7 @@ class Tar(Type):
             signed_checksum = 256 + sum(struct.unpack_from("148b8x356b", buf))
             return bool(checksum == unsigned_checksum or checksum == signed_checksum)
         return False
+
 
 class Rar(Type):
     """
