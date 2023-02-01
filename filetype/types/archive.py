@@ -77,16 +77,18 @@ class Tar(Type):
         )
 
     def match(self, buf):
-        if (len(buf) > 512 and
-                buf[257] == 0x75 and
-                buf[258] == 0x73 and
-                buf[259] == 0x74 and
-                buf[260] == 0x61 and
-                buf[261] == 0x72):
-            chksum = tarfile.nti(buf[148:156])  # type: ignore
-            unsigned_chksum, signed_chksum = tarfile.calc_chksums(buf)  # type: ignore
-            return bool(chksum == unsigned_chksum or chksum == signed_chksum)
-
+        if 356 < len(buf):
+            s = buf[0x94: 0x9c]
+            p = s.find(b"\0")
+            if p != -1:
+                s = s[:p]
+            s = s.decode('ascii', 'ignore').strip()
+            if all("0" <= i <= "7" for i in s):
+                checksum = int(s or "0", 8)
+                unsigned_checksum = 256 + sum(struct.unpack_from("148B8x356B", buf))
+                signed_checksum = 256 + sum(struct.unpack_from("148b8x356b", buf))
+                return bool(checksum == unsigned_checksum or checksum == signed_checksum)
+        return False
 
 class Rar(Type):
     """
