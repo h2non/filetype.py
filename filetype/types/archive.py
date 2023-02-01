@@ -78,16 +78,18 @@ class Tar(Type):
 
     def match(self, buf):
         if 356 < len(buf):
-            s = buf[0x94: 0x9c]
-            p = s.find(b"\0")
-            if p != -1:
-                s = s[:p]
-            s = s.decode('ascii', 'ignore').strip()
-            if all("0" <= i <= "7" for i in s):
-                checksum = int(s or "0", 8)
-                unsigned_checksum = 256 + sum(struct.unpack_from("148B8x356B", buf))
-                signed_checksum = 256 + sum(struct.unpack_from("148b8x356b", buf))
-                return bool(checksum == unsigned_checksum or checksum == signed_checksum)
+            checksum = 0
+            for i in buf[0x94: 0x9c]:
+                if 0x30 <= i <= 0x37:
+                    checksum <<= 3
+                    checksum |= 0xF & i
+                elif 0 == i:
+                    break
+                else:
+                    return False
+            unsigned_checksum = 256 + sum(struct.unpack_from("148B8x356B", buf))
+            signed_checksum = 256 + sum(struct.unpack_from("148b8x356b", buf))
+            return bool(checksum == unsigned_checksum or checksum == signed_checksum)
         return False
 
 class Rar(Type):
