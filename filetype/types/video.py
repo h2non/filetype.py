@@ -221,10 +221,10 @@ class M3gp(Type):
 
     def match(self, buf):
         return (len(buf) > 10 and
-                buf[ 4] == 0x66 and
-                buf[ 5] == 0x74 and
-                buf[ 6] == 0x79 and
-                buf[ 7] == 0x70 and
-                buf[ 8] == 0x33 and
-                buf[ 9] == 0x67 and
+                buf[4] == 0x66 and
+                buf[5] == 0x74 and
+                buf[6] == 0x79 and
+                buf[7] == 0x70 and
+                buf[8] == 0x33 and
+                buf[9] == 0x67 and
                 buf[10] == 0x70)
