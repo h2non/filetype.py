@@ -1,5 +1,5 @@
-filetype.py |Build Status| |PyPI| |Pyversions| |API|
-====================================================
+filetype.py |PyPI| |Pyversions| |API|
+=====================================
 
 Small and dependency free `Python`_ package to infer file type and MIME
 type checking the `magic numbers`_ signature of a file or buffer.
@@ -173,8 +173,6 @@ Application
 .. _pass a list of bytes: #file-header
 .. _annotated API reference: https://h2non.github.io/filetype.py/
 
-.. |Build Status| image:: https://travis-ci.org/h2non/filetype.py.svg?branch=master
-   :target: https://travis-ci.org/h2non/filetype.py
 .. |PyPI| image:: https://img.shields.io/pypi/v/filetype.svg?maxAge=2592000?style=flat-square
    :target: https://pypi.python.org/pypi/filetype
 .. |Pyversions| image:: https://img.shields.io/pypi/pyversions/filetype.svg?style=flat-square
