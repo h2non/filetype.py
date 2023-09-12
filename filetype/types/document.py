@@ -116,8 +116,12 @@ class Doc(Type):
                 return True
             if (
                 len(buf) > 2142
-                and b"\x00\x0A\x00\x00\x00MSWordDoc\x00\x10\x00\x00\x00Word.Document.8\x00\xF49\xB2q"
-                in buf[2075:2142]
+                and (
+                    b"\x00\x0A\x00\x00\x00MSWordDoc\x00\x10\x00\x00\x00Word.Document.8\x00\xF49\xB2q"
+                    in buf[2075:2142]
+                    or b"W\0o\0r\0d\0D\0o\0c\0u\0m\0e\0n\0t\0"
+                    in buf[0x580:0x598]
+                )
             ):
                 return True
 
