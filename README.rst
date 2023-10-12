@@ -150,6 +150,7 @@ Document
 -  **ppt** - ``application/vnd.ms-powerpoint``
 -  **pptx** - ``application/vnd.openxmlformats-officedocument.presentationml.presentation``
 -  **odp** - ``application/vnd.oasis.opendocument.presentation``
+-  **p7s** - ``application/pkcs7-signed-data``
 
 Font
 ^^^^
@@ -160,7 +161,7 @@ Font
 -  **otf** - ``application/font-sfnt``
 
 Application
-^^^^^^^^^^^ 
+^^^^^^^^^^^
 
 -  **wasm** - ``application/wasm``
 
