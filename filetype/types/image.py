@@ -376,7 +376,7 @@ class Avif(IsoBmff):
             return False
 
         major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
-        if major_brand == 'avif':
+        if major_brand in ['avif', 'avis']:
             return True
         if major_brand in ['mif1', 'msf1'] and 'avif' in compatible_brands:
             return True
