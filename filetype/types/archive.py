@@ -234,8 +234,9 @@ class Swf(Type):
 
     def match(self, buf):
         return (len(buf) > 2 and
-                (buf[0] == 0x43 or
-                    buf[0] == 0x46) and
+                (buf[0] == 0x46 or
+                 buf[0] == 0x43 or
+                 buf[0] == 0x5A) and
                 buf[1] == 0x57 and
                 buf[2] == 0x53)
 
