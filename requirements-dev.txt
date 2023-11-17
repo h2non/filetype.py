@@ -1,3 +1,4 @@
+jinja2
 pytest
 pytest-benchmark
 flake8
