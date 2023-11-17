@@ -30,6 +30,7 @@ IMAGE = (
     image.Heic(),
     image.Dcm(),
     image.Avif(),
+    image.Qoi(),
 )
 
 # Supported video types

@@ -381,3 +381,24 @@ class Avif(IsoBmff):
         if major_brand in ['mif1', 'msf1'] and 'avif' in compatible_brands:
             return True
         return False
+
+
+class Qoi(Type):
+    """
+    Implements the QOI image type matcher.
+    """
+    MIME = 'image/qoi'
+    EXTENSION = 'qoi'
+
+    def __init__(self):
+        super(Qoi, self).__init__(
+            mime=Qoi.MIME,
+            extension=Qoi.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 3 and
+                buf[0] == 0x71 and
+                buf[1] == 0x6F and
+                buf[2] == 0x69 and
+                buf[3] == 0x66)

@@ -78,6 +78,7 @@ Image
 -  **ico** - ``image/x-icon``
 -  **heic** - ``image/heic``
 -  **avif** - ``image/avif``
+-  **qoi** - ``image/qoi``
 
 Video
 ^^^^^
