@@ -402,3 +402,24 @@ class Qoi(Type):
                 buf[1] == 0x6F and
                 buf[2] == 0x69 and
                 buf[3] == 0x66)
+
+
+class Dds(Type):
+    """
+    Implements the DirectDraw Surface (DDS) image type matcher.
+    """
+    MIME = 'image/dds'
+    EXTENSION = 'dds'
+
+    def __init__(self):
+        super(Dds, self).__init__(
+            mime=Dds.MIME,
+            extension=Dds.EXTENSION
+        )
+
+    def match(self, buf):
+        return (len(buf) > 4 and
+                buf[0] == 0x44 and
+                buf[1] == 0x44 and
+                buf[2] == 0x53 and
+                buf[3] == 0x20)
