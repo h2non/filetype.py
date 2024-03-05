@@ -406,7 +406,7 @@ class Qoi(Type):
 
 class Dds(Type):
     """
-    Implements the DirectDraw Surface (DDS) image type matcher.
+    Implements the DDS image type matcher.
     """
     MIME = 'image/dds'
     EXTENSION = 'dds'
