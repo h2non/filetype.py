@@ -79,6 +79,7 @@ Image
 -  **heic** - ``image/heic``
 -  **avif** - ``image/avif``
 -  **qoi** - ``image/qoi``
+-  **dds** - ``image/dds``
 
 Video
 ^^^^^
@@ -161,7 +162,7 @@ Font
 -  **otf** - ``application/font-sfnt``
 
 Application
-^^^^^^^^^^^ 
+^^^^^^^^^^^
 
 -  **wasm** - ``application/wasm``
 
