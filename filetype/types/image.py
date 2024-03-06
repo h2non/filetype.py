@@ -418,8 +418,4 @@ class Dds(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 4 and
-                buf[0] == 0x44 and
-                buf[1] == 0x44 and
-                buf[2] == 0x53 and
-                buf[3] == 0x20)
+        return buf.startswith(b'\x44\x44\x53\x20')
