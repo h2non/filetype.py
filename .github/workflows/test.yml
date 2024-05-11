@@ -20,18 +20,18 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest ]
-        python-version: ["3.11"]
+        python-version: ["3.12", "3.13"]
 
     steps:
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         fetch-depth: 0
         ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Set up Python ${{ matrix.python-version }}
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
 
@@ -56,4 +56,3 @@ jobs:
       with:
         name: coverage_${{ matrix.python-version }}
         path: coverage
-
