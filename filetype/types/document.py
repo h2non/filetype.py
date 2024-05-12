@@ -258,3 +258,31 @@ class Odp(OpenDocument):
 
     def __init__(self):
         super(Odp, self).__init__(mime=Odp.MIME, extension=Odp.EXTENSION)
+
+
+class Pkcs7(Type):
+    """
+    Implements signed document in .p7s format type matcher
+    """
+    MIME = "application/pkcs7-signed-data"
+    EXTENSION = "p7s"
+
+    def __init__(self):
+        super(Pkcs7, self).__init__(mime=Pkcs7.MIME, extension=Pkcs7.EXTENSION)
+
+    def match(self, buf):
+        if buf.startswith(b"-----BEGIN PKCS7"):
+            return True
+        if len(buf) < 20:
+            return False
+
+        start_header = [
+            bytearray([0x30, 0x80]), bytearray([0x30, 0x81]), bytearray([0x30, 0x82]),
+            bytearray([0x30, 0x83]), bytearray([0x30, 0x84])
+        ]
+        signed_data_match = bytearray([0x06, 0x09, 0x2A, 0x86, 0x48, 0x86, 0xF7, 0x0D, 0x01, 0x07])
+        for i, match in enumerate(start_header):
+            if buf.startswith(match):
+                if buf[i+2:].startswith(signed_data_match):
+                    return True
+        return False

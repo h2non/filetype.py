@@ -143,3 +143,9 @@ class TestFileType(unittest.TestCase):
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'application/vnd.oasis.opendocument.presentation')
         self.assertEqual(kind.extension, 'odp')
+
+    def test_guess_p7s(self):
+        kind = filetype.guess(FIXTURES + '/p7s_der.p7s')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'application/pkcs7-signed-data')
+        self.assertEqual(kind.extension, 'p7s')

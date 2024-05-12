@@ -112,6 +112,7 @@ DOCUMENT = (
     document.Ppt(),
     document.Pptx(),
     document.Odp(),
+    document.Pkcs7()
 )
 
 
