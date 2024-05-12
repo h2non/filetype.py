@@ -42,7 +42,7 @@ jobs:
         allow-prereleases: true
 
     - name: Upgrade PIP
-      run: python -m pip install --upgrade pip setuptools
+      run: python -m pip install --upgrade pip
 
     - name: Install application with ML
       run: python -m pip install .
