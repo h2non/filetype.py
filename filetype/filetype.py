@@ -2,6 +2,8 @@
 
 from __future__ import absolute_import
 
+from os import PathLike
+
 from .match import match
 from .types import TYPES, Type
 
@@ -96,3 +98,34 @@ def add_type(instance):
         raise TypeError('instance must inherit from filetype.types.Type')
 
     types.insert(0, instance)
+
+
+# Convert filetype extensions to imghdr extensions
+imghdr_exts = {"jpg": "jpeg", "tif": "tiff"}
+
+
+def what(file: PathLike | str | None, h: bytes | None) -> str:
+    """A drop-in replacement for `imghdr.what()` which was removed from the standard
+    library in Python 3.13.
+
+    Usage:
+    ```python
+    # Replace...
+    from imghdr import what
+    # with...
+    from filetype import what
+    # ---
+    # Or replace...
+    import imghdr
+    ext = imghdr.what(...)
+    # with...
+    import filetype
+    ext = filetype.what(...)
+    ```
+
+    imghdr documentation: https://docs.python.org/3.12/library/imghdr.html
+    imghdr source code: https://github.com/python/cpython/blob/3.12/Lib/imghdr.py
+    """
+    image_type = guess(h) if h else guess(file)
+    ext = str(image_type) if image_type else None
+    return imghdr_exts.get(ext, ext)

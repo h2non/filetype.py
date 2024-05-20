@@ -11,6 +11,12 @@ class Type(object):
         self.__mime = mime
         self.__extension = extension
 
+    def __str__(self):
+        return f"{self.extension}"
+
+    def __repr__(self):
+        return f"{self.__class__.__name__}({self.__mime}, {self.__extension})"
+
     @property
     def mime(self):
         return self.__mime
