@@ -124,6 +124,11 @@ class Doc(Type):
                 )
             ):
                 return True
+            if (
+                len(buf) > 663 and buf[512:531] == b"R\x00o\x00o\x00t\x00 \x00E\x00n\x00t\x00r\x00y"
+                and buf[640:663] == b"W\x00o\x00r\x00d\x00D\x00o\x00c\x00u\x00m\x00e\x00n\x00t"
+            ):
+                return True
 
         return False
 

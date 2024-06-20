@@ -89,7 +89,7 @@ class TestFileType(unittest.TestCase):
             self.assertEqual(kind.extension, 'zst')
 
     def test_guess_doc(self):
-        for name in 'sample.doc', 'sample_1.doc':
+        for name in 'sample.doc', 'sample_1.doc', 'sample_2.doc':
             kind = filetype.guess(os.path.join(FIXTURES, name))
             self.assertIsNotNone(kind)
             self.assertEqual(kind.mime, 'application/msword')
