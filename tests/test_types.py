@@ -32,6 +32,12 @@ class TestFileType(unittest.TestCase):
         self.assertEqual(kind.mime, 'image/jpx')
         self.assertEqual(kind.extension, 'jpx')
 
+    def test_guess_jxl(self):
+        kind = filetype.guess(FIXTURES + '/sample.jxl')
+        self.assertTrue(kind is not None)
+        self.assertEqual(kind.mime, 'image/jxl')
+        self.assertEqual(kind.extension, 'jxl')
+
     def test_guess_gif(self):
         kind = filetype.guess(FIXTURES + '/sample.gif')
         self.assertTrue(kind is not None)
@@ -55,7 +61,6 @@ class TestFileType(unittest.TestCase):
         self.assertTrue(kind is not None)
         self.assertEqual(kind.mime, 'audio/mp4')
         self.assertEqual(kind.extension, 'm4a')
-
 
     def test_guess_mp4(self):
         kind = filetype.guess(FIXTURES + '/sample.mp4')
