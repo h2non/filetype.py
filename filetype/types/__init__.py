@@ -17,6 +17,7 @@ IMAGE = (
     image.Xcf(),
     image.Jpeg(),
     image.Jpx(),
+    image.Jxl(),
     image.Apng(),
     image.Png(),
     image.Gif(),

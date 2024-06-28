@@ -66,6 +66,7 @@ Image
 -  **xcf** - ``image/x-xcf``
 -  **jpg** - ``image/jpeg``
 -  **jpx** - ``image/jpx``
+-  **jxl** - ``image/jxl``
 -  **png** - ``image/png``
 -  **apng** - ``image/apng``
 -  **gif** - ``image/gif``
@@ -161,7 +162,7 @@ Font
 -  **otf** - ``application/font-sfnt``
 
 Application
-^^^^^^^^^^^ 
+^^^^^^^^^^^
 
 -  **wasm** - ``application/wasm``
 
