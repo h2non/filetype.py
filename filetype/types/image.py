@@ -434,3 +434,20 @@ class Qoi(Type):
                 buf[1] == 0x6F and
                 buf[2] == 0x69 and
                 buf[3] == 0x66)
+
+
+class Dds(Type):
+    """
+    Implements the DDS image type matcher.
+    """
+    MIME = 'image/dds'
+    EXTENSION = 'dds'
+
+    def __init__(self):
+        super(Dds, self).__init__(
+            mime=Dds.MIME,
+            extension=Dds.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf.startswith(b'\x44\x44\x53\x20')
