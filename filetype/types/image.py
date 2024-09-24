@@ -133,12 +133,15 @@ class Png(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 3 and
+        return (len(buf) > 8 and
                 buf[0] == 0x89 and
                 buf[1] == 0x50 and
                 buf[2] == 0x4E and
-                buf[3] == 0x47)
-
+                buf[3] == 0x47 and
+                buf[4] == 0x0D and
+                buf[5] == 0x0A and
+                buf[6] == 0x1A and
+                buf[7] == 0x0A)
 
 class Gif(Type):
     """
