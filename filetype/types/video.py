@@ -67,9 +67,12 @@ class Mkv(Type):
         )
 
     def match(self, buf):
-        contains_ebml_element = buf.startswith(b'\x1A\x45\xDF\xA3')
-        contains_doctype_element = buf.find(b'\x42\x82\x88matroska') > -1
-        return contains_ebml_element and contains_doctype_element
+        if(len(buf) > 5 and
+           buf[0] == 0x1A and
+           buf[1] == 0x45 and
+           buf[2] == 0xDF and
+           buf[3] == 0xA3):
+            return buf.find(b"matroska", 5, 64) > -1
 
 
 class Webm(Type):
@@ -86,9 +89,12 @@ class Webm(Type):
         )
 
     def match(self, buf):
-        contains_ebml_element = buf.startswith(b'\x1A\x45\xDF\xA3')
-        contains_doctype_element = buf.find(b'\x42\x82\x84webm') > -1
-        return contains_ebml_element and contains_doctype_element
+        if(len(buf) > 5 and
+           buf[0] == 0x1A and
+           buf[1] == 0x45 and
+           buf[2] == 0xDF and
+           buf[3] == 0xA3):
+            return buf.find(b"webm", 5, 64) > -1
 
 
 class Mov(IsoBmff):
