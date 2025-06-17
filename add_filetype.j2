@@ -1,0 +1,15 @@
+class {{classname}}(Type):
+    """Implements the {{classname}} image type matcher."""
+
+    MIME = '{{mime}}'
+    EXTENSION = '{{extension}}'
+
+    def __init__(self):
+        super({{classname}}, self).__init__(
+            mime={{classname}}.MIME,
+            extension={{classname}}.EXTENSION
+        )
+
+    def match(self, buf):
+        return buf[:{{signature|length}}] == bytearray([{% for i in signature %}{{'0x%02x' % i}}{% if loop.index < signature|length %}, {% endif%}{% endfor %}])
+
