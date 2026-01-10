@@ -60,5 +60,5 @@ jobs:
       if: always()
       uses: actions/upload-artifact@v6
       with:
-        name: coverage_${{ matrix.python-version }}
+        name: coverage_${{ matrix.os }}-${{ matrix.python-version }}
         path: coverage
