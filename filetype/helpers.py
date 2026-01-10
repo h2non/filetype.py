@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
 from .types import TYPES
 from .match import (
     image_match, font_match, document_match,
