@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from __future__ import absolute_import
-
 from .types import ARCHIVE as archive_matchers
 from .types import AUDIO as audio_matchers
 from .types import APPLICATION as application_matchers
