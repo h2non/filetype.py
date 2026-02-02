@@ -17,7 +17,6 @@ IMAGE = (
     image.Xcf(),
     image.Jpeg(),
     image.Jpx(),
-    image.Jxl(),
     image.Apng(),
     image.Png(),
     image.Gif(),
@@ -33,6 +32,7 @@ IMAGE = (
     image.Avif(),
     image.Qoi(),
     image.Dds(),
+    image.Jxl(),
 )
 
 # Supported video types
