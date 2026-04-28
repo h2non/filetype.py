@@ -101,6 +101,7 @@ ARCHIVE = (
 # Supported archive container types
 APPLICATION = (
     application.Wasm(),
+    application.Parquet(),
 )
 
 # Supported document types
