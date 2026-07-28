@@ -41,7 +41,10 @@ setup(
     platforms=['any'],
     packages=find_packages(exclude=['dist', 'build', 'docs', 'tests',
                                     'examples']),
-    package_data={'filetype': ['LICENSE', '*.md']},
+    package_data={
+        'filetype': ['LICENSE', '*.md', '*.pyi', 'py.typed'],
+        'filetype.types': ['*.pyi'],
+    },
     zip_safe=True,
     entry_points={
         'console_scripts': ['filetype=filetype.__main__:main'],
