@@ -1,0 +1,66 @@
+import __future__ as _future
+
+from .base import Type as Type, _Buffer as _Buffer
+from .isobmff import IsoBmff as IsoBmff
+
+absolute_import: _future._Feature
+
+class Mp4(IsoBmff):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...
+
+class M4v(Type):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...
+
+class Mkv(Type):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...
+
+class Webm(Type):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...
+
+class Mov(IsoBmff):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...
+
+class Avi(Type):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...
+
+class Wmv(Type):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...
+
+class Flv(Type):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...
+
+class Mpeg(Type):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...
+
+class M3gp(Type):
+    MIME: str
+    EXTENSION: str
+    def __init__(self) -> None: ...
+    def match(self, buf: _Buffer) -> bool: ...

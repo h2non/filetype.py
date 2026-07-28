@@ -34,6 +34,18 @@ API
 
 See `annotated API reference`_.
 
+Static typing
+-------------
+
+The distribution includes type information for the concrete matcher modules
+and command-line helpers. A package-level matcher-registry stub is omitted
+because the public ``filetype.types`` registry list shadows the
+``filetype.types`` subpackage in normal dotted imports. The high-level
+detection helpers remain dynamically typed because their file-like input
+dispatch accepts both read-only and seekable objects based on runtime
+attribute presence, which cannot be represented faithfully without changing
+the runtime API.
+
 Examples
 --------
 
