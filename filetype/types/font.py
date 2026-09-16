@@ -9,7 +9,7 @@ class Woff(Type):
     """
     Implements the WOFF font type matcher.
     """
-    MIME = 'application/font-woff'
+    MIME = 'font/woff'
     EXTENSION = 'woff'
 
     def __init__(self):
@@ -42,7 +42,7 @@ class Woff2(Type):
     """
     Implements the WOFF2 font type matcher.
     """
-    MIME = 'application/font-woff'
+    MIME = 'font/woff2'
     EXTENSION = 'woff2'
 
     def __init__(self):
@@ -75,7 +75,7 @@ class Ttf(Type):
     """
     Implements the TTF font type matcher.
     """
-    MIME = 'application/font-sfnt'
+    MIME = 'font/ttf'
     EXTENSION = 'ttf'
 
     def __init__(self):
@@ -97,7 +97,7 @@ class Otf(Type):
     """
     Implements the OTF font type matcher.
     """
-    MIME = 'application/font-sfnt'
+    MIME = 'font/otf'
     EXTENSION = 'otf'
 
     def __init__(self):
