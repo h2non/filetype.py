@@ -12,6 +12,25 @@ FIXTURES = os.path.dirname(os.path.abspath(__file__)) + '/fixtures'
 
 
 class TestFileType(unittest.TestCase):
+    def test_font_mime_types(self):
+        headers = [
+            (b'wOFF\x00\x01\x00\x00', 'woff', 'font/woff'),
+            (b'wOF2\x00\x01\x00\x00', 'woff2', 'font/woff2'),
+            (b'\x00\x01\x00\x00\x00', 'ttf', 'font/ttf'),
+            (b'OTTO\x00', 'otf', 'font/otf'),
+        ]
+        for header, extension, mime in headers:
+            with self.subTest(extension=extension):
+                kind = filetype.guess(header)
+                self.assertIsNotNone(kind)
+                self.assertEqual(kind.mime, mime)
+                self.assertEqual(kind.extension, extension)
+                self.assertEqual(filetype.guess_mime(header), mime)
+                self.assertEqual(filetype.guess_extension(header), extension)
+                self.assertIs(filetype.get_type(mime=mime), kind)
+                self.assertTrue(filetype.is_mime_supported(mime))
+                self.assertTrue(filetype.is_font(header))
+
     def test_guess_jpeg(self):
         img_path = FIXTURES + '/sample.jpg'
         with open(img_path, 'rb') as fp:
