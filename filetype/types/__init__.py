@@ -13,6 +13,8 @@ from .base import Type  # noqa
 
 # Supported image types
 IMAGE = (
+    # DICOM's preamble may contain another image format's signature.
+    image.Dcm(),
     image.Dwg(),
     image.Xcf(),
     image.Jpeg(),
@@ -29,7 +31,6 @@ IMAGE = (
     image.Psd(),
     image.Ico(),
     image.Heic(),
-    image.Dcm(),
     image.Avif(),
     image.Qoi(),
     image.Dds(),
