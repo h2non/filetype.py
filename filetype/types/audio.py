@@ -46,7 +46,7 @@ class Mp3(Type):
                 buf[1] == 0x44 and
                 buf[2] == 0x33
             ):
-                return True
+                return not _match_flac(buf)
 
             if buf[0] == 0xFF:
                 if (
@@ -124,11 +124,22 @@ class Flac(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 3 and
-                buf[0] == 0x66 and
-                buf[1] == 0x4C and
-                buf[2] == 0x61 and
-                buf[3] == 0x43)
+        return _match_flac(buf)
+
+
+def _match_flac(buf):
+    offset = 0
+    if len(buf) >= 10 and buf[:3] == b'ID3':
+        # ID3v2 stores the payload size in four 7-bit (synchsafe) bytes.
+        if (buf[3] not in (2, 3, 4) or buf[4] == 0xff or
+                any(byte & 0x80 for byte in buf[6:10])):
+            return False
+        size = (buf[6] << 21) | (buf[7] << 14) | (buf[8] << 7) | buf[9]
+        offset = 10 + size
+        # A v2.4 footer is not included in the declared payload size.
+        if buf[3] == 4 and buf[5] & 0x10:
+            offset += 10
+    return buf[offset:offset + 4] == b'fLaC'
 
 
 class Wav(Type):
