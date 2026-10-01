@@ -63,6 +63,7 @@ class OfficeOpenXml(ZippedDocumentBase):
             not self.compare_bytes(buf, b"[Content_Types].xml", 0x1E)
             and not self.compare_bytes(buf, b"_rels/.rels", 0x1E)
             and not self.compare_bytes(buf, b"docProps", 0x1E)
+            and not self.compare_bytes(buf, b"[trash]/", 0x1E)
         ):
             return
 

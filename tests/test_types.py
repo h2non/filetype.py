@@ -2,8 +2,10 @@
 
 from __future__ import absolute_import
 
+import io
 import os
 import unittest
+import zipfile
 
 import filetype
 
@@ -112,6 +114,58 @@ class TestFileType(unittest.TestCase):
             self.assertTrue(kind is not None)
             self.assertEqual(kind.mime, 'application/vnd.openxmlformats-officedocument.wordprocessingml.document')
             self.assertEqual(kind.extension, 'docx')
+
+    @staticmethod
+    def zip_bytes(entries, compression=zipfile.ZIP_STORED):
+        buffer = io.BytesIO()
+        with zipfile.ZipFile(buffer, 'w', compression=compression) as archive:
+            for name, data in entries:
+                archive.writestr(name, data)
+        return buffer.getvalue()
+
+    def test_guess_ooxml_after_trash_entries(self):
+        documents = (
+            ('word/document.xml', 'docx'),
+            ('xl/workbook.xml', 'xlsx'),
+            ('ppt/presentation.xml', 'pptx'),
+        )
+        for name, extension in documents:
+            for count in (1, 3):
+                for compression in (zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED):
+                    with self.subTest(extension=extension, count=count, compression=compression):
+                        entries = [('[trash]/%04d.dat' % i, b'discarded') for i in range(count)]
+                        entries.append((name, b'<document/>'))
+                        kind = filetype.guess(self.zip_bytes(entries, compression))
+                        self.assertEqual(kind.extension, extension)
+
+    def test_guess_zip_with_only_trash_entries(self):
+        data = self.zip_bytes([('[trash]/0000.dat', b'discarded')])
+        self.assertEqual(filetype.guess(data).extension, 'zip')
+
+    def test_guess_zip_with_similar_trash_filename(self):
+        data = self.zip_bytes([
+            ('[trash]notes.txt', b'notes'),
+            ('word/document.xml', b'<document/>'),
+        ])
+        self.assertEqual(filetype.guess(data).extension, 'zip')
+
+    def test_guess_zip_with_ooxml_header_in_unrelated_payload(self):
+        header = b'PK\x03\x04' + b'\x00' * 26 + b'word/document.xml'
+        data = self.zip_bytes([('notes.txt', header)])
+        self.assertEqual(filetype.guess(data).extension, 'zip')
+
+    def test_guess_trash_prefix_keeps_signature_limit(self):
+        data = self.zip_bytes([
+            ('[trash]/0000.dat', b'x' * 8192),
+            ('word/document.xml', b'<document/>'),
+        ])
+        self.assertEqual(filetype.guess(data).extension, 'zip')
+
+    def test_guess_truncated_trash_archive(self):
+        data = self.zip_bytes([('[trash]/0000.dat', b'discarded')])
+        for size in (4, 29, 30, 37, 46):
+            with self.subTest(size=size):
+                self.assertEqual(filetype.guess(data[:size]).extension, 'zip')
 
     def test_guess_odt(self):
         kind = filetype.guess(FIXTURES + '/sample.odt')
