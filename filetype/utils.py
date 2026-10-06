@@ -67,7 +67,8 @@ def get_bytes(obj):
         return signature(obj)
 
     if isinstance(obj, memoryview):
-        return bytearray(signature(obj).tolist())
+        view = signature(obj)
+        return bytearray(signature(view.tobytes()))
 
     if isinstance(obj, pathlib.PurePath):
         return get_signature_bytes(obj)
