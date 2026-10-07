@@ -16,8 +16,8 @@ Features
 -  File discovery by kind (image, video, audio…)
 -  `Pluggable`_: add new custom type matchers
 -  `Fast`_, even processing large files
--  Only first 261 bytes representing the max file header is required, so
-   you can just `pass a list of bytes`_
+-  Reads up to the first 8192 bytes of the file header, so
+   you can just `pass a byte buffer`_
 -  Dependency free (just Python code, no C extensions, no libmagic
    bindings)
 -  Cross-platform file recognition
@@ -55,6 +55,20 @@ Simple file type checking
 
     if __name__ == '__main__':
         main()
+
+File header
+^^^^^^^^^^^
+
+The built-in readers inspect up to the first 8192 bytes. Some matchers,
+including legacy Office document matchers, need data beyond the first
+261 bytes. If you read the header yourself, pass up to 8192 bytes:
+
+.. code-block:: python
+
+    import filetype
+
+    with open('tests/fixtures/sample.xls', 'rb') as file:
+        kind = filetype.guess(file.read(8192))
 
 Supported types
 ---------------
@@ -173,7 +187,7 @@ Application
 .. _wide range: #supported-types
 .. _Pluggable: #add-additional-file-type-matchers
 .. _Fast: #benchmarks
-.. _pass a list of bytes: #file-header
+.. _pass a byte buffer: #file-header
 .. _annotated API reference: https://h2non.github.io/filetype.py/
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/filetype.svg?maxAge=2592000?style=flat-square
