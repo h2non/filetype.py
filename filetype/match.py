@@ -19,7 +19,8 @@ def match(obj, matchers=TYPES):
     file type matchers.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         Type instance if type matches. Otherwise None.
@@ -42,7 +43,8 @@ def image_match(obj):
     image type matchers.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         Type instance if matches. Otherwise None.
@@ -59,7 +61,8 @@ def font_match(obj):
     font type matchers.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         Type instance if matches. Otherwise None.
@@ -76,7 +79,8 @@ def video_match(obj):
     video type matchers.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         Type instance if matches. Otherwise None.
@@ -93,7 +97,8 @@ def audio_match(obj):
     autio type matchers.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         Type instance if matches. Otherwise None.
@@ -110,7 +115,8 @@ def archive_match(obj):
     archive type matchers.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         Type instance if matches. Otherwise None.
@@ -127,7 +133,8 @@ def application_match(obj):
     application type matchers.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         Type instance if matches. Otherwise None.
@@ -144,7 +151,8 @@ def document_match(obj):
     document type matchers.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         Type instance if matches. Otherwise None.

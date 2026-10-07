@@ -49,7 +49,8 @@ def is_image(obj):
     Checks if a given input is a supported type image.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         True if obj is a valid image. Otherwise False.
@@ -65,7 +66,8 @@ def is_archive(obj):
     Checks if a given input is a supported type archive.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         True if obj is a valid archive. Otherwise False.
@@ -81,7 +83,8 @@ def is_audio(obj):
     Checks if a given input is a supported type audio.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         True if obj is a valid audio. Otherwise False.
@@ -97,7 +100,8 @@ def is_video(obj):
     Checks if a given input is a supported type video.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         True if obj is a valid video. Otherwise False.
@@ -113,7 +117,8 @@ def is_font(obj):
     Checks if a given input is a supported type font.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         True if obj is a valid font. Otherwise False.
@@ -129,7 +134,8 @@ def is_document(obj):
     Checks if a given input is a supported type document.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         True if obj is a valid document. Otherwise False.

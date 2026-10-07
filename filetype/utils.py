@@ -48,8 +48,8 @@ def get_bytes(obj):
     returning a sliced bytearray.
 
     Args:
-        obj: path to readable, file-like object(with read() method), bytes,
-        bytearray or memoryview
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         First 8192 bytes of the file content as bytearray type.

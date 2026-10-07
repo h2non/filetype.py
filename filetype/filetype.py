@@ -17,7 +17,8 @@ def guess(obj):
     and perform the needed type inference based on it.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         The matched type instance. Otherwise None.
@@ -34,7 +35,8 @@ def guess_mime(obj):
     and returns its MIME type.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         The matched MIME type as string. Otherwise None.
@@ -52,7 +54,8 @@ def guess_extension(obj):
     and returns its RFC file extension.
 
     Args:
-        obj: path to file, bytes or bytearray.
+        obj: path string or pathlib path, bytes, bytearray, memoryview,
+            or a readable binary file-like object (with a read() method).
 
     Returns:
         The matched file extension as string. Otherwise None.
