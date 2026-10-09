@@ -73,6 +73,8 @@ def get_bytes(obj):
         return get_signature_bytes(obj)
 
     if hasattr(obj, 'read'):
+        if hasattr(obj, 'seekable') and not obj.seekable():
+            return get_bytes(obj.read(_NUM_SIGNATURE_BYTES))
         if hasattr(obj, 'tell') and hasattr(obj, 'seek'):
             start_pos = obj.tell()
             obj.seek(0)
