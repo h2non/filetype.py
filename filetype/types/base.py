@@ -20,10 +20,10 @@ class Type(object):
         return self.__extension
 
     def is_extension(self, extension):
-        return self.__extension is extension
+        return self.__extension == extension
 
     def is_mime(self, mime):
-        return self.__mime is mime
+        return self.__mime == mime
 
     def match(self, buf):
         raise NotImplementedError
