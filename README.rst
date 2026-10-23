@@ -72,7 +72,7 @@ Image
 -  **gif** - ``image/gif``
 -  **webp** - ``image/webp``
 -  **cr2** - ``image/x-canon-cr2``
--  **tif** - ``image/tiff``
+-  **tif** - ``image/tiff`` (classic TIFF and BigTIFF)
 -  **bmp** - ``image/bmp``
 -  **jxr** - ``image/vnd.ms-photo``
 -  **psd** - ``image/vnd.adobe.photoshop``
@@ -81,6 +81,11 @@ Image
 -  **avif** - ``image/avif``
 -  **qoi** - ``image/qoi``
 -  **dds** - ``image/dds``
+
+BigTIFF recognition requires a complete 16-byte header with the byte order,
+version, offset width and reserved fields specified by the
+`BigTIFF design <https://libtiff.gitlab.io/libtiff/specification/bigtiff.html>`_.
+It identifies the signature without validating IFD offsets or image data.
 
 Video
 ^^^^^

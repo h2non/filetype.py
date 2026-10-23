@@ -211,7 +211,9 @@ class Cr2(Type):
 
 class Tiff(Type):
     """
-    Implements the TIFF image type matcher.
+    Matches classic TIFF and complete BigTIFF headers.
+
+    Signature detection does not validate IFD offsets or image data.
     """
     MIME = 'image/tiff'
     EXTENSION = 'tif'
@@ -223,6 +225,17 @@ class Tiff(Type):
         )
 
     def match(self, buf):
+        if (len(buf) >= 16 and
+                ((buf[0] == 0x49 and buf[1] == 0x49 and
+                    buf[2] == 0x2B and buf[3] == 0x00 and
+                    buf[4] == 0x08 and buf[5] == 0x00 and
+                    buf[6] == 0x00 and buf[7] == 0x00) or
+                 (buf[0] == 0x4D and buf[1] == 0x4D and
+                    buf[2] == 0x00 and buf[3] == 0x2B and
+                    buf[4] == 0x00 and buf[5] == 0x08 and
+                    buf[6] == 0x00 and buf[7] == 0x00))):
+            return True
+
         return (len(buf) > 9 and
                 ((buf[0] == 0x49 and buf[1] == 0x49 and
                     buf[2] == 0x2A and buf[3] == 0x0) or
