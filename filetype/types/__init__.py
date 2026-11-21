@@ -69,7 +69,6 @@ FONT = (font.Woff(), font.Woff2(), font.Ttf(), font.Otf())
 ARCHIVE = (
     archive.Br(),
     archive.Rpm(),
-    archive.Dcm(),
     archive.Epub(),
     archive.Zip(),
     archive.Tar(),

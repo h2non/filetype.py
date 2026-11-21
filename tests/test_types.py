@@ -12,6 +12,17 @@ FIXTURES = os.path.dirname(os.path.abspath(__file__)) + '/fixtures'
 
 
 class TestFileType(unittest.TestCase):
+    def test_single_dicom_type(self):
+        dicom_types = [kind for kind in filetype.TYPES
+                       if kind.mime == 'application/dicom']
+        self.assertEqual(len(dicom_types), 1)
+
+    def test_guess_dicom(self):
+        header = b'\0' * 128 + b'DICM\x02\0\0\0'
+        self.assertEqual(filetype.guess_extension(header), 'dcm')
+        self.assertEqual(filetype.guess_mime(header), 'application/dicom')
+        self.assertIsNone(filetype.guess(header[:131]))
+
     def test_guess_jpeg(self):
         img_path = FIXTURES + '/sample.jpg'
         with open(img_path, 'rb') as fp:
