@@ -35,11 +35,11 @@ tag:
 
 compress:
 	@printf "Exporting to $(filename)... "
-	@tar czf $(filename) filetype setup.py README.md LICENSE
+	@python -m build --sdist --outdir .
 
 publish:
 	@echo "==> Releasing package $(version)..."
-	@python setup.py sdist bdist_wheel
+	@python -m build
 	@twine upload dist/* --repository-url https://upload.pypi.org/legacy/
 	@rm -fr build dist .egg pook.egg-info
 
