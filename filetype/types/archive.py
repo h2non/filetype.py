@@ -186,18 +186,13 @@ class Pdf(Type):
         )
 
     def match(self, buf):
-        # Detect BOM and skip first 3 bytes
-        if (len(buf) > 3 and
-            buf[0] == 0xEF and
-            buf[1] == 0xBB and
-            buf[2] == 0xBF):  # noqa E129
-            buf = buf[3:]
+        # Keep the existing signatures at the start, including a UTF-8 BOM.
+        if buf[:4] == b'%PDF' or buf[:7] == b'\xef\xbb\xbf%PDF':
+            return True
 
-        return (len(buf) > 3 and
-                buf[0] == 0x25 and
-                buf[1] == 0x50 and
-                buf[2] == 0x44 and
-                buf[3] == 0x46)
+        # Readers also accept PDF headers after leading data. Keep the search
+        # within the first 1024 bytes instead of scanning arbitrary content.
+        return b'%PDF-' in buf[:1024]
 
 
 class Exe(Type):
