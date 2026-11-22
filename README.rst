@@ -56,6 +56,34 @@ Simple file type checking
     if __name__ == '__main__':
         main()
 
+Importing existing matcher classes
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+``filetype.types`` is the public list of registered matcher instances. To
+access a matcher class, import it directly from its defining submodule instead
+of looking it up through ``filetype.types``:
+
+.. code-block:: python
+
+    import filetype
+    from filetype.types.font import Woff
+    from filetype.types.base import Type
+
+    class CustomWoff(Woff):
+        def __init__(self):
+            Type.__init__(self, mime='font/woff', extension='woff')
+
+    matcher = CustomWoff()
+    header = b'wOFF\x00\x01\x00\x00'
+    assert matcher.match(header)
+    assert matcher.mime == 'font/woff'
+    assert isinstance(filetype.types, list)
+
+The subclass reuses the existing header check. Overriding the constructor sets
+its metadata without changing the original class. Register an instance with
+``filetype.add_type(matcher)`` to use it in normal guessing; registration changes
+the process-wide matcher list and gives the new matcher priority.
+
 Supported types
 ---------------
 
