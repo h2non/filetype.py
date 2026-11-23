@@ -3,6 +3,7 @@
 from __future__ import absolute_import
 
 from .base import Type
+from ._compound import document_type as _document_type
 
 
 class ZippedDocumentBase(Type):
@@ -111,6 +112,9 @@ class Doc(Type):
         super(Doc, self).__init__(mime=Doc.MIME, extension=Doc.EXTENSION)
 
     def match(self, buf):
+        kind = _document_type(buf)
+        if kind is not None:
+            return kind == self.extension
         if len(buf) > 515 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
             if buf[512:516] == b"\xEC\xA5\xC1\x00":
                 return True
@@ -169,6 +173,9 @@ class Xls(Type):
         super(Xls, self).__init__(mime=Xls.MIME, extension=Xls.EXTENSION)
 
     def match(self, buf):
+        kind = _document_type(buf)
+        if kind is not None:
+            return kind == self.extension
         if len(buf) > 520 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
             if buf[512:516] == b"\xFD\xFF\xFF\xFF" and (
                 buf[518] == 0x00 or buf[518] == 0x02
@@ -222,6 +229,9 @@ class Ppt(Type):
         super(Ppt, self).__init__(mime=Ppt.MIME, extension=Ppt.EXTENSION)
 
     def match(self, buf):
+        kind = _document_type(buf)
+        if kind is not None:
+            return kind == self.extension
         if len(buf) > 524 and buf[0:8] == b"\xD0\xCF\x11\xE0\xA1\xB1\x1A\xE1":
             if buf[512:516] == b"\xA0\x46\x1D\xF0":
                 return True
