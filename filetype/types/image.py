@@ -2,8 +2,54 @@
 
 from __future__ import absolute_import
 
+from xml.parsers import expat
+
+from ..utils import _NUM_SIGNATURE_BYTES
 from .base import Type
 from .isobmff import IsoBmff
+
+
+class _SvgRootFound(Exception):
+    """Stop sniffing once the root element or an entity declaration is known."""
+
+
+class Svg(Type):
+    """Identifies SVG by its XML root within the file header."""
+
+    MIME = 'image/svg+xml'
+    EXTENSION = 'svg'
+
+    def __init__(self):
+        super(Svg, self).__init__(mime=Svg.MIME, extension=Svg.EXTENSION)
+
+    def match(self, buf):
+        if not buf or buf[0] not in (9, 10, 13, 32, 60, 0xEF, 0xFF, 0xFE):
+            return False
+        header = bytes(buf[:_NUM_SIGNATURE_BYTES])
+        prefixes = (b'<', b'\xef\xbb\xbf', b'\xff\xfe', b'\xfe\xff')
+        if not header.lstrip().startswith(prefixes):
+            return False
+
+        def root(name, attributes):
+            raise _SvgRootFound(name in ('svg', 'http://www.w3.org/2000/svg|svg'))
+
+        def entity(*args):
+            # Type identification never needs to expand a document's entities.
+            raise _SvgRootFound(False)
+
+        parser = expat.ParserCreate(namespace_separator='|')
+        parser.StartElementHandler = root
+        parser.EntityDeclHandler = entity
+        parser.ExternalEntityRefHandler = lambda *args: 0
+        parser.SetParamEntityParsing(expat.XML_PARAM_ENTITY_PARSING_NEVER)
+        try:
+            # A signature may end before the closing tag; the body is not parsed.
+            parser.Parse(header, False)
+        except _SvgRootFound as result:
+            return result.args[0]
+        except (expat.ExpatError, LookupError, ValueError):
+            return False
+        return False
 
 
 class Jpeg(Type):

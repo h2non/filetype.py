@@ -81,6 +81,13 @@ Image
 -  **avif** - ``image/avif``
 -  **qoi** - ``image/qoi``
 -  **dds** - ``image/dds``
+-  **svg** - ``image/svg+xml``
+
+SVG detection checks the first XML element in the 8192-byte header. XML
+declarations, comments, namespace prefixes and UTF-8/UTF-16 byte-order marks
+are supported. An SVG nested inside an HTML or other XML document is not
+identified as an SVG file. The matcher does not read external DTDs or expand
+declared entities, and it identifies the format without validating the body.
 
 Video
 ^^^^^
