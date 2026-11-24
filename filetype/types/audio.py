@@ -170,7 +170,7 @@ class Amr(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 11 and
+        return (len(buf) > 5 and
                 buf[0] == 0x23 and
                 buf[1] == 0x21 and
                 buf[2] == 0x41 and
