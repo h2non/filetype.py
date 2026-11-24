@@ -30,7 +30,7 @@ class Mp4(IsoBmff):
         return major_brand in ['mp41', 'mp42', 'isom']
 
 
-class M4v(Type):
+class M4v(IsoBmff):
     """
     Implements the M4V video type matcher.
     """
@@ -44,13 +44,11 @@ class M4v(Type):
         )
 
     def match(self, buf):
-        return (len(buf) > 10 and
-                buf[0] == 0x0 and buf[1] == 0x0 and
-                buf[2] == 0x0 and buf[3] == 0x1C and
-                buf[4] == 0x66 and buf[5] == 0x74 and
-                buf[6] == 0x79 and buf[7] == 0x70 and
-                buf[8] == 0x4D and buf[9] == 0x34 and
-                buf[10] == 0x56)
+        if not self._is_isobmff(buf):
+            return False
+
+        major_brand, minor_version, compatible_brands = self._get_ftyp(buf)
+        return major_brand.startswith('M4V')
 
 
 class Mkv(Type):
