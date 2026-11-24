@@ -2,6 +2,8 @@
 
 from __future__ import absolute_import
 
+import struct
+
 from .base import Type
 
 
@@ -43,12 +45,32 @@ class ZippedDocumentBase(Type):
 
 class OpenDocument(ZippedDocumentBase):
     def match_document(self, buf):
-        # Check if first file in archive is the identifying file
-        if not self.compare_bytes(buf, b"mimetype", 0x1E):
-            return
+        if len(buf) < 30:
+            return False
 
-        # Check content of mimetype file if it matches current mime
-        return self.compare_bytes(buf, bytes(self.mime, "ASCII"), 0x26)
+        flags, compression = struct.unpack_from("<HH", buf, 6)
+        filename_size, extra_size = struct.unpack_from("<HH", buf, 26)
+        if (compression != 0 or filename_size != 8 or
+                not self.compare_bytes(buf, b"mimetype", 30)):
+            return False
+
+        mime = self.mime.encode("ASCII")
+        data_offset = 30 + filename_size + extra_size
+        if not self.compare_bytes(buf, mime, data_offset):
+            return False
+
+        if flags & 0x08:
+            # Streaming ZIPs put the sizes after the uncompressed payload.
+            descriptor = data_offset + len(mime)
+            if self.compare_bytes(buf, b"PK\x07\x08", descriptor):
+                descriptor += 4
+            if len(buf) < descriptor + 12:
+                return False
+            sizes = struct.unpack_from("<II", buf, descriptor + 4)
+        else:
+            sizes = struct.unpack_from("<II", buf, 18)
+
+        return sizes == (len(mime), len(mime))
 
 
 class OfficeOpenXml(ZippedDocumentBase):
